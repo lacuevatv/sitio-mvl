@@ -1,0 +1,27 @@
+/* ---- modulos  ---- */
+.wrapper-modulo {
+  position: relative;
+  clear: both;
+  display: block;
+}
+
+.body-modulo {
+  padding: 40px 0 20px;
+  min-height: 350px;
+}
+
+.footer-modulo {
+  border-top: 1px solid $negro;
+  background-color: transparent;
+}
+
+.load-ajax {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: url(../images/loader-ajax.gif) no-repeat center;
+  background-size: 20%;
+  right: 0;
+  top: 0;
+}
