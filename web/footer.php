@@ -96,15 +96,15 @@
             <aside class="jorge-macri">
             
                 <?php if ( dispositivo() != 'pc') : ?>
-                    <img src="assets/images/jmacri-movil.png" alt="Propuesta Jorge Macri" class="image-responsive">
+                    <img src="<?php echo MAINSURL; ?>/assets/images/jmacri-movil.png" alt="Propuesta Jorge Macri" class="image-responsive">
                 <?php else : ?>
-                    <img src="assets/images/jmacri-pc.png" alt="Propuesta Jorge Macri">
+                    <img src="<?php echo MAINSURL; ?>/assets/images/jmacri-pc.png" alt="Propuesta Jorge Macri">
                 <?php endif; ?>
             
             </aside>
             
             <div class="copyright">
-                <img src="/assets/images/logo-bn.png" alt="Logo Municipio Vicente Lopez">
+                <img src="<?php echo MAINSURL; ?>/assets/images/logo-bn.png" alt="Logo Municipio Vicente Lopez">
                 <p>&#169; 2017 vicentelopez.gov.ar</p>
             </div>
         </div>
@@ -113,9 +113,9 @@
 </div><!--- //.wrapper-site -->
 <!--- scripts -->    
 <!------- jquery 3.1.1 ------>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="<?php echo MAINSURL; ?>/assets/js/jquery-3.2.1.min.js"></script>
     <!------- owl ------>
-    <script src="inc/lib/owl/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="<?php echo MAINSURL; ?>/inc/lib/owl/owl.carousel.min.js"></script>
+    <script src="<?php echo MAINSURL; ?>/assets/js/script.js"></script>
 </body>
 </html>

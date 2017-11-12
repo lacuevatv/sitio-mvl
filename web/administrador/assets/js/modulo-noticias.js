@@ -315,15 +315,28 @@ $(document).ready(function(){
             },
 			success: function ( response ) {
 				console.log(response);
-				//si hay un error de vuelve el error
-				if ( response == '0' ) {
-					error.append( '<li class="error-msj-list-item-danger">Hubo un pequeño error</li>');
-				} else if (response == 'error-url') {
-					error.append( '<li class="error-msj-list-item-danger">Ya existe una entrada con ese URL</li>');
-				} else {
-					error.append( '<li class="error-msj-list-item-danger">Los Cambios fueron guardados</li>');
-					scrollHaciaArriba();
-					$('.btn-submit')[0].remove();
+				//si hay un error de vuelve el error y ejecuta las funciones
+				switch(response) {
+					case 'saved':
+						var slug = $('#post_url').val();
+						var url = window.location.href;
+						url += '&slug=';
+						url += slug;
+						window.location.href = url;
+						break;
+
+					case 'error-url':
+						error.append( '<li class="error-msj-list-item-danger">Ya existe una entrada con ese URL</li>');
+						break;
+
+					case 'updated':
+						error.append( '<li class="error-msj-list-item-danger">Los Cambios fueron guardados</li>');
+						scrollHaciaArriba();
+						break;					
+
+					default:
+						error.append( '<li class="error-msj-list-item-danger">Hubo un pequeño error</li>');
+						break;
 				}
 			},
 			error: function ( error ) {

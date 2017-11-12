@@ -25,12 +25,12 @@
 <!-- SEO SECCTION -->
     <meta name="keywords" content="<?php echo METAKEYS; ?>">
     <meta name="description" content="<?php echo METADESCRIPTION; ?>">
-    <link rel="canonical" href="<?php echo urlBase(); ?>" />
+    <link rel="canonical" href="<?php echo MAINSURL; ?>" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="<?php echo SITETITLE; ?>" />
     <meta property="og:description" content="" />
-    <meta property="og:url" content="<?php echo urlBase(); ?>" />
+    <meta property="og:url" content="<?php echo MAINSURL; ?>" />
     <meta property="og:site_name" content="<?php echo SITETITLE; ?>" />
     <meta property="og:image" content="" />
     <meta name="twitter:card" content="summary" />
@@ -40,13 +40,13 @@
 <!-- // SEO SECCTION -->
 
 <!-- OWL -->
-<link href="inc/lib/owl/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="<?php echo MAINSURL; ?>/inc/lib/owl/assets/owl.carousel.min.css" rel="stylesheet">
 <!-- <link href="inc/lib/owl/assets/owl.theme.default.css" rel="stylesheet">-->
 <!-- Custom CSS -->
-    <link href="assets/css/style.css?<?php echo VERSION; ?>" rel="stylesheet">
+    <link href="<?php echo MAINSURL; ?>/assets/css/style.css?<?php echo VERSION; ?>" rel="stylesheet">
 
 <!--- modernizr -->
-<script src="assets/js/modernizr-custom.js"></script>
+<script src="<?php echo MAINSURL; ?>/assets/js/modernizr-custom.js"></script>
 
 </head>
 <body>
@@ -60,8 +60,8 @@
                 <span class="sr-only">Menu</span>
             </button>
 
-            <a href="<?php echo urlBase(); ?>" title="" role="link" class="main-logo">
-                <img src="assets/images/logo-color.png" alt="Municipio Vicente Lopez - Logo" class="image-responsive">
+            <a href="<?php echo MAINSURL; ?>" title="" role="link" class="main-logo">
+                <img src="<?php echo MAINSURL; ?>/assets/images/logo-color.png" alt="Municipio Vicente Lopez - Logo" class="image-responsive">
                 <span class="sr-only">Vivamos Vicente López</span>
             </a>
             
@@ -69,37 +69,37 @@
             <!-- MAIN MENU -->
                 <ul class="main-menu" role="menu">
                     <li role="menuitem">
-                        <a href="#" title="inicio">
+                        <a href="<?php echo MAINSURL; ?>" title="inicio">
                             inicio
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Vicente Lopez">
+                        <a href="/vicente-lopez/" title="Vicente Lopez">
                             Vicente&nbsp;Lopez
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Agenda">
+                        <a href="/agenda/" title="Agenda">
                             Agenda
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Trámites y servicios">
+                        <a href="/tramites-servicios/" title="Trámites y servicios">
                             Trámites&nbsp;y&nbsp;servicios
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Gestión">
+                        <a href="/gestion/" title="Gestión">
                             Gestión
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Bolsa de empleo">
+                        <a href="/bolsa-empleo/" title="Bolsa de empleo">
                             Bolsa&nbsp;de&nbsp;empleo
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="#" title="Teléfonos">
+                        <a href="/telefonos/" title="Teléfonos">
                             Teléfonos
                         </a>
                     </li>

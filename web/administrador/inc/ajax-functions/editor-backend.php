@@ -30,6 +30,8 @@ if ( isAjax() ) {
 
 	if ( $fechaAgenda == '2015-02-21' || $fechaAgenda == '' || $fechaAgenda == '0000-00-00' ) {
 		$fechaAgenda = 'NULL';
+	} else {
+		$fechaAgenda = "'".$fechaAgenda."'";//le agrego las comillas a mano para no tener problemas luego en el query con el null del mysql
 	}
 
     //saneamiento
@@ -84,7 +86,7 @@ if ( isAjax() ) {
 	} //es viejo post
 		else {
 
-		$query = "UPDATE ".$tabla." SET post_autor='".$user."',post_fecha='".$postDate."', post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_link_externo='".$linkExterno."',post_fecha_agenda='".$fechaAgenda."', post_status='".$postStatus."' WHERE post_ID='".$postID."' LIMIT 1";
+		$query = "UPDATE ".$tabla." SET post_autor='".$user."',post_fecha='".$postDate."', post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_link_externo='".$linkExterno."',post_fecha_agenda=".$fechaAgenda.", post_status='".$postStatus."' WHERE post_ID='".$postID."' LIMIT 1";
 
 		$updatePost = mysqli_query($connection, $query); 
 		

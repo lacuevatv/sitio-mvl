@@ -13,8 +13,12 @@
 define ( 'VERSION', '1.0' );
 //CARPETAS
 define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
-define ('UPLOADSURL', 'http://' . $_SERVER['HTTP_HOST'] . '/contenido');
+define ( 'PAGESDIR', dirname( __FILE__ ) . '/../pages' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
+//urls
+//urls
+define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST']);
+define ('UPLOADSURL', MAINSURL . '/galeria');
 //BD
 define('DB_SERVER', 'localhost');
 define('DB_USER', 'dbuser');
@@ -25,27 +29,17 @@ define('SITETITLE', 'Municipio Vicente Lopez');
 define('METADESCRIPTION', '');
 define('METAKEYS', '');
 //LINKS:
-define('LINK_FACEBOOK', '#');
-define('LINK_INSTAGRAM', '#');
-define('LINK_TWITTER', '#');
+define('LINK_FACEBOOK', 'https://www.facebook.com/VivamosVL/');
+define('LINK_INSTAGRAM', 'https://www.instagram.com/vivamosvl/');
+define('LINK_TWITTER', 'https://twitter.com/VivamosVL');
 define('LINK_FLICKR', '#');
-define('LINK_YOUTUBE', '#');
+define('LINK_YOUTUBE', 'https://www.youtube.com/channel/UCjcsomvElGuHkxPq6SKhhRw');
 
-
-/*
-define ( 'VERSION', '1.0' );
-//CARPETAS
-define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
-define ('UPLOADSURL', 'http://' . $_SERVER['HTTP_HOST'] . '/mvl/contenido');
-define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
-//META TAGS
-define('SITETITLE', 'Municipio Vicente Lopez');
-define('METADESCRIPTION', '');
-define('METAKEYS', '');
-//LINKS:
-define('LINK_FACEBOOK', '#');
-define('LINK_INSTAGRAM', '#');
-define('LINK_TWITTER', '#');
-define('LINK_FLICKR', '#');
-define('LINK_YOUTUBE', '#');
-*/
+global $categorias;
+$categorias = array(
+	array( 'slug' => 'agenda', 'nombre' => 'Agenda'),
+	array( 'slug' => 'tramites-servicios', 'nombre' => 'Trámites y Servicios'),
+	array( 'slug' => 'gestion', 'nombre' => 'Gestión'),
+	array( 'slug' => 'bolsa-empleo', 'nombre' => 'Bolsa de Empleo'),
+	array( 'slug' => 'telefonos', 'nombre' => 'Teléfonos'),
+);

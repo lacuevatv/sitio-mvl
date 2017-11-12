@@ -7,14 +7,22 @@
 */
 require_once 'inc/functions.php';
 
-include 'header.php';
-?>
+global $pageActual;
+$pageActual = pageActual();
 
-    <div class="inner-wrapper">
-        
-        <?php getTemplate( 'home' ) ?>
-        
-    </div>
+//tres tipos de páginas, una loop (agenda, gestión, teléfonos, una single que tiene la noticia o el artículo específico, con o sin sidebar y la especial, como la página de inicio
+if ( es_categoria() ) {
+	getPage( 'loop' );
+} else {
+	
+	switch ( $pageActual ) {
+		case 'inicio':
+			getPage( 'inicio' );
+			break;
+		
+		default:
+			getPage( 'single' );
+			break;
+	}
 
-<?php
-include 'footer.php';
+}

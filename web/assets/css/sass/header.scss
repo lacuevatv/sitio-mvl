@@ -205,7 +205,6 @@ MENUS
 .social-menu {
     display: none;
     @media (min-width: $lg) {
-        //width:15%;
         display: flex;
         display: -o-flex;
         display: -ms-flex;
@@ -222,7 +221,7 @@ MENUS
         -o-justify-content: center;
         justify-content: center;
         flex-grow: 1;
-        padding: 10px 0;
+        padding: 10px 0 10px 20px;
         border-left: 2px solid $color-violeta;
     }
 
