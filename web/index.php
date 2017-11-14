@@ -19,7 +19,9 @@ if ( es_categoria() ) {
 		case 'inicio':
 			getPage( 'inicio' );
 			break;
-		
+		case 'buscar':
+			getPage( 'loop' );
+		break;
 		default:
 			getPage( 'single' );
 			break;

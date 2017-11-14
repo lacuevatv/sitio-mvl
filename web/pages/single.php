@@ -9,6 +9,8 @@
 $slugUrl = getPageVar();//variante de la pagina
 $categoria = ver_categoria();//define la categoria
 
+$dataNoticia = singlePostHTML( $slugUrl );
+
 include 'header.php';
 ?>
 <!--- .inner-wrapper: contenido principal y específico del template -->
@@ -17,6 +19,10 @@ include 'header.php';
 	<h1><?php echo $slugUrl; ?></h1>
 
 	<p>single</p>
+
+	<p><?php echo $categoria; ?></p>	
+
+	<?php var_dump($dataNoticia); ?>
 
 </div><!--- //.inner-wrapper -->
 

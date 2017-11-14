@@ -33,11 +33,9 @@ if ( $result->num_rows == 0 ) {
 		$url          = $row['post_url'];
 		$imgDestacada = $row['post_imagen'];
 		$resumen      = $row['post_resumen'];
-		$bajada       = $row['post_bajada'];
 		$contenido    = $row['post_contenido'];
 		$video        = $row['post_video'];
 		$categoria    = $row['post_categoria'];
-		$etiquetas    = $row['post_etiquetas'];
 		$galeria      = $row['post_galeria'];
 		$imgGaleria   = $row['post_imagenesGal'];
 		$status       = $row['post_status'];
@@ -48,13 +46,10 @@ if ( $result->num_rows == 0 ) {
 		$mes          = $meses[date("n", strtotime($date))-1];
 		$year         = date("Y", strtotime($date));
 	
-		if ( $resumen == '' ) {
-			$resumen = $bajada;
-		}
 		?>
 		<li class="loop-noticias-backend-item">
 				<article class="row">
-				    <div class="col-sm-3">
+				    <div class="col-30">
 				    	<?php 
 				    	if ( $imgDestacada != '' ) { ?>
 				    	<img src="<?php echo UPLOADSURLIMAGES.'/'.$imgDestacada; ?>" alt="Imagen Destacada de la noticia" class="img-responsive">
@@ -63,7 +58,7 @@ if ( $result->num_rows == 0 ) {
 				    	<img src="assets/images/noticia-img-default.png" alt="Noticias-ATSA" class="img-responsive">
 				    	<?php } ?>
 				    </div>
-				    <div class="col-sm-9">
+				    <div class="col-70">
 				    	
 				    	<h1 class="titulo-noticia-small">
 				    		<?php echo $titulo; ?> 

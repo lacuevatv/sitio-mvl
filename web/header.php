@@ -94,7 +94,7 @@
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/bolsa-empleo/" title="Bolsa de empleo">
+                        <a href="/empleo/" title="Bolsa de empleo">
                             Bolsa&nbsp;de&nbsp;empleo
                         </a>
                     </li>

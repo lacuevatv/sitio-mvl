@@ -16,9 +16,8 @@ define ( 'UPLOADS', dirname( __FILE__ ) . '/../contenido' );
 define ( 'PAGESDIR', dirname( __FILE__ ) . '/../pages' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 //urls
-//urls
 define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST']);
-define ('UPLOADSURL', MAINSURL . '/galeria');
+define ('UPLOADSURL', MAINSURL . '/contenido');
 //BD
 define('DB_SERVER', 'localhost');
 define('DB_USER', 'dbuser');
@@ -40,6 +39,8 @@ $categorias = array(
 	array( 'slug' => 'agenda', 'nombre' => 'Agenda'),
 	array( 'slug' => 'tramites-servicios', 'nombre' => 'Trámites y Servicios'),
 	array( 'slug' => 'gestion', 'nombre' => 'Gestión'),
-	array( 'slug' => 'bolsa-empleo', 'nombre' => 'Bolsa de Empleo'),
+	array( 'slug' => 'empleo', 'nombre' => 'Bolsa de Empleo'),
 	array( 'slug' => 'telefonos', 'nombre' => 'Teléfonos'),
 );
+
+define('POSTPERPAG', '5');//indica al paginador cuantos se muestran por pagina para calcular el offset además de que el loop muestra solo esos

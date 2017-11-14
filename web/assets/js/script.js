@@ -6,10 +6,13 @@
  --------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 1.0 NAVIGATION
-2.0 
-3.0 
+2.0 OWL SLIDERS
+3.0 PAGINATION
 4.0 
 --------------------------------------------------------------*/
+
+var baseUrl = 'http://' + window.location.host;
+var ajaxFileUrl = baseUrl + '/inc/ajax.php';
 
 /*--------------------------------------------------------------
 1.0 NAVIGATION
@@ -209,6 +212,153 @@ $(window).on('load', function(){
             }
         });
     }
+    //vertical slider owlCarousel
+    /*if ( window.innerWidth > 992 ) {
+        $('#content-sidebar').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            //navText : ['<span class="icon-arrow-colors icon-arrow-left-violeta"></span>','<span class="icon-arrow-colors icon-arrow-right-violeta"></span>'],
+            dots:false,
+        });
+    }*/
 
 
 });//on load
+
+/*--------------------------------------------------------------
+3.0 PAGINATION
+--------------------------------------------------------------*/
+
+//función que busca los post y responde el html que lo append en el contenedor, la función está creada porque la ejecutan varios clics
+function loadNewPostPagination ( page, postPerPage, categoria, contenedor ) {
+    $.ajax( {
+            type: 'POST',
+            url: ajaxFileUrl,
+            data: {
+                function: 'paginationLoop',
+                page: page,
+                postPerPage: postPerPage,
+                categoria: categoria,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+            },
+            success: function ( response ) {
+                contenedor.append(response);
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+    });//cierre ajax
+}
+
+
+
+$(document).ready(function(){
+    /*
+    VARIABLES QUE NO CAMBIAN
+    */
+
+    var pages = $('.page-click-btn');
+    //variable para saber cuantas paginas son
+    var numberPages = pages.length;
+    //la cantidad de paginas que puede mostrar el diseño
+    var pageHtml = 8;
+    //sabe que cantidad de paginas están fuera de la vista
+    outViewPages = numberPages-pageHtml;
+    //agrega la clase active al primer item
+    $(pages[0]).addClass('active');
+    //contenedor de las paginas
+    contenedor = $('.posts-content');//modificar luego cuando tenga el template
+    //cantidad de numeros por paginas
+    postPerPage = $('.pagination-items').attr('data-post-per-page');
+    //categoria cargada
+    categoria = $('.main-title-page').attr('data-categoria');
+
+    /*
+    FUNCIONES AL HACER CLIC
+    */
+
+    //clic en los numeros de paginas
+    $(document).on('click', '.page-click-btn', function( event ){
+        event.preventDefault();
+        actualPage = $('.active').attr('href');
+
+        page = $(this).attr('href');
+
+        if ( page == actualPage ) {
+            return;
+        }
+
+        loadNewPostPagination( page, postPerPage, categoria, contenedor );
+
+    });//.click .page.click-btn
+
+    //clic en la flecha derecha de navegación
+    $(document).on('click', '.pagination-nav-right', function( event ){
+        
+        //debugger;
+
+        //ve que pagina está activa
+        var active = $('.active');
+        actualPage = $(active).attr('href');
+        //sumar uno a la pagina activa
+        page = parseInt(actualPage) + 1;
+
+        if ( page > numberPages ) {
+            return;
+        } 
+        
+        //mover los numeros para ver otras paginas de ser necesario
+        if ( outViewPages >= 0 && numberPages-actualPage > pageHtml-5 ) {
+            if ( actualPage != 1 && actualPage != 2 ){      
+                $('.pagination-items li a').css('left', '-=40px');
+            }
+        }
+
+        //le paso la clase active al que sigue
+        $(active).closest('li').next().find('a').addClass('active');
+        $(active).removeClass('active');
+
+        //Cargar el contenido por ajax
+        loadNewPostPagination( page, postPerPage, categoria, contenedor );
+        
+        //ocultar la pagina anterior
+    });
+
+    //clic en la flecha izquierda de navegación
+    $(document).on('click', '.pagination-nav-left', function( event ){
+        
+        
+        var active = $('.active');
+        actualPage = $(active).attr('href');
+        //sumar uno a la pagina activa
+        page = parseInt(actualPage) - 1;
+        
+        if ( page == 0 ) {
+            return;
+        }
+        
+        //mover los numeros para ver otras paginas de ser necesario
+        if ( outViewPages >= 0 && actualPage != 1 && actualPage != 2 && actualPage != 3) {
+            if ( $('.pagination-items li a').css('left') != '60px' ){      
+                $('.pagination-items li a').css('left', '+=40px');
+            }
+        }
+
+        //le paso la clase active al anterior
+        $(active).closest('li').prev().find('a').addClass('active');
+        $(active).removeClass('active');
+
+        
+
+        //en este caso no se carga el contenido, porque ya está cargado y oculto, solo hay que mostrarlo
+
+    });
+
+});//.ready()
+
+/*--------------------------------------------------------------
+4.0 
+--------------------------------------------------------------*/

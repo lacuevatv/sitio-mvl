@@ -23,7 +23,7 @@ function getPage( $name ) {
 }
 
 //busca el template $name = nombre del archivo sin extensión
-function getTemplate ( $name ) {
+function getTemplate ( $name, $data = array() ) {
 	$namePage = TEMPLATEDIR . '/'. $name. '.php';
 
 	if (is_file($namePage)) {
@@ -79,10 +79,6 @@ function pageActual () {
 
 			$slug = $RequestURI;		
 			
-		}
-
-		if ( $slug == 'edad-feliz' ) {
-			$slug = 'noticias';
 		}
 
 	} 
@@ -230,6 +226,13 @@ function metaDescriptionText ( $pageActual, $noticia, $curso, $categoriaNoticias
 
 }//metaDescriptionText()
 
+/**
+ * Checks if a request is a AJAX request
+ * @return bool
+ */
+function isAjax() {
+    return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']  == 'XMLHttpRequest');
+}
 
 
 /*
@@ -264,225 +267,71 @@ function closeDataBase( $connection ){
     }
 }
 
-//muestra las noticias recientes se puede especificar la cant de post, la categoria y se puede excluir una noticia. Además tiene estilo columna para sidebar por default o row
-function NoticiasRecientesHTML ( $cantPosts, $categoria = 'none', $exclude = 'none', $style = false, $offset = 0 ) {
-	$noticiasPorPagina = $cantPosts;
+
+
+//busca datos para loop de noticias por categoria y los devuelve en una variables:
+function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status = 'publicado', $offset = 0 ) {
 	$connection = connectDB();
-	$fecha_actual = strtotime(date("d-m-Y H:i:00"));
+	//$fecha_actual = date("d-m-Y");
+	$fecha_actual = date("Y-m-d");
 	$tabla = 'noticias';
 
 	if ( $offset != '0' ) {
-		$noticiasPorPagina = $offset.','.$cantPosts;
+		$number = $offset.','.$number;
 		//$noticiasPorPagina = '3,2';
 	}
 
-	$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
-
+	$query  = "SELECT * FROM " .$tabla;
+	$query .= " WHERE post_status='";
+	$query .= $status . "'";
 	if ( $categoria != 'none' ) {
-		$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' AND post_categoria = '".$categoria."' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
+		$query .= " AND post_categoria = '".$categoria."'";
 	}
-
 	if ( $exclude != 'none' ) {
-		$query  = "SELECT * FROM " .$tabla. " WHERE post_url!='".$exclude."' AND post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
+		$query .= " AND post_url!='".$exclude."'";
+	}
+	if ( $status == 'publicado' ) {
+		$query .= " AND post_fecha <= '".$fecha_actual."'";	
+	}
+	$query .= " ORDER by post_fecha desc ";
+	if ( $number != -1 ) {
+		$query .= " LIMIT ".$number." ";
 	}
 	
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
 		echo '<div>Ninguna noticia ha sido cargada todavía</div>';
-		echo $query;
+		
 	} else {
 
 		while ($row = $result->fetch_array()) {
-				$rows[] = $row;
+				$loop[] = $row;
 			}
 
-		foreach ($rows as $row ) { 
-			$imgDestacada = $row['post_imagen'];
-			$resumen      = $row['post_resumen'];
-			$url          = $row['post_url'];
-			$id           = $row['post_ID'];
-			$titulo       = $row['post_titulo'];
-			$date         = $row['post_fecha'];
-			$meses        = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-			$fecha        = date("d", strtotime($date)) .' de '. $meses[date("n", strtotime($date))-1] .' de '. date("Y", strtotime($date));
-			
-			//si la fecha es posterior a hoy no se publica, y se saltea
-			if($fecha_actual < strtotime($date) ){
-			    continue;
-			}
-
-			//la versión style no tiene fecha y el formato es más cuadrado, el texto va sobre la imagen
-			if ($style) {
-			?>
-		
-		<li class="loop-recientes-item-row">
-			<a href="/noticias/<?php echo $url; ?>" title="Leer noticia">
-				<article class="noticia-recientes-item">
-					
-					<div class="recientes-img-loop-row">
-						<?php 
-						if ( $imgDestacada != '' ) { ?>
-							<img src="uploads/images/<?php echo $imgDestacada; ?>" alt="<?php echo $titulo; ?> | Noticias-ATSA">
-						
-						<?php 
-						
-						} else { ?>
-							<img src="assets/images/noticia-img-default.png" alt="Noticias-ATSA">
-						<?php 
-						} ?>
-
-					</div>
-					<div class="recientes-text-loop-row">
-						<h1>
-							<?php echo $titulo; ?>
-						</h1>
-					</div>
-				</article>
-			</a>
-		</li>
-		
-
-		<?php } else {
-				//stylo default (sidebar)
-			?>
-		<li class="loop-recientes-item">
-			<a href="/noticias/<?php echo $url; ?>" title="Leer noticia">
-				<article class="noticia-recientes-item">
-					
-					<div class="recientes-img-loop">
-						<?php 
-						if ( $imgDestacada != '' ) { ?>
-							<img src="uploads/images/<?php echo $imgDestacada; ?>" alt="<?php echo $titulo; ?> | Noticias-ATSA">
-						
-						<?php 
-						
-						} else { ?>
-							<img src="assets/images/noticia-img-default.png" alt="Noticias-ATSA">
-						<?php 
-						} ?>
-
-					</div>
-					<div class="recientes-text-loop">
-						<h1>
-							<?php echo $titulo; ?>
-						</h1>
-						
-						<p>
-							<?php echo $fecha ?>
-						</p>
-					</div>
-				</article>
-			</a>
-		</li>
-	<?php }
-		}//cierra for each
-	} //else
-	closeDataBase( $connection );
-}//NoticiasRecientesHTML()
-
-
-
-//muestra html del loop de noticias de acuerdo a su categoría
-function loopNoticiasHTML ( $categoria ) {
-	$fecha_actual = strtotime(date("d-m-Y H:i:00"));
-	$noticiasPorPagina = 3;
-	$connection = connectDB();
-	$tabla = 'noticias';
-	$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
-
-	if ( $categoria != 'none' ) {
-		$query  = "SELECT * FROM " .$tabla. " WHERE post_status='publicado' AND post_categoria = '".$categoria."' ORDER by post_fecha desc LIMIT ".$noticiasPorPagina." ";
 	}
-	
-	$result = mysqli_query($connection, $query);
-	
-	if ( $result->num_rows == 0 ) {
-		echo '<div>Ninguna noticia ha sido cargada todavía</div>';
-	} else {
-
-		while ( $row = $result->fetch_array() ) {
-			$rows[] = $row;
-		}
-
-		foreach ($rows as $row ) { 
-			$titulo       = $row['post_titulo'];
-			$url          = $row['post_url'];
-			$imgDestacada = $row['post_imagen'];
-			$resumen      = $row['post_resumen'];
-			$bajada       = $row['post_bajada'];
-			$contenido    = $row['post_contenido'];
-			$video        = $row['post_video'];
-			$categoria    = $row['post_categoria'];
-			$etiquetas    = $row['post_etiquetas'];
-			$galeria      = $row['post_galeria'];
-			$imgGaleria   = $row['post_imagenesGal'];
-			$date         = $row['post_fecha'];
-
-			$meses        = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-			$dia          = date("d", strtotime($date));
-			$mes          = $meses[date("n", strtotime($date))-1];
-			$year         = date("Y", strtotime($date));
-		
-			if ( $resumen == '' ) {
-				$resumen = $bajada;
-			}
-
-			//si la fecha es posterior a hoy no se publica, y se saltea
-			if($fecha_actual < strtotime($date) ){
-			    continue;
-			}
-
-			?>
-			<li class="loop-noticias-item">
-				<article class="noticia-index">
-					<header>
-						<h1>
-							<?php echo $titulo; ?>
-						</h1>
-					</header>
-					<section>
-						<div class="meta-data-news">
-							<div class="date-news">
-								<p>
-									<strong>
-									<?php echo $dia; ?>
-									</strong><br>
-									de <?php echo $mes .' '. $year; ?>
-								</p>
-							</div>
-
-							<?php 
-							if ( $imgDestacada != '' ) { ?>
-								<a href="/noticias/<?php echo $url; ?>" title="Leer noticia">
-									<img src="uploads/images/<?php echo $imgDestacada; ?>" alt="<?php echo $titulo; ?> | Noticias-ATSA">
-								</a>
-							<?php 
-							
-							} else {
-
-							?>
-								<img src="assets/images/noticia-img-default.png" alt="Noticias-ATSA">
-							<?php 
-							} ?>
-						</div>
-						<p class="excerpt-news">
-							<?php echo $bajada; ?>
-						</p>
-					</section>
-					<footer>
-						<div class="btn-noticia-index">
-							<a href="/noticias/<?php echo $url; ?>" title="Leer noticia">Leer más</a>
-						</div>
-					</footer>
-				</article>
-			</li>
-		<?php
-
-		}//FOREACH
-	}//ELSE
 	closeDataBase( $connection );
-} //loopNoticiasHTML()
+	return $loop;
+}
+
+function getPagination( $categoria, $postPerPage ) {
+	$posts = getPosts( $categoria );
+	$totalPost = count($posts);
+	$cantPages = ceil($totalPost / $postPerPage);//devuelve valor redondeado 
+
+	if ( $cantPages < 2 ) {
+		return;
+	}
+
+	$data = array(
+		'numberPages' => $cantPages,
+		'categoria'   => $categoria,
+		'postPerPage' => $postPerPage,
+	);
+
+	getTemplate( 'pagination' ,$data );
+
+}
 
 
 //busca la noticia en particular y recoge los datos para pasar al template
@@ -494,7 +343,7 @@ function singlePostHTML ( $noticia ) {
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
-		header("Location: /404");
+		$dataNoticia = 'none';
 	} else {
 
 		$data = mysqli_fetch_array($result);
@@ -505,13 +354,8 @@ function singlePostHTML ( $noticia ) {
 		$mes          = $meses[date("n", strtotime($date))-1];
 		$year         = date("Y", strtotime($date));
 		$resumen      = $data['post_resumen'];
-		$bajada       = $data['post_bajada'];
 		$galeria      = $data['post_galeria'];
  		$imgGaleria   = array();
-		//si no hay resumen toma la bajada
-		if ( $resumen == '' ) {
-			$resumen = $bajada;
-		}
 
 		if ( $galeria ) {
 			$imgGaleria = unserialize( $data['post_imagenesGal'] );
@@ -522,16 +366,15 @@ function singlePostHTML ( $noticia ) {
 			'url'          => $data['post_url'],
 			'imgDestacada' => $data['post_imagen'],
 			'resumen'      => $resumen,
-			'bajada'       => $bajada,
 			'contenido'    => $data['post_contenido'],
 			'video'        => $data['post_video'],
 			'categoria'    => $data['post_categoria'],
-			'etiquetas'    => $data['post_etiquetas'],
 			'galeria'      => $data['post_galeria'],
 			'imgGaleria'   => $imgGaleria,
 			'dia'          => $dia,
 			'mes'          => $mes,
-			'year'         => $year,	
+			'year'         => $year,
+			'fechaAgenda'  => $data['post_fecha_agenda'],
 		);
 
 		return $dataNoticia;
@@ -539,8 +382,6 @@ function singlePostHTML ( $noticia ) {
 	}//ELSE
 	closeDataBase( $connection );
 } //singlePostHTML()
-
-
 
 
 //busca el slider en base de datos de acuerdo a su 'ubicacion' pasada

@@ -44,10 +44,7 @@ if ( $result->num_rows == 0 ) {
 		$dia          = date("d", strtotime($date));
 		$mes          = $meses[date("n", strtotime($date))-1];
 		$year         = date("Y", strtotime($date));
-	
-		if ( $resumen == '' ) {
-			$resumen = $bajada;
-		}
+
 		?>
 		<li class="loop-noticias-backend-item">
 				<article class="row">
