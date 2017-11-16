@@ -29,6 +29,20 @@ if( isAjax() ) {
 			getTemplate( 'posts-loop', $loop );
 
 		break;
+
+		case 'searchLoop':
+			
+			$page  = isset($_POST['page']) ? $_POST['page'] : 1;
+			$postPerPage  = isset($_POST['postPerPage']) ? $_POST['postPerPage'] : '1';
+			$busqueda = isset($_POST['busqueda']) ? $_POST['busqueda'] : '';
+
+			$offset = ($page-1) * $postPerPage .',' .$postPerPage;
+
+			$loop = getSearch ($busqueda, $offset );
+
+			getTemplate( 'posts-loop-mini', $loop );
+
+		break;
 	}
 
 	

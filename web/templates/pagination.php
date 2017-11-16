@@ -7,10 +7,18 @@
 		</li>
 	<?php } ?>
 		<span class="pagination-nav-left">
-			<a href="#">Anterior</a>
+			<?php if (dispositivo() == 'tablet') { ?>
+			Ant
+			<?php } else { ?>
+			Anterior
+			<?php } ?>
 		</span>
 		<span class="pagination-nav-right">
-			<a href="#">Siguiente</a>
+			<?php if (dispositivo() == 'tablet') { ?>
+			Sig
+			<?php } else { ?>
+			Siguiente
+			<?php } ?>
 		</span>
 	</div>
 </ul>

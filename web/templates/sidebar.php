@@ -1,6 +1,6 @@
 <?php
 
-	$loop = getPosts( 'agenda' );
+	$loop = getPosts( 'agenda', POSTPERPAG );
 ?>
 
 <div class="sidebar-wrapper">

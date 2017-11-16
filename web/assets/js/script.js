@@ -14,6 +14,13 @@
 var baseUrl = 'http://' + window.location.host;
 var ajaxFileUrl = baseUrl + '/inc/ajax.php';
 
+//se pasa con numeral #page
+function scrollToID ( id ) {
+    $('html, body').stop().animate({
+        scrollTop: $(id).offset().top -90
+    }, 'slow');
+}
+
 /*--------------------------------------------------------------
 1.0 NAVIGATION
 --------------------------------------------------------------*/
@@ -245,7 +252,8 @@ function loadNewPostPagination ( page, postPerPage, categoria, contenedor ) {
             beforeSend: function() {
             },
             success: function ( response ) {
-                contenedor.append(response);
+                var newPage = $( '<div id="page'+page+'" class="pages-posts">' + response + '</div>' );
+                contenedor.append(newPage);
             },
             error: function ( ) {
                 console.log('error');
@@ -253,6 +261,30 @@ function loadNewPostPagination ( page, postPerPage, categoria, contenedor ) {
     });//cierre ajax
 }
 
+//función que busca las entradas y responde html para búsquedas
+function loadNewPageSearch ( page, postPerPage, busqueda, contenedor ) {
+    $.ajax( {
+            type: 'POST',
+            url: ajaxFileUrl,
+            data: {
+                function: 'searchLoop',
+                page: page,
+                postPerPage: postPerPage,
+                busqueda: busqueda,
+            },
+            //funcion antes de enviar
+            beforeSend: function() {
+            },
+            success: function ( response ) {
+                console.log(response);
+                var newPage = $( '<div id="page'+page+'" class="pages-posts">' + response + '</div>' );
+                contenedor.append(newPage);
+            },
+            error: function ( ) {
+                console.log('error');
+            },
+    });//cierre ajax
+}
 
 
 $(document).ready(function(){
@@ -286,19 +318,39 @@ $(document).ready(function(){
         actualPage = $('.active').attr('href');
 
         page = $(this).attr('href');
+        id = '#page'+page;
 
         if ( page == actualPage ) {
-            return;
+            //si se hace clic en uno que ya esta cargado, simplemente te lleva a ese lugar
+            scrollToID(id);
+        } 
+        if ( $(id)[0]  == undefined ) {
+            //si no está cargado, hay que cargarlo, primero vemos si es una búsqueda
+            if ( categoria == 'buscar') {
+                var busqueda = $('#busqueda').val();
+                loadNewPageSearch( page, postPerPage, busqueda, contenedor );
+            } else {
+                //sino es una búsqueda, sale el query comun
+                loadNewPostPagination( page, postPerPage, categoria, contenedor );    
+            }
+            
+            //además quitamos a todos la clase activate
+            $('.active').each(function(){
+                $(this).removeClass('active');
+            });
+            //y le asignamos la clase activate al elemento clickeado
+            $(this).addClass('active');
+        } else {
+            $('.active').each(function(){
+                $(this).removeClass('active');
+            });
+            $(this).addClass('active');
+            scrollToID(id);
         }
-
-        loadNewPostPagination( page, postPerPage, categoria, contenedor );
-
     });//.click .page.click-btn
 
     //clic en la flecha derecha de navegación
     $(document).on('click', '.pagination-nav-right', function( event ){
-        
-        //debugger;
 
         //ve que pagina está activa
         var active = $('.active');
@@ -311,25 +363,42 @@ $(document).ready(function(){
         } 
         
         //mover los numeros para ver otras paginas de ser necesario
-        if ( outViewPages >= 0 && numberPages-actualPage > pageHtml-5 ) {
+        if ( window.innerWidth < 768 ) {
+            $('.pagination-items li a').css('left', '-=40px');
+        } else {
             if ( actualPage != 1 && actualPage != 2 ){      
                 $('.pagination-items li a').css('left', '-=40px');
             }
         }
-
+        
         //le paso la clase active al que sigue
         $(active).closest('li').next().find('a').addClass('active');
         $(active).removeClass('active');
 
-        //Cargar el contenido por ajax
-        loadNewPostPagination( page, postPerPage, categoria, contenedor );
         
+        //por ultimo, cargamos el contenido
+        id = '#page'+page;
+        //vemos que no esté cargado el contenido
+        if ( $(id)[0]  == undefined ) {
+            //sino está cargado se pide, primero, vemos que no sea una busqueda
+            if ( categoria == 'buscar') {
+                var busqueda = $('#busqueda').val();
+                loadNewPageSearch( page, postPerPage, busqueda, contenedor );
+            } else {
+                //sino es una búsqueda, sale el query comun
+                loadNewPostPagination( page, postPerPage, categoria, contenedor );    
+            }
+        } else {
+            //si está cargado no hace falta pedirlo otra vez, simplemente vamos hacia ahí
+            scrollToID( id );
+        }
+
+
         //ocultar la pagina anterior
     });
 
     //clic en la flecha izquierda de navegación
     $(document).on('click', '.pagination-nav-left', function( event ){
-        
         
         var active = $('.active');
         actualPage = $(active).attr('href');
@@ -341,20 +410,18 @@ $(document).ready(function(){
         }
         
         //mover los numeros para ver otras paginas de ser necesario
-        if ( outViewPages >= 0 && actualPage != 1 && actualPage != 2 && actualPage != 3) {
-            if ( $('.pagination-items li a').css('left') != '60px' ){      
-                $('.pagination-items li a').css('left', '+=40px');
-            }
+        if ( $('.pagination-items li a').css('left') != '60px' ){      
+            $('.pagination-items li a').css('left', '+=40px');
         }
+        
 
         //le paso la clase active al anterior
         $(active).closest('li').prev().find('a').addClass('active');
         $(active).removeClass('active');
 
-        
-
         //en este caso no se carga el contenido, porque ya está cargado y oculto, solo hay que mostrarlo
-
+        id = '#page'+page;
+        scrollToID( id );
     });
 
 });//.ready()

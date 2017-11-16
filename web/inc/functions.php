@@ -185,6 +185,42 @@ function getPageVar () {
 	return $slug;
 
 }
+//esta función toma el nombre de la categoría para mostrarlo en el front en caso de que sea distinto el nombre del slug
+function getNameCategoria( $categoria ) {
+	global $categorias;
+	for ($i=0; $i < count($categorias) ; $i++) { 
+		if ($categorias[$i]['slug'] == $categoria ) {
+			return $categorias[$i]['nombre'];
+			break;
+		}
+	}
+}
+
+//acorta el texto
+function acortaTexto( $texto, $cantPalabras = 50, $final = null ) {
+	if ( null === $final ) {
+	$final = '&hellip;';
+	}	
+	$textoOriginal = $texto;
+	
+	//quitar html
+	$texto = preg_replace( '@<(script|style)[^>]*?>.*?</\\1>@si', '', $texto );
+	$texto = strip_tags($texto);
+	
+	//reducir texto y agregar el final
+	 $words_array = preg_split( "/[\n\r\t ]+/", $texto, $cantPalabras + 1, PREG_SPLIT_NO_EMPTY );
+	$sep = ' ';
+	
+	//devolver texto reducido
+	if ( count( $words_array ) > $cantPalabras ) {
+		array_pop( $words_array );
+		$texto = implode( $sep, $words_array );
+		$texto = $texto . $final;
+	} else {
+		$texto = implode( $sep, $words_array );
+	}
+	return $texto;
+}
 
 //devuelve el título de la página para <head><title>
 function SeoTitlePage ( $page ) {
@@ -272,13 +308,11 @@ function closeDataBase( $connection ){
 //busca datos para loop de noticias por categoria y los devuelve en una variables:
 function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status = 'publicado', $offset = 0 ) {
 	$connection = connectDB();
-	//$fecha_actual = date("d-m-Y");
 	$fecha_actual = date("Y-m-d");
 	$tabla = 'noticias';
 
 	if ( $offset != '0' ) {
 		$number = $offset.','.$number;
-		//$noticiasPorPagina = '3,2';
 	}
 
 	$query  = "SELECT * FROM " .$tabla;
@@ -301,8 +335,7 @@ function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status
 	$result = mysqli_query($connection, $query);
 	
 	if ( $result->num_rows == 0 ) {
-		echo '<div>Ninguna noticia ha sido cargada todavía</div>';
-		
+		$loop = '<div>Ninguna noticia ha sido cargada todavía</div>';
 	} else {
 
 		while ($row = $result->fetch_array()) {
@@ -314,12 +347,44 @@ function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status
 	return $loop;
 }
 
+
+//realiza la búsqueda según parametros del buscador
+function getSearch( $busqueda, $offset = -1 ) {
+	if ($busqueda != '') {
+		$busqueda = trim($busqueda);
+		$connection = connectDB();
+		$tabla = 'noticias';
+
+		$query  = "SELECT * FROM ".$tabla." WHERE (post_titulo LIKE '%" .$busqueda. "%') OR (post_contenido LIKE '%" .$busqueda. "%') OR (post_categoria LIKE '%" .$busqueda. "%')";
+		if ( $offset != -1 ) {
+		$query  .= " LIMIT " .$offset." ";
+		}
+		
+		$result = mysqli_query($connection, $query);
+		if ( $result->num_rows == 0 ) {
+			getTemplate( '404' );
+			return;
+		} else {
+
+			while ($row = $result->fetch_array()) {
+					$loop[] = $row;
+				}
+
+		}
+	
+	closeDataBase( $connection );
+	return $loop;
+	}
+}
+
+
+//Crea la paginación y los links de acuerdo a la cantidad de post dividido la cantidad a mostrar por pagina
 function getPagination( $categoria, $postPerPage ) {
 	$posts = getPosts( $categoria );
 	$totalPost = count($posts);
 	$cantPages = ceil($totalPost / $postPerPage);//devuelve valor redondeado 
 
-	if ( $cantPages < 2 ) {
+	if ( $cantPages < 2 || $posts == null ) {
 		return;
 	}
 
@@ -331,6 +396,25 @@ function getPagination( $categoria, $postPerPage ) {
 
 	getTemplate( 'pagination' ,$data );
 
+}
+
+//Crea la paginación y los links de acuerdo a la cantidad de post dividido la cantidad a mostrar por pagina PARA BUSQUEDA
+function getPaginationSearch ( $busqueda, $postPerPage ) {
+	$loop = getSearch( $busqueda );
+	$totalPost = count($loop);
+	$cantPages = ceil($totalPost / $postPerPage);//devuelve valor redondeado 
+
+	if ( $cantPages < 2 || $busqueda == null ) {
+		return;
+	}
+
+	$data = array(
+		'numberPages' => $cantPages,
+		'categoria'   => 'buscar',
+		'postPerPage' => $postPerPage,
+	);
+	
+	getTemplate( 'pagination', $data );
 }
 
 
@@ -382,6 +466,7 @@ function singlePostHTML ( $noticia ) {
 	}//ELSE
 	closeDataBase( $connection );
 } //singlePostHTML()
+
 
 
 //busca el slider en base de datos de acuerdo a su 'ubicacion' pasada
