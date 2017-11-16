@@ -2,6 +2,8 @@
 (Sitio auto administrable)
 
 ## Versiones:
+* 1.1 - Maquetado el single page y single post. Faltan detalles y admin
+
 * 1.0 - Funcionando todos sus links, maquetado hasta single, falta la parte de las paginas y entradas individuales:  
 -En la tabla de 'noticias' tuve que agregar 'post_type', 'agenda_out', 'agenda_lugar'. Pero solo en el front, todavía falta la parte del backend.  
 -El loop tiene dos templates, agenda y gestion y las otras categorías.  

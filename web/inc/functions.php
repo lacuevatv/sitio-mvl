@@ -334,6 +334,8 @@ function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status
 	
 	$result = mysqli_query($connection, $query);
 	
+	closeDataBase( $connection );
+
 	if ( $result->num_rows == 0 ) {
 		$loop = '<div>Ninguna noticia ha sido cargada todavía</div>';
 	} else {
@@ -343,7 +345,7 @@ function getPosts( $categoria = 'none', $number = -1, $exclude = 'none', $status
 			}
 
 	}
-	closeDataBase( $connection );
+	
 	return $loop;
 }
 
@@ -361,6 +363,9 @@ function getSearch( $busqueda, $offset = -1 ) {
 		}
 		
 		$result = mysqli_query($connection, $query);
+
+		closeDataBase( $connection );
+
 		if ( $result->num_rows == 0 ) {
 			getTemplate( '404' );
 			return;
@@ -372,7 +377,6 @@ function getSearch( $busqueda, $offset = -1 ) {
 
 		}
 	
-	closeDataBase( $connection );
 	return $loop;
 	}
 }
@@ -419,55 +423,27 @@ function getPaginationSearch ( $busqueda, $postPerPage ) {
 
 
 //busca la noticia en particular y recoge los datos para pasar al template
-function singlePostHTML ( $noticia ) {
+function singlePostData ( $noticia ) {
 	$connection = connectDB();
+	$fecha_actual = date("Y-m-d");
 	$tabla = 'noticias';
-	$query  = "SELECT * FROM " .$tabla. " WHERE post_url='".$noticia."' LIMIT 1 ";
 
+	$query  = "SELECT * FROM " .$tabla. " WHERE post_url='".$noticia."' LIMIT 1 ";
 	$result = mysqli_query($connection, $query);
-	
+
+	closeDataBase( $connection );
+
 	if ( $result->num_rows == 0 ) {
-		$dataNoticia = 'none';
+		$singlePost = null;
 	} else {
 
-		$data = mysqli_fetch_array($result);
+		$singlePost = mysqli_fetch_array($result);
 
-		$date         = $data['post_fecha'];
-		$meses        = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-		$dia          = date("d", strtotime($date));
-		$mes          = $meses[date("n", strtotime($date))-1];
-		$year         = date("Y", strtotime($date));
-		$resumen      = $data['post_resumen'];
-		$galeria      = $data['post_galeria'];
- 		$imgGaleria   = array();
+	}
 
-		if ( $galeria ) {
-			$imgGaleria = unserialize( $data['post_imagenesGal'] );
-		}
+	return $singlePost;
 
-		$dataNoticia = array(
-			'titulo'       => $data['post_titulo'],
-			'url'          => $data['post_url'],
-			'imgDestacada' => $data['post_imagen'],
-			'resumen'      => $resumen,
-			'contenido'    => $data['post_contenido'],
-			'video'        => $data['post_video'],
-			'categoria'    => $data['post_categoria'],
-			'galeria'      => $data['post_galeria'],
-			'imgGaleria'   => $imgGaleria,
-			'dia'          => $dia,
-			'mes'          => $mes,
-			'year'         => $year,
-			'fechaAgenda'  => $data['post_fecha_agenda'],
-		);
-
-		return $dataNoticia;
-		
-	}//ELSE
-	closeDataBase( $connection );
-} //singlePostHTML()
-
-
+}
 
 //busca el slider en base de datos de acuerdo a su 'ubicacion' pasada
 function getSliders( $slider ) {

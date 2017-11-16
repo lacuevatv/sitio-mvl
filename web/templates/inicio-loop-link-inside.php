@@ -31,7 +31,7 @@ $item  = $data[$i];
             ?>
                 <p><?php echo $fecha; ?></p>
             <?php } ?>
-                <h1><?php echo $item['post_titulo']; ?></h1>
+                <h1><?php echo acortaTexto( $item['post_titulo'], 5 ); ?></h1>
             </div>
         </a>
     </article>

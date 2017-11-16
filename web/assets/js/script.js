@@ -219,16 +219,20 @@ $(window).on('load', function(){
             }
         });
     }
-    //vertical slider owlCarousel
-    /*if ( window.innerWidth > 992 ) {
-        $('#content-sidebar').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            //navText : ['<span class="icon-arrow-colors icon-arrow-left-violeta"></span>','<span class="icon-arrow-colors icon-arrow-right-violeta"></span>'],
-            dots:false,
-        });
-    }*/
+
+    //sliders single post
+    $('#single-slider').owlCarousel({
+        loop:true,
+        margin:50,
+        nav:true,
+        navText : ['<span class="icon-arrow icon-arrow-left"></span>','<span class="icon-arrow icon-arrow-right"></span>'],
+        dots:true,
+        responsive:{
+            0:{
+                items:1
+            },
+        },
+    });
 
 
 });//on load

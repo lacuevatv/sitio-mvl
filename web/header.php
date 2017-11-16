@@ -5,6 +5,8 @@
  * Since 1.0
  * HEADER
 */
+global $pageActual;
+$activeMenuItem = ' class="active-page-menu"';
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +43,6 @@
 
 <!-- OWL -->
 <link href="<?php echo MAINSURL; ?>/inc/lib/owl/assets/owl.carousel.min.css" rel="stylesheet">
-<!-- <link href="inc/lib/owl/assets/owl.theme.default.css" rel="stylesheet">-->
 <!-- Custom CSS -->
     <link href="<?php echo MAINSURL; ?>/assets/css/style.css?<?php echo VERSION; ?>" rel="stylesheet">
 
@@ -52,8 +53,9 @@
 <body>
 <div class="wrapper-site">
 <!--- header ---------------------->
-    <header class="header-site">
-    
+
+    <header class="header-site" <?php if ( $pageActual != 'inicio' ) { echo 'style="border-bottom:1px solid #ececec;"'; } ?>>
+
         <nav class="header-nav" role="navigation">
 
             <button class="toggle_menu" role="button">
@@ -69,37 +71,37 @@
             <!-- MAIN MENU -->
                 <ul class="main-menu" role="menu">
                     <li role="menuitem">
-                        <a href="<?php echo MAINSURL; ?>" title="inicio">
+                        <a href="<?php echo MAINSURL; ?>" title="inicio" <?php if ( $pageActual == 'inicio' ) { echo $activeMenuItem; } ?>>
                             inicio
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/vicente-lopez/" title="Vicente Lopez">
+                        <a href="/vicente-lopez/" title="Vicente Lopez" <?php if ( $pageActual == 'vicente-lopez' ) { echo $activeMenuItem; } ?>>
                             Vicente&nbsp;Lopez
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/agenda/" title="Agenda">
+                        <a href="/agenda/" title="Agenda" <?php if ( $pageActual == 'agenda' ) { echo $activeMenuItem; } ?>>
                             Agenda
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/tramites-servicios/" title="Trámites y servicios">
+                        <a href="/tramites-servicios/" title="Trámites y servicios" <?php if ( $pageActual == 'tramites-servicios' ) { echo $activeMenuItem; } ?>>
                             Trámites&nbsp;y&nbsp;servicios
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/gestion/" title="Gestión">
+                        <a href="/gestion/" title="Gestión" <?php if ( $pageActual == 'gestion' ) { echo $activeMenuItem; } ?>>
                             Gestión
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/empleo/" title="Bolsa de empleo">
+                        <a href="/empleo/" title="Bolsa de empleo" <?php if ( $pageActual == 'empleo' ) { echo $activeMenuItem; } ?>>
                             Bolsa&nbsp;de&nbsp;empleo
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/telefonos/" title="Teléfonos">
+                        <a href="/telefonos/" title="Teléfonos" <?php if ( $pageActual == 'telefonos' ) { echo $activeMenuItem; } ?>>
                             Teléfonos
                         </a>
                     </li>

@@ -7,22 +7,65 @@
  * Esta página muestra el articulo simple buscando en la base de datos. De acuerdo a la categoria u otras variables el diseño puede ser distinto, teniendo sidebar o no.
 */
 $slugUrl = getPageVar();//variante de la pagina
-$categoria = ver_categoria();//define la categoria
+$singlePost = singlePostData( $slugUrl );
+$postType = $singlePost['post_type'];
 
-$dataNoticia = singlePostHTML( $slugUrl );
+
+
 
 include 'header.php';
 ?>
 <!--- .inner-wrapper: contenido principal y específico del template -->
 <div class="inner-wrapper">
-    
-	<h1><?php echo $slugUrl; ?></h1>
 
-	<p>single</p>
+	<header class="page-header">
+		
+		<?php if ( $postType == 'post' ) : 		
+			
+			echo '<h3 class="main-title-page" >'. $singlePost['post_categoria'] . '</h3>';
 
-	<p><?php echo $categoria; ?></p>	
+		else : ?>
+		<h1 class="main-title-page" >
+		<?php if ( $singlePost['post_titulo'] != '' || $singlePost != null ) { 
+				echo $singlePost['post_titulo'];
+			} else {
+				echo SITETITLE;
+			} ?>
+		</h1>
+		<?php endif; ?>
+		
+	</header>
 
-	<?php var_dump($dataNoticia); ?>
+    <div class="page-content-wrapper">
+
+<!-- SIDEBAR -->
+    	<aside class="sidebar">
+			<?php getTemplate( 'sidebar' ); ?>
+		</aside>
+
+
+<!--- .main-content -->
+		<section class="main-content">
+			
+			<div class="single-content-wrapper">
+
+			<?php if ( $postType == 'post' ) :
+				
+				getTemplate( 'single-post', $singlePost );
+			
+			elseif ( $postType == 'page' ) :
+				getTemplate( 'single-page', $singlePost );
+			else : 
+				getTemplate( '404' );
+			endif;
+			?>
+			
+
+			</div>
+
+		</section><!--- //.main-content -->
+
+    </div>	
 
 </div><!--- //.inner-wrapper -->
 

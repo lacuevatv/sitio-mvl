@@ -42,10 +42,23 @@
 		width: 100%!important;
 		height: auto;
 		overflow: hidden;
+		background-color: $color-violeta;
 	}
 	img {
+		display: block;
 		height: 100%;
 		width: 200%!important;
+		-webkit-filter: grayscale(60%);
+		-moz-filter: grayscale(60%);
+		-ms-filter: grayscale(60%);
+		-o-filter: grayscale(60%);
+		filter: grayscale(60%);
+		-webkit-mix-blend-mode: hard-light;
+		-moz-mix-blend-mode: hard-light;
+		-ms-mix-blend-mode: hard-light;
+		-o-mix-blend-mode: hard-light;
+    	mix-blend-mode: hard-light;
+
 	}
 }
 
