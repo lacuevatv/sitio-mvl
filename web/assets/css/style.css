@@ -1601,39 +1601,39 @@ MENUS
 
 /*DEGRADADOS*/
 h2.degradado-agenda {
-  background: #4d3280;
+  background: #b03880;
   /* Old Browsers */
-  background: -moz-linear-gradient(left, #4d3280 0%, #4d3280 24%, #b03880 100%);
+  background: -moz-linear-gradient(left, #b03880 0%, #b03880 30%, #4d3280 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(left top, right top, color-stop(0%, #4d3280), color-stop(24%, #4d3280), color-stop(100%, #b03880));
+  background: -webkit-gradient(left top, right top, color-stop(0%, #b03880), color-stop(30%, #b03880), color-stop(100%, #4d3280));
   /* Chrome, Safari4+ */
-  background: -webkit-linear-gradient(left, #4d3280 0%, #4d3280 24%, #b03880 100%);
+  background: -webkit-linear-gradient(left, #b03880 0%, #b03880 30%, #4d3280 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #4d3280 0%, #4d3280 24%, #b03880 100%);
+  background: -o-linear-gradient(left, #b03880 0%, #b03880 30%, #4d3280 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #4d3280 0%, #4d3280 24%, #b03880 100%);
+  background: -ms-linear-gradient(left, #b03880 0%, #b03880 30%, #4d3280 100%);
   /* IE 10+ */
-  background: linear-gradient(to right, #4d3280 0%, #4d3280 24%, #b03880 100%);
+  background: linear-gradient(to right, #b03880 0%, #b03880 30%, #4d3280 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d3280', endColorstr='#b03880', GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b03880', endColorstr='#4d3280', GradientType=1 );
   /* IE6-9 */ }
 
 h2.degadado-gestion {
-  background: #239a80;
+  background: #1874a2;
   /* Old Browsers */
-  background: -moz-linear-gradient(left, #239a80 0%, #239a80 24%, #1874a2 100%);
+  background: -moz-linear-gradient(left, #1874a2 0%, #1874a2 24%, #239a80 100%);
   /* FF3.6+ */
-  background: -webkit-gradient(left top, right top, color-stop(0%, #239a80), color-stop(24%, #239a80), color-stop(100%, #1874a2));
+  background: -webkit-gradient(left top, right top, color-stop(0%, #1874a2), color-stop(24%, #239a80), color-stop(100%, #1874a2));
   /* Chrome, Safari4+ */
-  background: -webkit-linear-gradient(left, #239a80 0%, #239a80 24%, #1874a2 100%);
+  background: -webkit-linear-gradient(left, #1874a2 0%, #1874a2 24%, #239a80 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #239a80 0%, #239a80 24%, #1874a2 100%);
+  background: -o-linear-gradient(left, #1874a2 0%, #1874a2 24%, #239a80 100%);
   /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #239a80 0%, #239a80 24%, #1874a2 100%);
+  background: -ms-linear-gradient(left, #1874a2 0%, #1874a2 24%, #239a80 100%);
   /* IE 10+ */
-  background: linear-gradient(to right, #239a80 0%, #239a80 24%, #1874a2 100%);
+  background: linear-gradient(to right, #1874a2 0%, #1874a2 24%, #239a80 100%);
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#239a80', endColorstr='#1874a2', GradientType=1 );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1874a2', endColorstr='#239a80', GradientType=1 );
   /* IE6-9 */ }
 
 h2.degradado-agenda-vertical {
@@ -1964,7 +1964,11 @@ h2.degradado-agenda-vertical {
 10.0 SIDEBAR
 --------------------------------------------------------------*/
 .sidebar-wrapper {
-  background-color: #ececec; }
+  background-color: #ececec;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  border-radius: 20px; }
 
 .sidebar-title {
   background: #822b78;

@@ -1,5 +1,6 @@
 .sidebar-wrapper {
 	background-color: $color-gris-fondo;
+	@include border-radius(20px);
 }
 
 .sidebar-title {
