@@ -15,7 +15,7 @@ include 'header.php';
         
     <!-- buscar -->
         <div class="wrapper-buscar">
-            <form action="/buscar/" method="POST">
+            <form action="<?php echo MAINSURL ?>/buscar/" method="POST">
                 <input type="text" name="buscar" id="buscar" placeholder="buscar">
                 <input type="submit"><span class="icon-submit-search"></span>
             </form>
