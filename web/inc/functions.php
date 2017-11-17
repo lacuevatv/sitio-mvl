@@ -51,6 +51,13 @@ function dispositivo () {
 
 }
 
+//esta función limpia el url si el sitio no está instalado en la rais del servidor para que funcionen los permalinks sin problemas
+function cleanUri() {
+	$uri = $_SERVER["REQUEST_URI"];
+	$uri = str_replace(CARPETASERVIDOR, '', $uri);
+	return $uri;	
+}
+
 /*
 * FUNCIÓN DE PERMALINKS
  * Define la page actual y redirecciona segun url, devuelve el slug o template part.
@@ -59,11 +66,16 @@ function dispositivo () {
  * Pero ademas, e importante, busca en la base de datos mediante el slug. Si es noticia hace un loop de la categoria elegida o de todas las noticias y si es noticia single busca la noticia específica.
  *
 */
-function pageActual () {
+function pageActual ( $uri ) {
 	$slug = 'inicio'; //slug por defecto
-	
+	/*if ( $_SERVER["PHP_SELF"] == '/index.php' ) {
+	 
+	} else {
+		//echo $_SERVER["PHP_SELF"];
+		//echo $_SERVER["REQUEST_URI"];
+	}*/
 	//borramos la barra / luego del dominio:
-	$url = $_SERVER['REQUEST_URI'];
+	$url = $uri;
 	$parseUrl = explode('/', $url);
 	$RequestURI = $parseUrl[1];
 	
@@ -103,12 +115,12 @@ function pageActual () {
 }//pageActual()
 
 //esta funcion devuelve el nombre de la categoria o nada sino lo es 
-function ver_categoria () {
+function ver_categoria ( $uri ) {
 	global $categorias;
-	$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
+	//ver si figura la variable cat en el url, en ese caso es categoria
+	$cat = isset($_REQUEST['cat']) ? $_REQUEST['cat'] : 'none';
 
-	$url = $_SERVER['REQUEST_URI'];
-	$parseUrl = explode('/', $url);
+	$parseUrl = explode('/', $uri);
 	$RequestURI = $parseUrl[1];
 
 	for ($i=0; $i < count($categorias); $i++) { 
@@ -123,7 +135,7 @@ function ver_categoria () {
 }
 
 //esta funcion devuelve el nombre true si es categoria y false si no lo es
-function es_categoria () {
+function es_categoria ( $uri ) {
 	global $categorias;
 	//ver si figura la variable cat en el url, en ese caso es categoria
 	$cat = isset($_REQUEST['cat'])?$_REQUEST['cat']:'none';
@@ -131,8 +143,7 @@ function es_categoria () {
 		return true;
 	} 
 	//si el url es bonito hay que parsearlo para buscar las categorias
-	$url = $_SERVER['REQUEST_URI'];
-	$parseUrl = explode('/', $url);
+	$parseUrl = explode('/', $uri);
 
 	if ( count( $parseUrl ) >= 3 && $parseUrl[2] != '' ){
 		//si el index 2 figura en el url significa que es single
@@ -155,11 +166,11 @@ function es_categoria () {
 ESTA FUNCIÓN TOMA LA VARIANTE DE ALGUNAS PAGINAS POR EJEMPLO NOTICIAS, EL SLUG ES UNA CATEGORIA O EL URL DE UNA NOTICIA
 @return: string
 */
-function getPageVar () {
+function getPageVar ( $uri ) {
 	$slug = '';
 
 	//si es categoria, entonces no hay nada que decir
-	if ( es_categoria() ){
+	if ( es_categoria( $uri ) ){
 		return;
 	} 
 	
@@ -171,8 +182,7 @@ function getPageVar () {
 	} 
 
 	//si no hay variables hay que parsear el url para buscar informacion
-	$url = $_SERVER['REQUEST_URI'];
-	$parseUrl = explode('/', $url);
+	$parseUrl = explode('/', $uri);
 	
 	//si por el contrario hay un indice 2 y este no es la "/" entonces hay info que rescatar
 	if ( isset($parseUrl[2]) && $parseUrl[2] != '' ) {

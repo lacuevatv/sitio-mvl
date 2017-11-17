@@ -13,7 +13,7 @@ if ( $data['post_video'] != '' ) {
 $meses = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
 $dias = array('Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado');
 
-if ( $data['post_categoria'] == 'agenda' ) :
+if ( $data['post_categoria'] == 'gestion' ) :
 $date = $data['post_fecha'];
 $fecha = date("j", strtotime($date)) .' de '. $meses[date("n", strtotime($date))-1];
 endif;

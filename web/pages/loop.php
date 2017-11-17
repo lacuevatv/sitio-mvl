@@ -9,7 +9,7 @@
  3 TEMPLATES: sin sidebar (agenda) y con sidebar. Y luego las noticias, que tienen 5 post por defecto y los otros elementos que tienen imágenes más pequeñas y 10 elementos por defecto
 */
 
-$categoria = ver_categoria();//define la categoria
+$categoria = ver_categoria( cleanUri() );//define la categoria
 $postPerPag = POSTPERPAG;
 
 switch ($categoria) {
@@ -27,7 +27,7 @@ switch ($categoria) {
 		break;
 
 	case 'none':
-		$slugUrl = getPageVar();//variante de la pagina
+		$slugUrl = getPageVar( cleanUri() );//variante de la pagina
 		if ( $slugUrl == 'buscar' ) {
 			//si es búsqueda
 			$titulo =  'Resultados de la búsqueda';

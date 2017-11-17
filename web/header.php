@@ -17,11 +17,11 @@ $activeMenuItem = ' class="active-page-menu"';
 	<title><?php echo SITETITLE; ?></title>
 
 <!--favicon-->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo MAINSURL; ?>/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo MAINSURL; ?>/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo MAINSURL; ?>/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo MAINSURL; ?>/manifest.json">
+    <link rel="mask-icon" href="<?php echo MAINSURL; ?>/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
 
 <!-- SEO SECCTION -->
@@ -76,32 +76,32 @@ $activeMenuItem = ' class="active-page-menu"';
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/vicente-lopez/" title="Vicente Lopez" <?php if ( $pageActual == 'vicente-lopez' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/vicente-lopez/" title="Vicente Lopez" <?php if ( $pageActual == 'vicente-lopez' ) { echo $activeMenuItem; } ?>>
                             Vicente&nbsp;Lopez
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/agenda/" title="Agenda" <?php if ( $pageActual == 'agenda' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/agenda/" title="Agenda" <?php if ( $pageActual == 'agenda' ) { echo $activeMenuItem; } ?>>
                             Agenda
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/tramites-servicios/" title="Trámites y servicios" <?php if ( $pageActual == 'tramites-servicios' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/tramites-servicios/" title="Trámites y servicios" <?php if ( $pageActual == 'tramites-servicios' ) { echo $activeMenuItem; } ?>>
                             Trámites&nbsp;y&nbsp;servicios
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/gestion/" title="Gestión" <?php if ( $pageActual == 'gestion' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/gestion/" title="Gestión" <?php if ( $pageActual == 'gestion' ) { echo $activeMenuItem; } ?>>
                             Gestión
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/empleo/" title="Bolsa de empleo" <?php if ( $pageActual == 'empleo' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/empleo/" title="Bolsa de empleo" <?php if ( $pageActual == 'empleo' ) { echo $activeMenuItem; } ?>>
                             Bolsa&nbsp;de&nbsp;empleo
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="/telefonos/" title="Teléfonos" <?php if ( $pageActual == 'telefonos' ) { echo $activeMenuItem; } ?>>
+                        <a href="<?php echo MAINSURL; ?>/telefonos/" title="Teléfonos" <?php if ( $pageActual == 'telefonos' ) { echo $activeMenuItem; } ?>>
                             Teléfonos
                         </a>
                     </li>

@@ -16,7 +16,7 @@
 
 		<li>
 		    <article class="sidebar-item">
-		        <a href="/<?php echo $item['post_categoria'] .'/'. $item['post_url']; ?>/" title="<?php echo $item['post_titulo']; ?>">
+		        <a href="<?php echo MAINSURL . '/' . $item['post_categoria'] .'/'. $item['post_url']; ?>" title="<?php echo $item['post_titulo']; ?>">
 		            <figure>
 		                <?php if ( $item['post_imagen'] != '' ) { ?>
 		                <img src="<?php echo UPLOADSURL .'/'. $item['post_imagen']; ?>" alt="<?php echo $item['post_categoria']; ?> - Municipio Vicente López">

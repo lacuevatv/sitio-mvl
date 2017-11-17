@@ -2,6 +2,11 @@
 (Sitio auto administrable)
 
 ## Versiones:
+* 1.2 Arreglo de funciones y links
+-Tuve que arreglar las funciones que redirigen porque sino estaba en la raiz del servidor no funcionaba. Entonces actualizé las variables constantes y le agregue carpeta del servidor, ahí hay que poner la carpeta o las carpetas en donde se encuentra luego del dominio (Por Ej: demo.lacueva.tv/mvl/ => en este caso iría '/mvl'). Además tuve que corregir las funciones para que en vez de buscar en el url busque en la variable que yo le paso
+-Cree una función que limpia el url quitando el dominio y la carpeta anterior, así puede buscar en donde importa
+-corregí los links y le agregue a todos la constante mainsurl para que los links siempre funcionene no importa donde se instale
+
 * 1.1 - Maquetado el single page y single post. Faltan detalles y admin
 
 * 1.0 - Funcionando todos sus links, maquetado hasta single, falta la parte de las paginas y entradas individuales:  

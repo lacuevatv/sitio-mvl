@@ -6,10 +6,9 @@
  * PAGE TEMPLATE: SINGLE
  * Esta página muestra el articulo simple buscando en la base de datos. De acuerdo a la categoria u otras variables el diseño puede ser distinto, teniendo sidebar o no.
 */
-$slugUrl = getPageVar();//variante de la pagina
+$slugUrl = getPageVar( cleanUri() );//variante de la pagina
 $singlePost = singlePostData( $slugUrl );
 $postType = $singlePost['post_type'];
-
 
 
 
