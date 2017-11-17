@@ -362,21 +362,36 @@
         line-height: 110%;
         @media (min-width: $md) {
             width: 15%;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
             transform: rotate(180deg);
+            -webkit-writing-mode: vertical-rl;
+            -moz-writing-mode: vertical-rl;
+            -ms-writing-mode: vertical-rl;
+            -o-writing-mode: vertical-rl;
+            writing-mode: bt-rl;
             writing-mode: vertical-rl;
             text-align: left;
             margin-bottom: 0px;
             padding: 15px 5px;
-            font-size: 390%;
-            height: 100%;
+            font-size: 350%;
             -webkit-border-top-left-radius: 80px;
             -moz-border-top-left-radius: 80px;
             -ms-border-top-left-radius: 80px;
             -o-border-top-left-radius: 80px;
             border-top-left-radius: 80px;
-        }
-        
-    }
+            max-height: 260px;
+            @media (min-width: $lg) {
+                max-height: 250px;
+            }
+            @media (min-width: $xlg) {
+                max-height: 280px;
+            }
+                }
+                
+            }
     
 }
 
@@ -767,18 +782,37 @@
             background: $color-amarillo;
             color: $color-blanco;
             font-weight: $fuente-light;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
             transform: rotate(180deg);
+            -webkit-writing-mode: vertical-rl;
+            -moz-writing-mode: vertical-rl;
+            -ms-writing-mode: vertical-rl;
+            -o-writing-mode: vertical-rl;
+            writing-mode: bt-rl;
             writing-mode: vertical-rl;
             text-align: left;
             text-transform: uppercase;
             line-height: 110%;
             padding: 15px 5px;
-            font-size: 300%;
+            font-size: 260%;
             -webkit-border-top-left-radius: 80px;
             -moz-border-top-left-radius: 80px;
             -ms-border-top-left-radius: 80px;
             -o-border-top-left-radius: 80px;
             border-top-left-radius: 80px;
+            height: 230px;
+            max-height: 230px;
+            @media (min-width: 1340px) {
+                height: 240px;
+                max-height: 240px;
+            }
+            @media (min-width: $xlg) {
+                height: 250px;
+                max-height: 250px;
+            }
         }
 
         > div {
@@ -810,7 +844,16 @@
             background: $color-rojo;
             color: $color-blanco;
             font-weight: $fuente-light;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
             transform: rotate(180deg);
+            -webkit-writing-mode: vertical-rl;
+            -moz-writing-mode: vertical-rl;
+            -ms-writing-mode: vertical-rl;
+            -o-writing-mode: vertical-rl;
+            writing-mode: bt-rl;
             writing-mode: vertical-rl;
             text-align: left;
             text-transform: uppercase;
@@ -822,6 +865,12 @@
             -ms-border-top-left-radius: 80px;
             -o-border-top-left-radius: 80px;
             border-top-left-radius: 80px;
+            @media (min-width: 1340px) {
+                max-height: 240px;
+            }
+            @media (min-width: $xlg) {
+                max-height: 250px;
+            }
         }
         
         > div {

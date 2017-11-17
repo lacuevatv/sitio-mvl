@@ -72,6 +72,6 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d3280', endColorstr='#b03880', GradientType=1 );/* IE6-9 */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: rgba(77,50,128,1);
+    color: $color-blanco;//es por si no funciona lo demás
 }
 

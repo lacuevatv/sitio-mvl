@@ -68,11 +68,15 @@ html, body {
 #page404 {
     padding: 150px 7vw;
     min-height: 65vh;
+    @media (min-width: $md) {
+            max-width: 650px;
+        }
 
     h2 {
         text-transform: uppercase;
         font-weight: $fuente-light;
         font-size: 5vw;
+        line-height: 120%;
         text-align: center;
         margin: 20px;
         @media (min-width: $md) {

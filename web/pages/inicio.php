@@ -58,7 +58,13 @@ include 'header.php';
     <section>
         <div class="home-section-wrapper">
             <h2 class="section-title-verde">
-                Trámites y Servicios
+                <?php 
+                if ( dispositivo () != 'pc' ) {
+                    echo 'Trámites y Servicios';
+                } else {
+                    echo 'Trámites y<br> Servicios';
+                }
+                ?>
             </h2>
 
             <div class="home-section-content-wrapper">
@@ -160,7 +166,7 @@ include 'header.php';
             <!-- BOLSA DE EMPLEO -->
             <div class="home-footer-wrapper-empleos">
                 <h2 class="footer-title-amarillo">
-                    Bolsa de Empleo
+                    Bolsa de<br> Empleo
                 </h2>
 
                 <div class="home-footer-content-wrapper">

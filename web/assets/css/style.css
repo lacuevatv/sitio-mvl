@@ -219,10 +219,14 @@ html, body {
 #page404 {
   padding: 150px 7vw;
   min-height: 65vh; }
+  @media (min-width: 992px) {
+    #page404 {
+      max-width: 650px; } }
   #page404 h2 {
     text-transform: uppercase;
     font-weight: 300;
     font-size: 5vw;
+    line-height: 120%;
     text-align: center;
     margin: 20px; }
     @media (min-width: 992px) {
@@ -328,7 +332,7 @@ html, body {
   /* IE6-9 */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #4d3280; }
+  color: #fff; }
 
 /*--------------------------------------------------------------
 6.0 footer
@@ -1065,18 +1069,33 @@ MENUS
     @media (min-width: 992px) {
       .home-section-wrapper h2 {
         width: 15%;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
         transform: rotate(180deg);
+        -webkit-writing-mode: vertical-rl;
+        -moz-writing-mode: vertical-rl;
+        -ms-writing-mode: vertical-rl;
+        -o-writing-mode: vertical-rl;
+        writing-mode: bt-rl;
         writing-mode: vertical-rl;
         text-align: left;
         margin-bottom: 0px;
         padding: 15px 5px;
-        font-size: 390%;
-        height: 100%;
+        font-size: 350%;
         -webkit-border-top-left-radius: 80px;
         -moz-border-top-left-radius: 80px;
         -ms-border-top-left-radius: 80px;
         -o-border-top-left-radius: 80px;
-        border-top-left-radius: 80px; } }
+        border-top-left-radius: 80px;
+        max-height: 260px; } }
+  @media (min-width: 992px) and (min-width: 1200px) {
+    .home-section-wrapper h2 {
+      max-height: 250px; } }
+  @media (min-width: 992px) and (min-width: 1500px) {
+    .home-section-wrapper h2 {
+      max-height: 280px; } }
 
 .home-section-content-wrapper {
   padding: 0 20px; }
@@ -1388,18 +1407,37 @@ MENUS
   background: #f8b134;
   color: #fff;
   font-weight: 300;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
   transform: rotate(180deg);
+  -webkit-writing-mode: vertical-rl;
+  -moz-writing-mode: vertical-rl;
+  -ms-writing-mode: vertical-rl;
+  -o-writing-mode: vertical-rl;
+  writing-mode: bt-rl;
   writing-mode: vertical-rl;
   text-align: left;
   text-transform: uppercase;
   line-height: 110%;
   padding: 15px 5px;
-  font-size: 300%;
+  font-size: 260%;
   -webkit-border-top-left-radius: 80px;
   -moz-border-top-left-radius: 80px;
   -ms-border-top-left-radius: 80px;
   -o-border-top-left-radius: 80px;
-  border-top-left-radius: 80px; }
+  border-top-left-radius: 80px;
+  height: 230px;
+  max-height: 230px; }
+  @media (min-width: 1340px) {
+    .home-footer-pc .home-footer-wrapper-empleos h2 {
+      height: 240px;
+      max-height: 240px; } }
+  @media (min-width: 1500px) {
+    .home-footer-pc .home-footer-wrapper-empleos h2 {
+      height: 250px;
+      max-height: 250px; } }
 .home-footer-pc .home-footer-wrapper-empleos > div {
   width: 65%; }
 @media (min-width: 992px) {
@@ -1427,7 +1465,16 @@ MENUS
   background: #e31949;
   color: #fff;
   font-weight: 300;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
   transform: rotate(180deg);
+  -webkit-writing-mode: vertical-rl;
+  -moz-writing-mode: vertical-rl;
+  -ms-writing-mode: vertical-rl;
+  -o-writing-mode: vertical-rl;
+  writing-mode: bt-rl;
   writing-mode: vertical-rl;
   text-align: left;
   text-transform: uppercase;
@@ -1439,6 +1486,12 @@ MENUS
   -ms-border-top-left-radius: 80px;
   -o-border-top-left-radius: 80px;
   border-top-left-radius: 80px; }
+  @media (min-width: 1340px) {
+    .home-footer-pc .home-footer-wrapper-telefonos h2 {
+      max-height: 240px; } }
+  @media (min-width: 1500px) {
+    .home-footer-pc .home-footer-wrapper-telefonos h2 {
+      max-height: 250px; } }
 .home-footer-pc .home-footer-wrapper-telefonos > div {
   width: 65%; }
 
@@ -1924,7 +1977,6 @@ h2.degradado-agenda-vertical {
   line-height: 110%;
   width: 100%;
   text-align: center;
-  height: 100%;
   -webkit-border-bottom-right-radius: 50px;
   -moz-border-bottom-right-radius: 50px;
   -ms-border-bottom-right-radius: 50px;
