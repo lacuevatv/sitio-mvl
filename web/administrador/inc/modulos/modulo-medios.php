@@ -6,7 +6,7 @@ EL SEGUNDO PARAMETRO HABILITA LOS CONTROLES, EN LA BIBLIOTECA LOS MUESTRA, PARA 
 function printImagesGalery( $file_type, $controls = false ) {
 	$connection = connectDB();
 	$tabla      = 'medios';
-	$query      = "SELECT * FROM " .$tabla. " WHERE medio_tipo= '" .$file_type. "' ORDER by medio_orden asc ";
+	$query      = "SELECT * FROM " .$tabla. " WHERE medio_tipo= '" .$file_type. "' ORDER by medio_orden,medio_id desc";
 	$result     = mysqli_query($connection, $query);
 	
 	$directorio = UPLOADSURLIMAGES;

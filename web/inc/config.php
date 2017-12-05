@@ -17,7 +17,7 @@ define ( 'PAGESDIR', dirname( __FILE__ ) . '/../pages' );
 define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 //urls
 define ('CARPETASERVIDOR', '' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
-define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST']);
+define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
 //BD
 define('DB_SERVER', 'localhost');

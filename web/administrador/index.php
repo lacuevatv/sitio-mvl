@@ -55,8 +55,8 @@ if ( $modulo == '') {
           </div>
         </div>
         <div class="col-70">
-          <h2 class="">Noticias Recientes</h2>
-          <p>Estas son las últimas 3 noticias cargadas:</p>
+          <h2 class="">Agenda</h2>
+          <p>Estos son los últimas 3 eventos cargados:</p>
           
           <div class="container">
 <!---------- noticias ---------------->
@@ -72,12 +72,12 @@ if ( $modulo == '') {
           <div class="row">
             <div class="col-30">
               <p>
-                <a class="btn btn-inverse" href="index.php?admin=noticias" role="button">Ver todas</a>
+                <a class="btn btn-inverse" href="index.php?admin=agenda" role="button">Ver todas</a>
               </p>
             </div>
             <div class="col-30">
               <p>
-                <a class="btn btn-inverse" href="index.php?admin=editar-noticias" role="button">Agregar nueva</a>
+                <a class="btn btn-inverse" href="index.php?admin=editar-agenda" role="button">Agregar nueva</a>
               </p>
             </div>
           </div>
@@ -98,9 +98,20 @@ if ( $modulo == '') {
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
-          <h2>Noticias</h2>
+          <h2>Agenda</h2>
+          <p>Administrar la agenda: Borrar, cargar y editar.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=agenda" role="button">Ver lista de publicados</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Gestion</h2>
           <p>Administrar las noticias: Borrar, cargar y editar.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=noticias" role="button">Ver lista de noticias</a></p>
+          <p><a class="btn btn-primary" href="index.php?admin=gestion" role="button">Ver lista de publicados</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->
@@ -112,6 +123,39 @@ if ( $modulo == '') {
           <h2>Biblioteca de medios</h2>
           <p>Subir, borrar y manipular archivos e imagenes.</p>
           <p><a class="btn btn-primary" href="index.php?admin=biblioteca-medios" role="button">Ir a la Biblioteca</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Trámites</h2>
+          <p>Modificar la lista de tramites disponibles.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=tramites" role="button">Modificar tramites</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Teléfonos</h2>
+          <p>Modificar la lista de teléfonos disponibles.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=telefonos" role="button">Modificar telefonos</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Empleo</h2>
+          <p>Modificar los empleos actuales en la bolsa.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=empleos" role="button">Modificar empleo</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->

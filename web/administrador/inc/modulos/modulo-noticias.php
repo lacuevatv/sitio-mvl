@@ -1,6 +1,6 @@
 <?php
 /*
- * ver lista de noticias
+ * ver lista de noticias devuelve html armado
  * parametros: limite a mostrar, estado (publicado, borrador, todos), estilo (el extendido mustra botones para editar la noticia, verla o publicarla), la categoria a mostrar y si muestra al final un pequeño resumen de lo que queda
 */
 function listaNoticias( $limit = 20, $status = 'all', $extended = false, $categoria = 'none', $resumenQuery = false ) {
@@ -52,7 +52,12 @@ function listaNoticias( $limit = 20, $status = 'all', $extended = false, $catego
 			$dia          = date("d", strtotime($date));
 			$mes          = $meses[date("n", strtotime($date))-1];
 			$year         = date("Y", strtotime($date));
-		
+
+			$linkEdicion  = 'index.php?admin=editar-agenda&slug='  . $url;
+			if ( $categoria != 'agenda' ) {
+				$linkEdicion = 'index.php?admin=editar-gestion&slug='  . $url; 
+			}
+
 			?>
 			<li class="loop-noticias-backend-item">
 				<article class="row">
@@ -78,17 +83,17 @@ function listaNoticias( $limit = 20, $status = 'all', $extended = false, $catego
 				    		<small><?php echo $date; ?></small>
 				    	</h1>
 				    	<p class="links-edicion-noticias">
-				    		<a href="index.php?admin=editar-noticias&slug=<?php echo $url; ?>" title="Editar" class="btn-edit-news">
+				    		<a href="<?php echo $linkEdicion; ?>" title="Editar" class="btn-edit-news">
 					    		Editar Noticia
 					    	</a>
 					    	<?php 
 				    			if ( $status != 'publicado' ) {
 				    		?>
-				    		 | <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] .'/noticias/'. $url ?>" target="_blank" title="Ver">Vista Previa</a>
+				    		 | <a href="<?php echo MAINURL . '/' . $categoria . '/' . $url; ?>" target="_blank" title="Ver">Vista Previa</a>
 				    		 | <a href="<?php echo $url; ?>" class="btn-publish-post" title="Publicar">Publicar</a> 
 				    		 | <a href="<?php echo $url; ?>" class="btn-delete-post">Borrar</a>
 				    		<?php } else { ?>
-				    		 | <a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] .'/noticias/'. $url ?>" target="_blank" title="Ver">Ver noticia</a>
+				    		 | <a href="<?php echo MAINURL . '/' . $categoria . '/' . $url; ?>" target="_blank" title="Ver">Ver noticia</a>
 				    		 | <a href="<?php echo $url; ?>" class="btn-delete-post">Borrar</a>
 				    		 <?php } ?>
 				    	</p>
@@ -96,7 +101,7 @@ function listaNoticias( $limit = 20, $status = 'all', $extended = false, $catego
 				    	} 
 				    	//si es estilo clasico:
 				    		else { ?>
-				    	<a href="index.php?admin=editar-noticias&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
+				    	<a href="<?php echo $linkEdicion; ?>" title="Editar" class="titulo-noticia-small-link">
 					    	<h1 class="titulo-noticia-small">
 					    		<?php echo $titulo; ?> 
 					    		| 
@@ -114,7 +119,7 @@ function listaNoticias( $limit = 20, $status = 'all', $extended = false, $catego
 		}//FOREACH
 		//muestra el resumen de la búsqueda y lo imprime al final
 		if ( $resumenQuery ) {
-			$totales = mysqli_query($connection, "SELECT *  FROM " .$tabla. " ");
+			$totales = mysqli_query($connection, "SELECT *  FROM " .$tabla. " WHERE post_categoria='".$categoria."'");
 			$cantTotal = $totales->num_rows;
 			$cargadasenQuery = count($rows);
 			//echo $cargadasenQuery . ' noticias cargadas. '.$cantTotal.' noticias en total' ;
@@ -132,6 +137,47 @@ function listaNoticias( $limit = 20, $status = 'all', $extended = false, $catego
 
 	closeDataBase($connection);
 }
+
+
+/*
+ * ver lista de noticias DEVUELVE un array con los datos
+ * parametros: limite a mostrar, estado (publicado, borrador, todos), estilo (el extendido mustra botones para editar la noticia, verla o publicarla), la categoria a mostrar y si muestra al final un pequeño resumen de lo que queda
+*/
+function listaNoticiasData( $limit = 20, $status = 'all', $categoria = 'none' ) {
+	$connection = connectDB();
+	$tabla = 'noticias';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " ORDER by post_fecha desc LIMIT ".$limit." ";
+	//si tiene categoria:
+	if ( $categoria != 'none' ) {
+		$query  = "SELECT * FROM " .$tabla. " WHERE post_categoria='".$categoria."' ORDER by post_fecha desc LIMIT ".$limit." ";
+	}
+	//si tiene definido status (publicado, borrador) y categoria
+	if ( $status != 'all' ) {
+		$query  = "SELECT * FROM " .$tabla. " WHERE post_status='".$status."' ORDER by post_fecha desc LIMIT ".$limit." ";
+	}
+	//si tiene definido status y categoria
+	if ( $status != 'all' && $categoria != 'none' ) {
+		$query  = "SELECT * FROM " .$tabla. " WHERE post_status='".$status."' AND post_categoria='".$categoria."' ORDER by post_fecha desc LIMIT ".$limit." ";
+	}
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="error-tag">Ninguna noticia ha sido cargada todavía</div>';
+	} else {
+
+		while ( $row = $result->fetch_array() ) {
+			$rows[] = $row;
+		}
+	}
+
+	return $rows;
+}
+
+
+
 
 
 /*
@@ -166,23 +212,25 @@ function searchPost ( $slug ) {
 
 		global $dataPost;
 		$dataPost = array(
-				'post_id'      => $data['post_ID'],
-				'titulo'       => $data['post_titulo'],
-				'url'          => $data['post_url'],
-				'imgDestacada' => $data['post_imagen'],
-				'resumen'      => $resumen,
-				'contenido'    => $data['post_contenido'],
-				'video'        => $data['post_video'],
-				'categoria'    => $data['post_categoria'],
-				'galeria'      => $data['post_galeria'],
-				'imgGaleria'   => $imgGaleria,
-				'fecha'        => $date,
-				'dia'          => $dia,
-				'mes'          => $mes,
-				'year'         => $year,	
-				'status'       => $data['post_status'],
-				'linkExterno'  => $data['post_link_externo'],
-				'fechaAgenda'  => $data['post_fecha_agenda'],
+				'post_id'         => $data['post_ID'],
+				'titulo'          => $data['post_titulo'],
+				'url'             => $data['post_url'],
+				'imgDestacada'    => $data['post_imagen'],
+				'resumen'         => $resumen,
+				'contenido'       => $data['post_contenido'],
+				'video'           => $data['post_video'],
+				'categoria'       => $data['post_categoria'],
+				'galeria'         => $data['post_galeria'],
+				'imgGaleria'      => $imgGaleria,
+				'fecha'           => $date,
+				'dia'             => $dia,
+				'mes'             => $mes,
+				'year'            => $year,	
+				'status'          => $data['post_status'],
+				'linkExterno'     => $data['post_link_externo'],
+				'fechaAgenda'     => $data['post_fecha_agenda'],
+				'fechaAgendaOut'  => $data['post_fecha_agenda_out'],
+				'lugarAgenda'     => $data['post_agenda_lugar'],
 			);
 
 		closeDataBase($connection);

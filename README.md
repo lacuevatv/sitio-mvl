@@ -2,6 +2,9 @@
 (Sitio auto administrable)
 
 ## Versiones:
+* 1.3 Arreglo administrador:
+-Separé las categorias como si fueran distintos módulos y los diferencié cada uno con sus características, por ejemplo, la agenda tiene fechas in, out y lugar, gestión no. Pero el script que guarda o actualiza los post es el mismo siempre.
+-como no se usa el orden de las imágenes puse que lo muestre de acuerdo al ultimo id, así mientras no se ordenen se van a ver las últimas cargadas primero
 * 1.2 Arreglo de funciones y links
 -Tuve que arreglar las funciones que redirigen porque sino estaba en la raiz del servidor no funcionaba. Entonces actualizé las variables constantes y le agregue carpeta del servidor, ahí hay que poner la carpeta o las carpetas en donde se encuentra luego del dominio (Por Ej: demo.lacueva.tv/mvl/ => en este caso iría '/mvl'). Además tuve que corregir las funciones para que en vez de buscar en el url busque en la variable que yo le paso
 -Cree una función que limpia el url quitando el dominio y la carpeta anterior, así puede buscar en donde importa

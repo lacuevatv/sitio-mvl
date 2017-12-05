@@ -10,33 +10,18 @@ load_module( 'noticias' );
 <!---------- noticias ---------------->
 <div class="contenido-modulo">
 	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="nav-noticias-interno">
-					<label>Filtrar por categoría</label>
-					<select name="post_categoria" id="post_categoria">
-						<option value="todas">Todas</option>
-					<?php 
-						global $categorias;
-						
-						for ($i=0; $i < count($categorias); $i++) { 
-							echo '<option value="'.$categorias[$i]['slug'].'">'.$categorias[$i]['nombre'].'</option>';
-						}
-					?>
-					</select>
-				</div>
-			</div>
-		</div><!-- // row -->
+		
 		<div class="row">
 			<div class="col">
 			<ul class="loop-noticias-backend">
-        		<?php listaNoticias(10, 'all', true, 'none', true); ?>
+        		<?php listaNoticias(10, 'all', true, 'gestion', true); ?>
         		
         	</ul>
         	</div><!-- // col -->
         </div><!-- // row -->
     	<div class="row">
     		<div class="col ver-mas-noticias">
+    			<input type="hidden" name="post_categoria" id="post_categoria" value="gestion">
         		<button id="load-more" class="btn btn-primary">Ver más</button>
         		<p class="loading-news-ajax"></p>
         	</div>
@@ -47,7 +32,7 @@ load_module( 'noticias' );
 <!-- botones del modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=editar-noticias" class="btn">Agregar nueva</a>
+    <a type="button" href="index.php?admin=editar-gestion" class="btn">Agregar nueva</a>
 </footer>
 
 <!---------- fin noticias ---------------->

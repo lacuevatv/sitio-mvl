@@ -11,9 +11,10 @@
 8. pagina inicio
 9. botones
 10. Modulos:
-a) noticias
-b) imagenes
-c) Sliders
+a) agenda / gestion
+b) tramites / telefonos
+c) imagenes
+d) Sliders
 
 */
 /* ---- 1 reset ---- */
@@ -657,6 +658,10 @@ ul.dropdown-menu {
     .btn-lg {
       font-size: 100%; } }
 
+.btn-sm {
+  padding: 5px 15px;
+  font-size: 70%; }
+
 /* ---- modulos  ---- */
 .wrapper-modulo {
   position: relative;
@@ -737,6 +742,53 @@ ul.dropdown-menu {
   font-size: 90%;
   color: #999; }
 
+.loop-noticias-backend-small {
+  display: flex;
+  display: -o-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  flex-wrap: wrap; }
+  .loop-noticias-backend-small li {
+    width: 40%;
+    margin: 30px 20px;
+    background-color: #eee;
+    padding: 10px; }
+    .loop-noticias-backend-small li img {
+      width: 50%;
+      display: block;
+      margin: 10px auto; }
+    .loop-noticias-backend-small li h1 {
+      font-size: 150%;
+      font-weight: bold;
+      margin: 10px 0;
+      text-align: center; }
+    .loop-noticias-backend-small li p {
+      font-size: 100%; }
+    .loop-noticias-backend-small li .contenido-resumen {
+      text-align: center;
+      margin: 20px 0 5px; }
+    .loop-noticias-backend-small li .wrapper-button {
+      text-align: center;
+      display: block;
+      margin: 10px 0 5px; }
+    .loop-noticias-backend-small li .big-text {
+      font-size: 150%;
+      font-weight: bold; }
+    .loop-noticias-backend-small li h5 {
+      font-size: 80%;
+      text-align: center;
+      text-decoration: underline;
+      margin: 10px 0; }
+
+/*
+ * editar noticia
+ */
 .save-button-right {
   text-align: right; }
 
@@ -784,15 +836,16 @@ ul.dropdown-menu {
   font-size: 120%;
   font-weight: bold; }
 #editar-noticia-formulario .larger-input {
-  height: 30px;
   font-size: 120%;
   font-weight: bold; }
 #editar-noticia-formulario select {
   background: #337ab7;
   color: #fff;
-  height: 29px;
+  height: 40px;
   border: none;
   padding: 5px; }
+#editar-noticia-formulario .input-hidden-especial {
+  display: none; }
 
 .plublished {
   font-size: 130%;

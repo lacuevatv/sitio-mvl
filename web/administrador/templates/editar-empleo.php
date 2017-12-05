@@ -40,6 +40,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 	<div class="container">
 		<form method="POST" id="editar-noticia-formulario" name="editar-noticia-formulario">		
 		<input type="hidden" name="post_ID" value="<?php echo $postID; ?>">
+		<input type="hidden" name="post_categoria" value="empleo">
 			<div class="error-msj-wrapper">
 				<ul class="error-msj-list">
 					
@@ -59,30 +60,18 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 						<?php } ?>
 					</div>	
 				</div><!-- // col -->
-	<!------ CATEGORIAS DE LA NOTICIA ---------->
 				<div class="col-30">
+					<!------ FECHA DE LA NOTICIA ---------->
 					<div class="form-group">
-						<label for="post_categoria">Categoría </label>
-						<select name="post_categoria" id="post_categoria">
-							<?php 
-								global $categorias;
-
-								for ($i=0; $i < count($categorias); $i++) {
-									echo '<option value="'.$categorias[$i]['slug'].'"';
-									if ( $categorias[$i]['slug'] == $categoria ) {
-										echo ' selected="selected"';
-									}
-									echo '>'.$categorias[$i]['nombre'].'</option>';
-								}
-							?>
-						</select>
+						<label for="post_date">Fecha Post</label>
+						<input id="post_date" name="post_date" type="date" value="<?php echo $fecha?>">
 					</div>
-				</div><!-- // col -->
+				</div>
 			</div><!-- // row -->
 
 			
 			<div class="row">
-				<div class="col-50">
+				<div class="col-70">
 	<!------ PERSONALIZAR URL DE LA NOTICIA ---------->
 					<div class="form-group">
 						<label for="post_url">Personalizar Url </label>
@@ -90,7 +79,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 					</div>
 				</div><!-- // col -->
 	<!------ PUBLICAR LA NOTICIA ---------->	
-				<div class="col-20">
+				<div class="col-30">
 					<div class="form-group">
 						
 						<?php if ($status != 'publicado') { ?>
@@ -98,7 +87,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 							<button type="submit" name="submit_publish" class="btn btn-danger btn-lg btn-submit">Publicar</button>
 						<?php } else { ?>
 							<input type="hidden" id="post_status" name="post_status" value="<?php echo $status; ?>">
-							<!--<p class="plublished">Publicado</p>-->
+							<label for="change_status">Estado</label>
 							<select id="change_status" name="change_status">
 								<option value="publicado">PUBLICADO</option>
 								<option value="borrador">borrador</option>
@@ -106,13 +95,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 						<?php } ?>
 					</div>
 				</div><!-- // col -->
-				<div class="col-30">
-	<!------ FECHA DE LA NOTICIA ---------->
-					<div class="form-group">
-						<label for="post_date">Fecha Post</label>
-						<input id="post_date" name="post_date" type="date" value="<?php echo $fecha?>">
-					</div>
-				</div><!-- // col -->
+				
 			</div><!-- // row -->
 
 			<div class="row">	
@@ -121,7 +104,14 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 					<div class="form-group">
 						<label for="post_resumen" class="larger-label">Resumen de la noticia</label>
 						<textarea id="post_resumen" name="post_resumen"><?php echo $resumen; ?></textarea>
-					</div>			
+					</div>	
+	<!------ LINK EXTERNO ---------->
+					<div class="form-group">
+						<label for="post_link_externo">Link Externo
+						<small>Para redireccionar a otro lado</small></label>
+						<input type="url" id="post_link_externo" name="post_link_externo" value="<?php echo $linkExterno; ?>">
+					</div>
+
 				</div><!-- // col -->
 
 				<div class="col-30">
@@ -155,80 +145,10 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 
 			<div class="row">	
 				<div class="col-70">
-
-					<div id="accordion">
-						<h3>Video destacado</h3>
-						<div>
-	<!------ VIDEO DESTACADO DE LA NOTICIA ---------->
-							<div class="form-group">
-								<label for="post_video">Url del video<br>
-								<small>Copiar url de Youtube</small> </label>
-								<input id="post_video" name="post_video" value="<?php echo $video; ?>">
-							</div>
-						</div>
-						<h3>Galeria de imagenes</h3>
-						<div>
-	<!------ GALERIA DE IMAGENES DELA  NOTICIA ---------->
-							<div class="row">
-								<div class="col-50">
-									<div class="form-group">
-										<label class="larger-label">
-											<input type="checkbox" name="post_galeria" value="true"<?php 
-											if ( $galeria == 1 ) {
-												echo 'checked';
-											}
-											?>>
-											Activar Galería de imagenes
-										</label>
-									</div>
-								</div>
-								<div class="col-50">
-									<button type="button" id="agregar_imagenes_galeria" class="btn btn-default">
-										Agregar imágenes
-									</button>
-								</div>
-								<div class="col">
-									<p><small>Se pueden subir muchas imagenes a la vez, el tamaño  ideal es de 1440 x 545</small></p>
-								</div>
-							</div>
-	<!------ IMAGENES DE LA GALERIA DE LA NOTICIA ---------->
-							<ul class="galeria-imagenes-wrapper">
-							<?php if ( count($imgGaleria) != 0 ) { 
-								$item = 1;
-								for ($i=0; $i < count($imgGaleria); $i++) { ?>
-
-								<li>
-									<input type="hidden" name="imgGaleriaItem" value="<?php echo $imgGaleria[$i]; ?>">
-									<figure>
-										<img src="<?php echo UPLOADSURLIMAGES . '/' . $imgGaleria[$i]; ?>" class="img-responsive">
-										<span class="imgGaleriaItemOrden">
-											<?php echo $item; ?>
-										</span>
-									</figure>
-									<button class="btn btn-xs btn-danger imgGaleriaItemDelBTN">Borrar imagen</button>
-								</li>
-
-								<?php 
-								$item++;
-								}//for ?>
-							<?php }//if ?>
-							</ul>
-						</div>
-						<!------ LINK EXTERNO ---------->
-						<h3>Link Externo</h3>
-						<div class="form-group">
-							<label for="post_link_externo">Link Externo
-							<small>Para redireccionar a otro lado</small></label>
-							<input type="url" id="post_link_externo" name="post_link_externo" value="<?php echo $linkExterno; ?>">
-						</div>
-				   	</div><!-- //#accordion -->
+					
+					
 			   	</div><!-- // col -->
-			   	<div class="col-30">
-			   		<div class="form-group">
-			   			<label for="post_fecha_agenda" class="larger-label">Fecha Para Agenda</label>
-						<input id="post_fecha_agenda" name="post_fecha_agenda" type="date" value="<?php echo $fechaAgenda?>">
-					</div>
-				</div><!-- // col -->
+			   	
 			</div><!-- // row -->
 			<hr>
 		   	<div class="row">	
@@ -247,7 +167,8 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 <!-- botones del modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=noticias" class="btn">Volver a noticias</a>
+    <a type="button" href="index.php?admin=empleos" class="btn">Volver a empleos</a>
+    <a type="button" href="index.php?admin=editar-empleo" class="btn">Agregar nuevo</a>
 </footer>
 	   
 	

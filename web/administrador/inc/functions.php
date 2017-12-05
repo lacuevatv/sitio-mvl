@@ -170,7 +170,7 @@ function mainshorcutIndex() {
 				    	<?php } ?>
 				    </div>
 				    <div class="col-70">
-				    	<a href="index.php?admin=editar-noticias&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
+				    	<a href="index.php?admin=editar-agenda&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
 					    	<h1 class="titulo-noticia-small">
 					    		<?php echo $titulo; ?> 
 					    		| 

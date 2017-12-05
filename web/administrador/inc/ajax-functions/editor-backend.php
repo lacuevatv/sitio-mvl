@@ -15,7 +15,7 @@ if ( isAjax() ) {
 	$postID              = isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : '';
 	$newPost             = isset( $_POST['new_post'] ) ? $_POST['new_post'] : '';
 	$postTitulo          = isset( $_POST['post_title'] ) ? $_POST['post_title'] : '';
-	$postCategoria       = isset( $_POST['post_categoria'] ) ? $_POST['post_categoria'] : 'categoria1';
+	$postCategoria       = isset( $_POST['post_categoria'] ) ? $_POST['post_categoria'] : '';
 	$postUrl             = isset( $_POST['post_url'] ) ? $_POST['post_url'] : 'none';
 	$postStatus          = isset( $_POST['post_status'] ) ? $_POST['post_status'] : 'none';
 	$postDate            = isset( $_POST['post_date'] ) ? $_POST['post_date'] : 'none';
@@ -26,14 +26,22 @@ if ( isAjax() ) {
 	$postGaleria         = isset( $_POST['post_galeria'] ) ? $_POST['post_galeria'] : '0';//si es true hay que pasarlo a 1 para que se guarde correctamente
 	$imgGaleria          = isset( $_POST['imgGaleria'] ) ? $_POST['imgGaleria'] : '';
 	$linkExterno         = isset( $_POST['post_link_externo'] ) ? $_POST['post_link_externo'] : '';
-	$fechaAgenda         = isset( $_POST['post_fecha_agenda'] ) ? $_POST['post_fecha_agenda'] : 'none';
+	$agendaLugar         = isset( $_POST['post_lugar_agenda'] ) ? $_POST['post_lugar_agenda'] : '';
+	$fechaAgenda         = isset( $_POST['post_fecha_agenda'] ) ? $_POST['post_fecha_agenda'] : '';
+	$fechaAgendaOut      = isset( $_POST['post_fecha_agenda_out'] ) ? $_POST['post_fecha_agenda_out'] : '';
 
 	if ( $fechaAgenda == '2015-02-21' || $fechaAgenda == '' || $fechaAgenda == '0000-00-00' ) {
-		$fechaAgenda = 'NULL';
-	} else {
+		$fechaAgenda = 'none';
+	} /*else {
 		$fechaAgenda = "'".$fechaAgenda."'";//le agrego las comillas a mano para no tener problemas luego en el query con el null del mysql
-	}
+	}*/
 
+	if ( $fechaAgendaOut == '2015-02-21' || $fechaAgendaOut == '' || $fechaAgendaOut == '0000-00-00' ) {
+		$fechaAgendaOut = 'none';
+	} /*else {
+		$fechaAgendaOut = "'".$fechaAgendaOut."'";//le agrego las comillas a mano para no tener problemas luego en el query con el null del mysql
+	}*/
+	
     //saneamiento
 	$postResumen         = mysqli_real_escape_string($connection, $postResumen);
 	$postContenido       = mysqli_real_escape_string($connection, $postContenido);
@@ -76,7 +84,26 @@ if ( isAjax() ) {
 			exit;
 		}
 
-		$query = "INSERT INTO $tabla (post_autor,post_fecha,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_link_externo,post_fecha_agenda,post_status) VALUES ('$user', '$postDate', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria', '$linkExterno', $fechaAgenda, '$postStatus')";
+
+		$query = "INSERT INTO $tabla (post_autor,post_fecha,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_link_externo,post_fecha_agenda,post_fecha_agenda_out,post_agenda_lugar,post_status) VALUES ('$user', '$postDate', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria', '$linkExterno',";//continua debajo
+
+		//este arreglo es porque no toma el null bien mysql
+		if ( $fechaAgenda == 'none' ) {
+				
+			$query .= "NULL, ";
+		} else {
+			$query .= "'".$fechaAgenda."',";
+		}
+
+		if ( $fechaAgendaOut == 'none' ) {
+				
+			$query .= "NULL, ";
+		} else {
+			$query .= "'".$fechaAgendaOut."',";
+		}
+
+		//termina el query anterior
+		$query .=  "'$agendaLugar','$postStatus')";
 
 		$nuevoPost = mysqli_query($connection, $query); 
 		$postID = mysqli_insert_id($connection);
@@ -86,11 +113,30 @@ if ( isAjax() ) {
 	} //es viejo post
 		else {
 
-		$query = "UPDATE ".$tabla." SET post_autor='".$user."',post_fecha='".$postDate."', post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_link_externo='".$linkExterno."',post_fecha_agenda=".$fechaAgenda.", post_status='".$postStatus."' WHERE post_ID='".$postID."' LIMIT 1";
+		$query = "UPDATE ".$tabla." SET post_autor='".$user."',post_fecha='".$postDate."', post_titulo='".$postTitulo."',post_url='".$postUrl."',post_contenido='".$postContenido."',post_resumen='".$postResumen."',post_imagen='".$postImagen."',post_video='".$postVideo."',post_categoria='".$postCategoria."',post_galeria='".$postGaleria."',post_imagenesGal='".$imagenesGaleria."',post_link_externo='".$linkExterno."',";
+
+		//agregado para que el null se inserte correctamente
+		if ( $fechaAgenda == 'none' ) {
+				
+			$query .= "post_fecha_agenda=NULL,";
+		} else {
+			$query .= "post_fecha_agenda='".$fechaAgenda."',";
+		}
+
+		if ( $fechaAgendaOut == 'none' ) {
+				
+			$query .= "post_fecha_agenda_out=NULL,";
+		} else {
+			$query .= "post_fecha_agenda_out='".$fechaAgendaOut."',";
+		}
+
+		//continua el query
+		$query .=  "post_agenda_lugar='".$agendaLugar."', post_status='".$postStatus."' WHERE post_ID='".$postID."' LIMIT 1";
 
 		$updatePost = mysqli_query($connection, $query); 
 		
 		echo 'updated';
+		
 	}
 
 //cierre base de datos
