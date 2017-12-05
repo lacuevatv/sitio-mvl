@@ -1142,10 +1142,10 @@ MENUS
       @media (min-width: 992px) {
         .home-section-content li figure {
           width: 100% !important;
-          height: auto; } }
+          height: 150px; } }
       .home-section-content li figure > img {
         height: 100%;
-        width: 200% !important; }
+        width: 150% !important; }
     .home-section-content li .img-gris {
       background-color: #ececec; }
       @media (min-width: 992px) {
@@ -1201,7 +1201,13 @@ MENUS
       width: 480px; } }
   @media (min-width: 992px) {
     #content-agenda .data-agenda-content {
-      width: 100%; } }
+      width: 100%;
+      display: flex;
+      display: -o-flex;
+      display: -ms-flex;
+      display: -moz-flex;
+      display: -webkit-flex;
+      padding: 5px 0px; } }
   #content-agenda .data-agenda-content p {
     width: 35%;
     text-align: left;
@@ -1213,6 +1219,11 @@ MENUS
     @media (min-width: 768px) {
       #content-agenda .data-agenda-content p {
         font-size: 120%; } }
+    @media (min-width: 992px) {
+      #content-agenda .data-agenda-content p {
+        width: auto;
+        padding: 0px;
+        padding-right: 5px; } }
   #content-agenda .data-agenda-content h1 {
     font-size: 90%;
     width: 65%;
@@ -1220,6 +1231,21 @@ MENUS
     float: left;
     margin: 0;
     padding: 5px 10px; }
+    @media (min-width: 992px) {
+      #content-agenda .data-agenda-content h1 {
+        width: auto;
+        padding: 0px;
+        padding-left: 5px;
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        -o-align-items: center;
+        align-items: center; } }
 
 /*TRAMITES*/
 .section-title-verde {

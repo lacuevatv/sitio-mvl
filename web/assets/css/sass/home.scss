@@ -434,7 +434,6 @@
         }
 
         figure {
-            //padding: 0 50px;
             width: 250px;
             height: 250px;
             overflow: hidden;
@@ -445,12 +444,12 @@
             }
             @media (min-width: $md) {
                 width: 100%!important;
-                height: auto;
+                height: 150px;
             }
 
             >img {
                 height: 100%;
-                width: 200%!important;
+                width: 150%!important;
             }
         }
         
@@ -525,6 +524,12 @@
         }
         @media (min-width: $md) {
             width: 100%;
+            display: flex;
+            display: -o-flex;
+            display: -ms-flex;
+            display: -moz-flex;
+            display: -webkit-flex;
+            padding: 5px 0px;
         }
 
         p {
@@ -538,6 +543,11 @@
             @media (min-width: $sm) {
                 font-size: 120%;
             }
+            @media (min-width: $md) {
+                width: auto;
+                padding: 0px;
+                padding-right: 5px;
+            }
         }
 
         h1 {
@@ -547,6 +557,21 @@
             float: left;
             margin: 0;
             padding: 5px 10px;
+            @media (min-width: $md) {
+                width: auto;
+                padding: 0px;
+                padding-left: 5px;
+                display: flex;
+                display: -o-flex;
+                display: -ms-flex;
+                display: -moz-flex;
+                display: -webkit-flex;
+                -webkit-align-items: center;
+                -moz-align-items: center;
+                -ms-align-items: center;
+                -o-align-items: center;
+                align-items: center;
+            }
         }
     }
 }
