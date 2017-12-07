@@ -2,8 +2,14 @@
 (Sitio auto administrable)
 
 ## Versiones:
-* 1.4 Arreglo front:
--ajustes pagina de inicio
+*1.6 Arreglo Front:
+-agregado un icono de teléfonos
+
+*1.5 Arreglo Admin:  
+-Habilitación de promociones  
+
+* 1.4 Arreglo front:  
+-ajustes pagina de inicio  
 
 * 1.3 Arreglo administrador:  
 -Separé las categorias como si fueran distintos módulos y los diferencié cada uno con sus características, por ejemplo, la agenda tiene fechas in, out y lugar, gestión no. Pero el script que guarda o actualiza los post es el mismo siempre.  

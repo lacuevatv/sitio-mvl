@@ -8,7 +8,7 @@
 1.0 NAVIGATION
 2.0 OWL SLIDERS
 3.0 PAGINATION
-4.0 
+4.0 POPUP PROMO
 --------------------------------------------------------------*/
 
 var baseUrl = 'http://' + window.location.host;
@@ -431,5 +431,32 @@ $(document).ready(function(){
 });//.ready()
 
 /*--------------------------------------------------------------
-4.0 
+4.0 POPUP PROMO
 --------------------------------------------------------------*/
+
+$(window).on('load', function(){
+
+    var popup = $( '.popup' );
+    var popupIMG = $( '.popup img' );
+    var tiempo = 7000;
+    if ( popup.length != 0 ) {
+        var closeX = $( '.close-popup' );
+        var closeBTN = $( '.cerrar-popup' );
+        
+        function openPop () {
+            popup.addClass('popup-active');
+            popupIMG.fadeIn();
+        }
+        
+        setTimeout( openPop, tiempo);
+        
+        function closePopup() {
+            popup.removeClass('popup-active');
+            popupIMG.fadeOut(tiempo);
+        }
+
+        closeX.click(closePopup);
+        closeBTN.click(closePopup);
+
+    }
+});

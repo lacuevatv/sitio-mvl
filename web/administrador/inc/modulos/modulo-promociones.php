@@ -52,3 +52,30 @@ function ispopupActive () {
 	echo $active;
 	
 }
+
+function showUrlPromoAdmin() {
+	
+	$connection = connectDB();
+	$tabla = 'options';
+	$option_name = 'urlPopup';
+
+	$query  = "SELECT * FROM " .$tabla. " WHERE options_name = '{$option_name}' LIMIT 1";
+	$result =  mysqli_query($connection, $query);
+	
+	
+	if ($result->num_rows == 0) {
+		closeDataBase($connection);
+		return;
+	}
+	
+	$data = mysqli_fetch_array($result);
+	
+	if ($data[2] == '') {
+		echo '#';
+	} else {
+		echo $data[2];
+	}
+
+	closeDataBase($connection);
+	
+}

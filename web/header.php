@@ -53,7 +53,10 @@ $activeMenuItem = ' class="active-page-menu"';
 <body>
 <div class="wrapper-site">
 <!--- header ---------------------->
+    <?php
+        openPopUp($pageActual);
 
+    ?>
     <header class="header-site" <?php if ( $pageActual != 'inicio' ) { echo 'style="border-bottom:1px solid #ececec;"'; } ?>>
 
         <nav class="header-nav" role="navigation">
