@@ -2,8 +2,11 @@
 (Sitio auto administrable)
 
 ## Versiones:
-*1.6 Arreglo Front:
--agregado un icono de teléfonos
+*1.7 Arreglo Front:  
+-Tuve que agregar unos captions para el slider
+
+*1.6 Arreglo Front:  
+-agregado un icono de teléfonos  
 
 *1.5 Arreglo Admin:  
 -Habilitación de promociones  

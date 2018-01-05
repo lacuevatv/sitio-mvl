@@ -167,12 +167,74 @@
 }
 
 .header-slider {
+    position: relative;
+    
+
     img {
         -webkit-border-bottom-right-radius: 340px;
         -moz-border-bottom-right-radius: 340px;
         -ms-border-bottom-right-radius: 340px;
         -o-border-bottom-right-radius: 340px;
         border-bottom-right-radius: 340px;
+    }
+    .caption {
+        position: absolute;
+        background-color: $negro-transparente;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        height: 100%;
+        color: $color-blanco;
+        @media (min-width: $md) {
+            height: auto;
+            width: 400px;
+            top: 20%;
+            left: 80px;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 200%;
+            font-weight: $fuente-bold;
+            color: $color-verde;
+            margin-bottom: 20px;
+            line-height: 130%;
+            text-align: center;
+            margin-top: 10px;
+            @media (min-width: $md) {
+                text-align: left;
+                margin-top: 0;
+            }
+        }
+
+        p {
+            display: none;
+            font-size: 120%;
+            line-height: 120%;
+            margin-bottom: 20px;
+            @media (min-width: $md) {
+                display: block;
+            }
+        }
+
+        a {
+            text-transform: uppercase;
+            display: block;
+            text-align: center;
+            margin-top: -20px;
+            opacity: 0.6;
+            font-size: 80%;
+            @media (min-width: $md) {
+                text-align: left;
+                margin-top: 0;
+                opacity: 1;
+                font-size: 100%;
+            }
+            &:hover {
+                opacity: 0.7;
+            }
+        }
     }
 }
 
