@@ -4,6 +4,9 @@ require_once("inc/functions.php");
 <div class="wrapper-modulo">
 	<!-- wrapper interno modulo -->
 	<div class="contenido-modulo">
+		<h1 class="titulo-modulo">
+			Cambiar contraseña
+		</h1>
 		<div class="container">
 			<h2>Nuevo usuario</h2>
 			<form method="POST" id="password_form" name="password_form">

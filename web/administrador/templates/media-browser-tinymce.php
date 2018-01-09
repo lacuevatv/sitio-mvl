@@ -20,9 +20,9 @@ load_module( 'medios' );
 	<title>Archivo de imágenes</title>
 
 <!-- jQquery UI css -->
-  <link href="<?php echo MAINURL; ?>/administrador/assets/css/jquery-ui.min.css" rel="stylesheet">
+  <link href="<?php echo URLADMINISTRADOR; ?>/assets/css/jquery-ui.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-  <link href="<?php echo MAINURL; ?>/administrador/assets/css/style-admin.css" rel="stylesheet">
+  <link href="<?php echo URLADMINISTRADOR; ?>/assets/css/style-admin.css" rel="stylesheet">
 
 </head>
 <body>
@@ -87,12 +87,12 @@ load_module( 'medios' );
 
 <!------- // fin contenido ------>
 <!------- scripts ------>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/jquery-3.1.1.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/jquery-ui.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/admin-script.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/lib/tinymce/tinymce.min.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-noticias.js"></script>
-<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/jquery-ui.min.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/admin-script.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>
+<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
 <script type="text/javascript" language="javascript">
 
 function fileValidation( file ){

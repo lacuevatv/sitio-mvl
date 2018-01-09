@@ -22,7 +22,9 @@ if ( $result->num_rows == 0 ) {
 	if ( password_verify($password, $row['user_password']) ) {
 		$_SESSION['loggedin'] = true;
 	    $_SESSION['username'] = $username;
+	    $_SESSION['nombre'] = $row['user_nombre'];
 	    $_SESSION['user_id'] = $row['user_id'];
+	    $_SESSION['user_status'] = $row['user_status'];
 	    $_SESSION['start'] = time();
 	    $_SESSION['expire'] = $_SESSION['start'] + (60 * 60); //60 minutos 
 

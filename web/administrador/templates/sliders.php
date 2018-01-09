@@ -9,6 +9,9 @@ load_module( 'sliders' );
 ?>
 
 <div class="contenido-modulo">
+	<h1>
+		Administrador Sliders
+	</h1>
 	<div class="container">
 		<div class="row">
 			<!-- col -->

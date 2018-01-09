@@ -12,9 +12,12 @@ require_once('config.php');
 */
 
 //busca el template $name = nombre del archivo sin extensión
-function getTemplate ($name ) {
+function getTemplate ($name, $data = array() ) {
 
-	include TEMPLATEDIR . '/'. $name. '.php';
+	$namePage = TEMPLATEDIR . '/'. $name. '.php';
+	if (is_file($namePage)) {
+		include $namePage;
+	}
 }
 
 
@@ -45,40 +48,40 @@ busca los scripts necesarios y los inserta a continuación
 */
 function get_footer_scripts ($modulo) { ?>
 
-	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/jquery-ui.min.js"></script>
 	<!------- admin scripts ------>
-	<script src="assets/js/admin-script.js"></script>
+	<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/admin-script.js"></script>
 	<!------- scripts modulos ------>
 	<?php 
 	switch ( $modulo ) {
 		case 'noticias':
 		case 'editar-noticias': ?>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/lib/tinymce/tinymce.min.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-noticias.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
 			
 			<?php break;
 		
 		case 'biblioteca-medios': ?>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
 			<?php break;
 		
 		case 'sliders' :
 		case 'editar-slider' : ?>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-sliders.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-sliders.js"></script>
 			<?php break;
 
 		case 'promociones' : ?>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-promociones.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-promociones.js"></script>
 			<?php break;
 		
 		default: ?>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/lib/tinymce/tinymce.min.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-noticias.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-medios.js"></script>
-			<script src="<?php echo MAINURL; ?>/administrador/assets/js/modulo-sliders.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-sliders.js"></script>
 			<?php break;
 	}
 	?>
@@ -170,7 +173,7 @@ function mainshorcutIndex() {
 				    	<?php } ?>
 				    </div>
 				    <div class="col-70">
-				    	<a href="index.php?admin=editar-agenda&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
+				    	<a href="index.php?admin=editar-noticias&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
 					    	<h1 class="titulo-noticia-small">
 					    		<?php echo $titulo; ?> 
 					    		| 

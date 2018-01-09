@@ -2,6 +2,8 @@
 (Sitio auto administrable)
 
 ## Versiones:
+*2.0 Gestión de usuarios
+
 *1.7 Arreglo Front:  
 -Tuve que agregar unos captions para el slider
 

@@ -22,11 +22,11 @@ $item = 1;
 ?>
 
 <div class="contenido-modulo">
+	<h1 class="titulo-modulo">
+		Editor Sliders: <?php echo $slug; ?>
+	</h1>
 	<div class="container">
-		
-		<h2 class="text-center">
-		 	Slider: <?php echo $slug; ?>
-		</h2>
+
 		<div id="imagen_destacada_wrapper">
 			<button id="new-item" class="btn btn-primary">Agregar nuevo item</button>
 		</div>

@@ -3,6 +3,9 @@ load_module( 'promociones' );
 ?>
 
 <div class="contenido-modulo">
+	<h1 class="titulo-modulo">
+		Activar o Cargar Promociones
+	</h1>
 	<div class="container">
 		<div class="row">
 			<div class="col-30">
@@ -35,7 +38,7 @@ load_module( 'promociones' );
 				<div class="error-tag"></div>
 			</div><!-- // col -->
 
-			<div class="col-70">
+			<div class="col-70 img-wrapper">
 				<?php showPopupImg (); ?>
 			</div><!-- // col -->
 			

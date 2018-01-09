@@ -3,7 +3,9 @@ load_module( 'medios' );
 ?>
 <!-- wrapper interno modulo -->
 <div class="contenido-modulo">
-
+	<h1 class="titulo-modulo">
+		Biblioteca de Medios
+	</h1>
 	<div class="container">
 		<div class="row">
 	

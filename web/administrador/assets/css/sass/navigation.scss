@@ -124,7 +124,7 @@
 	@media (min-width: $md) {
 		border-top: none;
 		position: static;
-        width: 75%;
+        width: 80%;
         display: flex;
 		display: -o-flex;
 		display: -ms-flex;
@@ -166,11 +166,11 @@
 		-ms-align-items: center;
 		-o-align-items: center;
 		align-items: center;
-		-webkit-justify-content: space-around;
-		-moz-justify-content: space-around;
-		-ms-justify-content: space-around;
-		-o-justify-content: space-around;
-		justify-content: space-around;
+		-webkit-justify-content: flex-end;
+		-moz-justify-content: flex-end;
+		-ms-justify-content: flex-end;
+		-o-justify-content: flex-end;
+		justify-content: flex-end;
 		text-align: left;
 
 		li {
@@ -178,7 +178,7 @@
 			text-transform: uppercase;
 			
 			> a {
-				padding: 10px 5px;
+				padding: 10px 2px;
 				&:hover {
 					filter: alpha(opacity=70);
 				    	opacity: 0.7;
@@ -191,7 +191,7 @@
 
     &.menu-left {
     	@media (min-width: $md) {
-			width: 65%;
+			width: 100%;
 		}
 	}
 	&.menu-right {

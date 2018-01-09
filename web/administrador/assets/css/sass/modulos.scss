@@ -15,6 +15,20 @@
   background-color: transparent;
 }
 
+.titulo-modulo {
+  font-size: 150%;
+  line-height: 150%;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid $gris;
+  @media (min-width: $md) {
+    font-size: 250%;
+    line-height: 200%;
+    
+  }
+}
+
 .load-ajax {
   position: absolute;
   width: 100%;
@@ -38,4 +52,20 @@
   text-transform: uppercase;
   margin: 10px 10px 10px 0px!important;
   display: inline-block;
+}
+
+.img-wrapper {
+    padding: 10px;
+    border: 1px solid $color-footer;
+    margin: 10px 0px;
+}
+
+.sliders-wrapper {
+  li {
+    border-bottom: 1px solid $gris;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }

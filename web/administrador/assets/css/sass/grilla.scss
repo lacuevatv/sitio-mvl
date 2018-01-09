@@ -2,9 +2,12 @@
 
 .container {
   width: 100%;
-  max-width: $md;
+  max-width: $xlg;
   margin: 0 auto;
   padding: 0 10px;
+  @media (min-width: $md) {
+    padding: 0 5%;
+  }
 }
 
 .row {

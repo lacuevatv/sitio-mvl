@@ -6,6 +6,8 @@
 */
 session_start();
 $online = false;
+global $userStatus;
+$userStatus = 1;
 require_once( 'inc/functions.php' );
 //para que no accedan a los otros archivos directamente se define la constante
 define('SECUREACCESS', 1);
@@ -13,6 +15,11 @@ define('SECUREACCESS', 1);
 //chequea si la sesion está iniciada y si no se exedio el tiempo
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
   $online = true;
+  //define la categoria de usuario
+  if ( isset($_SESSION['user_status']) && ( $_SESSION['user_status'] == 0 || $_SESSION['user_status'] == 1 ) ) {
+    $userStatus = $_SESSION['user_status'];
+  }
+
   } else {
   
    include TEMPLATEDIR . '/login.php';
@@ -33,169 +40,45 @@ $modulo = isset($_GET['admin'])?$_GET['admin']:'';
 global $slug;
 $slug = isset($_GET['slug'])?$_GET['slug']:'';
 
-
 /*
  * HTML DEL SITIO
 */
 
 include 'header.php';
-
-if ( $modulo == '') {
-
-?>
-<!---------- ACCESOS DIRECTO DESTACADO A UN MODULO IMPORTANTE ---------------->
-<div class="main-shortcut-wrapper"> 
-    <div class="container">
-      <div class="row">
-        <div class="col-30">
-          <div class="logo">
-            <img src="<?php echo LOGOSITE; ?>" alt="<?php echo SITENAME; ?>">
-            <p><?php echo SITENAME; ?> <?php echo DATEPUBLISHED; ?></p>
-            <p><a class="btn btn-info btn-sm" href="../" target="_blank">volver a pagina principal</a></p>
-          </div>
-        </div>
-        <div class="col-70">
-          <h2 class="">Agenda</h2>
-          <p>Estos son los últimas 3 eventos cargados:</p>
-          
-          <div class="container">
-<!---------- noticias ---------------->
-            <ul class="loop-noticias-backend-excerpt">
-
-              <?php mainshorcutIndex(); ?>
-              
-            </ul>
-<!---------- fin noticias ---------------->
-          </div>
-          <hr>
-          
-          <div class="row">
-            <div class="col-30">
-              <p>
-                <a class="btn btn-inverse" href="index.php?admin=agenda" role="button">Ver todas</a>
-              </p>
-            </div>
-            <div class="col-30">
-              <p>
-                <a class="btn btn-inverse" href="index.php?admin=editar-agenda" role="button">Agregar nueva</a>
-              </p>
-            </div>
-          </div>
-            
-        </div>
-      </div>
-        
-     </div>
   
-</div>
+  /*
+  SI MODULO ESTA DIFINDO CARGA MODULO
+  */
 
-
-<!---------- ACCESOS DIRECTOS A LOS MODULOS ---------------->
-<div class="container">
-  <div class="row">
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Agenda</h2>
-          <p>Administrar la agenda: Borrar, cargar y editar.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=agenda" role="button">Ver lista de publicados</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Gestion</h2>
-          <p>Administrar las noticias: Borrar, cargar y editar.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=gestion" role="button">Ver lista de publicados</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Biblioteca de medios</h2>
-          <p>Subir, borrar y manipular archivos e imagenes.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=biblioteca-medios" role="button">Ir a la Biblioteca</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Trámites</h2>
-          <p>Modificar la lista de tramites disponibles.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=tramites" role="button">Modificar tramites</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Teléfonos</h2>
-          <p>Modificar la lista de teléfonos disponibles.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=telefonos" role="button">Modificar telefonos</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Empleo</h2>
-          <p>Modificar los empleos actuales en la bolsa.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=empleos" role="button">Modificar empleo</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Slider Inicio</h2>
-          <p>Modificar los sliders actuales: borrar y/o agregar fotos.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=editar-slider&slug=home" role="button">Modificar sliders</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-    <div class="col-30">
-      <!-- modulo -->
-      <section>
-        <div class="modulo-wrapper">
-          <h2>Popup Home</h2>
-          <p>Activar o desactivar Popup Home, agregar imagen prediseñada.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=promociones" role="button">Modificar Popup Home</a></p>
-        </div>
-      </section><!-- //modulo -->
-    </div><!-- //columna -->
-
-  </div><!-- //row -->
-</div><!-- //containre -->
-
-<?php } else {
-/*
- * HTML MODULOS
-*/
-?>
-<article class="wrapper-modulo">
+if ( $modulo != '') : ?>
+  
+  <article class="wrapper-modulo">
 
   <?php getTemplate( $modulo ); ?>
 
-</article><!-- // wrapper interno modulo -->
+  </article><!-- // wrapper interno modulo -->
 
-<?php }
+<?php else : 
+  /*
+   * SI EL MODULO NO ESTA DEFINIDO ENTONCES CARGA EL INDEX PERO DE ACUERDO AL USUARIO:
+  */
+  
+  if ( $userStatus == '0' || $userStatus == '1' ) : 
+  /*
+   * si es usuario editor o administrador, corresponde mostrar todos los modulos
+  */  
+
+  getTemplate( 'inicio', $userStatus );
+
+  else : 
+  /*
+   * si es usuario específico, solo muestra el modulo que le corresponde
+  */  
+
+    getTemplate( 'main-shortcut', $userStatus );
+
+  endif;
+
+endif;
 
 include 'footer.php';

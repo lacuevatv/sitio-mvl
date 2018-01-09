@@ -12,6 +12,7 @@ define ( 'UPLOADSIMAGES', dirname( __FILE__ ) . '/../../contenido' );
 define ( 'UPLOADSFILES', dirname( __FILE__ ) . '/../../contenido/archivos' );
 //URL
 define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] );
+define ('URLADMINISTRADOR', 'http://' . $_SERVER['HTTP_HOST'] . '/administrador' );
 define ('UPLOADSURL', MAINURL . '/contenido');
 define ('UPLOADSURLIMAGES', MAINURL . '/contenido');
 define ('UPLOADSURLFILES', MAINURL . '/contenido/archivos');
@@ -19,7 +20,7 @@ define ('UPLOADSURLFILES', MAINURL . '/contenido/archivos');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'SITENAME', 'Municipio Vicente Lopez' );
 define ( 'DATEPUBLISHED', '2017');
-define ('LOGOSITE' , MAINURL . '/administrador/assets/images/logosite.png');
+define ('LOGOSITE' , URLADMINISTRADOR . '/assets/images/logosite.png');
 define ( 'SITETITLE', 'MVL - Panel de control' );
 define ( 'FAVICONICO', MAINURL . '/favicon.ico' );
 
