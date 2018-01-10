@@ -1,5 +1,6 @@
 <?php
 global $userStatus;
+
 //chequea que no se acceda directo
 if(!defined("SECUREACCESS"))
 {
@@ -43,22 +44,47 @@ if(!defined("SECUREACCESS"))
         </button>
 
         <div id="menu-top" class="menus-top-wrapper">
-          <!--LEFT MENU-->
+  <!--menu modulo asinado-->
           <ul class="menu-top menu-left">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Noticias<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agenda<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li>
-                  <a href="index.php?admin=editar-noticias" role="button">Agregar nueva</a>
-                  </li>
+                  <a href="index.php?admin=editar-agenda" role="button">Agregar nueva</a>
+                </li>
                 <li>
-                  <a href="index.php?admin=noticias" role="button">Ver todas</a>
+                  <a href="index.php?admin=agenda" role="button">Ver Agenda</a>
                 </li>
               </ul>
             </li>
+          <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestión<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="index.php?admin=editar-gestion" role="button">Agregar nueva</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=gestion" role="button">Ver Gestion</a>
+                </li>
+              </ul>
+            </li>
+          <?php endif; ?>
+            
+  <!--MENU EDITOR: administrar pagina-->
+          <?php if ( $userStatus == '0' || $userStatus == '1' ) : ?>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Página<span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li>
+                  <a href="index.php?admin=tramites" role="button">Tramites</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=empleos" role="button">empleos</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=telefonos" role="button">telefonos</a>
+                </li>
                 <li>
                   <a href="index.php?admin=biblioteca-medios" role="button">Medios</a>
                 </li>
@@ -70,26 +96,29 @@ if(!defined("SECUREACCESS"))
                 </li>
               </ul>
             </li>
-          <?php if ($userStatus == 0) : ?>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="index.php?admin=change-password" role="button">Cambiar contraseña</a></li>
-                <li><a href="index.php?admin=nuevo-usuario" role="button">Registrar nuevo usuario</a></li>
-              </ul>
-            </li>
           <?php endif; ?>
+
           <li><a href="../" target="_blank">Ver página</a></li>
           </ul>
-          <!--RIGHT MENU-->
+  <!--RIGHT MENU: usuario-->
           <ul class="menu-top menu-right">
             <li class="dropdown">
             <?php if ( isset($_SESSION['nombre']) && $_SESSION['nombre'] != '' ) : ?>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['nombre']; ?><span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="icon-usuario"></span><?php echo $_SESSION['nombre']; ?><span class="caret"></span>
+              </a>
+            
             <?php else : ?>
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuario<span class="caret"></span></a>
+            
             <?php endif; ?>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-right">
+
+              <?php if ( $userStatus == '0') : ?>
+                <li><a href="index.php?admin=users" role="button">Manejo de usuarios</a></li>  
+              <?php endif; ?>
+
+                <li><a href="index.php?admin=change-password" role="button">Cambiar contraseña</a></li>
                 <li><a id="logout" href="#">Salir</a></li>
               </ul>
             </li>
@@ -103,8 +132,28 @@ if(!defined("SECUREACCESS"))
 
 <?php if ( $modulo == '') : ?>
   <div class="container titulo-gral-admin">
-    <h1>
-      <?php echo SITENAME; ?>
-    </h1>
+    <div class="row">
+      <div class="col-20">
+        <a href="index.php">
+          <img src="<?php echo LOGOSITE; ?>" alt="<?php echo SITENAME; ?>" class="image-responsive">
+        </a>
+      </div>
+      <div class="col-50">
+        <h1>
+          Panel de Control
+        </h1>
+        <h4>
+          <?php echo SITENAME; ?>
+        </h4>
+        <p>
+          <small>2018. Copyright</small>
+        </p>
+      </div>
+      <div class="col-20">
+        <h5 class="fecha-hoy">
+          2 de octubre de <strong>2018</strong>
+        </h5>
+      </div>
+    </div>
   </div>
 <?php endif; ?>

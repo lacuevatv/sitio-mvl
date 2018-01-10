@@ -5,6 +5,12 @@
  * Since 3.0
  * 
 */
+global $userStatus;
+if ($userStatus != '0' && $userStatus != '1' ) {
+	echo 'No tiene permisos para ver esta sección';
+  	
+  	exit;
+}
 require_once("inc/functions.php");
 load_module( 'sliders' );
 //recupera slug a buscar

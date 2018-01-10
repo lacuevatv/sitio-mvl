@@ -196,7 +196,7 @@
 	}
 	&.menu-right {
 		@media (min-width: $md) {
-			width: 30%;
+			width: 20%;
 			border-left: 1px solid $blanco;
 			color: darken($blanco, 30%);
 		}
@@ -233,4 +233,25 @@ ul.dropdown-menu {
 	.dropdown-menu {
 			display: block;
 		}
+}
+
+.dropdown-toggle {
+	position: relative;
+}
+
+.icon-usuario {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/person.png) no-repeat center;
+	position: absolute;
+	left: -30px;
+	top: -2px;
+	@media (min-width: $md) {
+		top: 7px;
+	}
+}
+
+.dropdown-menu-right {
+	right: 0;
 }

@@ -17,7 +17,7 @@
 
 //urls:
 var baseUrl = 'http://' + window.location.host;
-var administradorUrl = baseUrl + '/administrador';
+var administradorUrl = baseUrl + '/admin';
 var uploadsDir = baseUrl + '/contenido';
 var functionsDir = administradorUrl + '/inc';
 var templatesDir = administradorUrl + '/templates';
@@ -162,34 +162,131 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 
+	/*
+	* registrar nuevo usuario
+	*/
 	$('#register').submit(function(event){
-			event.preventDefault();
-			var formulario = this;
-			var data = $(this).serialize();
-			var msj = $('.error-tag');
+		event.preventDefault();
+		var formulario = this;
+		var data = $(this).serialize();
+		var msj = $('.error-tag');
 
+		$.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/nuevo-usuario.php',
+			data: data,
+			success: function ( response ) {
+				console.log(response);
+				if ( response == 'existe') {
+					msj.html('ya hay un usuario con ese email');
+				} else if (response == 'exito') {
+					location.reload(true);
+					//window.setTimeout('location.href = index.php', 2000);
+				} else {
+					msj.html('hubo un error, intente más tarde');
+				}
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+	});//submit
+
+
+	/*
+     * BOTON NUEVO USUARIO
+     * abre el formulario
+	*/
+	$('.new-user-button').click(function(){
+		var contenedor = $('.wrapper-nuevo-usuario');
+		var altura = $(contenedor).prop('scrollHeight')
+		if ( contenedor.height() == 0 ) {
+			contenedor.animate({
+				'height' : altura
+			},500);
+		} else {
+			contenedor.animate({
+				'height' : '0'
+			},500);
+			
+		}
+	});
+
+	/*
+     * BOTON ACTUALIZAR USUARIO:
+     * abre el formulario
+	*/
+	$('.update-user').click(function(){
+		//debugger;
+		var contenedor = $(this.closest('tr')).next();
+		if ( contenedor.css('display') == 'none' ) {
+			contenedor.fadeIn();
+		} else {
+			contenedor.fadeOut();
+		}
+	});
+	
+	/*
+     * ACTUALIZAR USUARIO:
+     * submit formulario
+	*/
+	$('.change-user-form').submit(function(e){
+		e.preventDefault();
+
+		var data = $(this).serialize();
+		var msj = $('.error-tag');
+
+		$.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/update-user.php',
+			data: data,
+			success: function ( response ) {
+				console.log(response);
+				if ( response == 'ok') {
+					location.reload(true);
+				} else {
+					msj.html('hubo un error, intente más tarde');
+				}
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+
+	});
+
+
+
+	$('.delete-user').click(function(){
+		var userId = $(this).attr('data-userid');
+		var msj = $('.error-tag');
+		
+		if ( confirm( '¿Está seguro de querer BORRAR este usuario?' ) ) {
 			$.ajax( {
 				type: 'POST',
-				url: ajaxFunctionDir + '/register.php',
-				data: data,
+				url: ajaxFunctionDir + '/delete-user.php',
+				data: {
+					userId: userId,
+				},
 				success: function ( response ) {
 					console.log(response);
-					if ( response == 'existe') {
-						msj.html('ya hay un usuario con ese nombre');
-					} else if (response == 'exito') {
-						msj.html('el usuario ya fue creado, puede iniciar sesión')
-						//window.setTimeout('location.href = index.php', 2000);
+					if ( response == 'deleted') {
+						location.reload(true);
 					} else {
-						msj.html('hubo un error, intente más tarde');
+						msj.html('hubo un error, no se pudo borrar, intente más tarde');
 					}
 				},
 				error: function ( error ) {
 					console.log(error);
 				},
 			});//cierre ajax
-		});//submit
+		}
+	});
 
 })//ready
+
+
+
 
 /*
 * CHANGE PASSWORD
@@ -209,6 +306,7 @@ $(document).ready(function() {
 				url: ajaxFunctionDir + '/password.php',
 				data: data,
 				success: function ( response ) {
+					console.log(response);
 					if ( response == 'error') {
 						msj.html('Usuario o contraseña incorrecta');
 					} else if (response == 'exito') {

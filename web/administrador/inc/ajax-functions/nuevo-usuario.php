@@ -7,7 +7,10 @@ if ( isAjax() ) {
 //como es un pedido por ajax se crea el usuario
 	$connection = connectDB();
 	$tabla = 'usuarios';
-	$username = $_POST['userid'];
+	$username = isset($_POST['userid']) ? $_POST['userid'] : '';
+	if ( $username == '' ) {
+		return;
+	}
 	$username  = filter_var($username,FILTER_SANITIZE_EMAIL);
 	//busca si hay un usuario con ese nombre
 	$query  = "SELECT * FROM " .$tabla. " WHERE user_usuario='".$username."' ";
@@ -21,10 +24,12 @@ if ( isAjax() ) {
 	else {
 	 	$password = $_POST['password'];
 		//convierte el password 
-		$hash = password_hash($password, PASSWORD_BCRYPT); 
-		$nombre = isset($_POST['username']) ? $_POST['username'] : $username;
+		$hash = password_hash($password, PASSWORD_BCRYPT);
+		$nombre = isset($_POST['username']) ? $_POST['username'] : 'usuario';
 		$nombre  = filter_var($nombre,FILTER_SANITIZE_STRING);
-		$madingUser = "INSERT INTO ".$tabla." (user_usuario, user_password, user_nombre) VALUES ('".$username."', '".$hash."', '".$nombre."')";
+		$status = isset($_POST['user_status']) ? $_POST['user_status'] : 'a';
+		
+		$madingUser = "INSERT INTO ".$tabla." (user_usuario, user_password, user_nombre, user_status) VALUES ('".$username."', '".$hash."', '".$nombre."', '".$status."')";
 	           
 	    $newUser = mysqli_query($connection, $madingUser);
 

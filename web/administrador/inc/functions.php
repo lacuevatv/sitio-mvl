@@ -117,80 +117,20 @@ function closeDataBase($connection){
     }
 }
 
-//acceso directo en el index que se conecta a algún modulo
-function mainshorcutIndex() {
-
-//function listaNoticias( $limit = 20, $status = 'all', $extended = false, $categoria = 'none', $resumenQuery = false ) {
+/*
+ * TRAE LA LISTA DE USUARIOS
+ * DEVUELVE ARRAY CON USUARIOS
+*/
+function getUsers() {
 	$connection = connectDB();
-	$tabla = 'noticias';
-	$limit = '3';
-	$categoria = 'agenda';
-	$status = 'publicado';
-	
-	$query  = "SELECT * FROM " .$tabla. " WHERE post_categoria='".$categoria."' AND post_status='".$status."' ORDER by post_fecha desc LIMIT ".$limit." ";
+	$tabla = 'usuarios';
+	$query  = "SELECT * FROM " .$tabla;
 
 	$result = mysqli_query($connection, $query);
-	
-	if ( $result->num_rows == 0 ) {
-		echo '<div class="error-tag">Ninguna noticia ha sido cargada todavía</div>';
-	} else {
 
-		while ( $row = $result->fetch_array() ) {
-			$rows[] = $row;
+	while ( $user = $result->fetch_array() ) {
+			$users[] = $user;
 		}
 
-		foreach ($rows as $row ) {
-		 	$postID       = $row['post_ID'];
-			$titulo       = $row['post_titulo'];
-			$url          = $row['post_url'];
-			$imgDestacada = $row['post_imagen'];
-			$resumen      = $row['post_resumen'];
-			$contenido    = $row['post_contenido'];
-			$video        = $row['post_video'];
-			$categoria    = $row['post_categoria'];
-			$galeria      = $row['post_galeria'];
-			$imgGaleria   = $row['post_imagenesGal'];
-			$status       = $row['post_status'];
-			$date         = $row['post_fecha'];
-			$linkExterno  = $row['post_link_externo'];
-			$fechaAgenda  = $row['post_fecha_agenda'];
-
-			$meses        = array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
-			$dia          = date("d", strtotime($date));
-			$mes          = $meses[date("n", strtotime($date))-1];
-			$year         = date("Y", strtotime($date));
-		
-			?>
-			<li class="loop-noticias-backend-item">
-				<article class="row">
-				    <div class="col-30">
-				    	<?php 
-				    	if ( $imgDestacada != '' ) { ?>
-				    	<img src="<?php echo UPLOADSURLIMAGES.'/'.$imgDestacada; ?>" alt="Imagen Destacada de la noticia" class="img-responsive">
-				    	<?php }
-				    	else { ?>
-				    	<img src="assets/images/noticia-img-default.png" alt="Noticias-ATSA" class="img-responsive">
-				    	<?php } ?>
-				    </div>
-				    <div class="col-70">
-				    	<a href="index.php?admin=editar-noticias&slug=<?php echo $url; ?>" title="Editar" class="titulo-noticia-small-link">
-					    	<h1 class="titulo-noticia-small">
-					    		<?php echo $titulo; ?> 
-					    		| 
-					    		<span><?php echo $status; ?></span>
-					    		- 
-					    		<small><?php echo $date; ?></small>
-					    	</h1>
-				    	</a>
-				    	
-				    </div>
-				</article>
-			</li>
-		<?php
-
-		}//FOREACH
-		
-	}//ELSE
-
-	closeDataBase($connection);
+	return $users;
 }

@@ -1,4 +1,10 @@
 <?php
+global $userStatus;
+if ($userStatus != '0' && $userStatus != '1' ) {
+	echo 'No tiene permisos para ver esta sección';
+  	
+  	exit;
+}
 load_module( 'promociones' );
 ?>
 

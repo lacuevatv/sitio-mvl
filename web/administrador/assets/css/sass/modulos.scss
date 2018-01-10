@@ -69,3 +69,62 @@
     }
   }
 }
+
+.wrapper-nuevo-usuario {
+  height: 0;
+  overflow: hidden;
+}
+
+.btns-user {
+  cursor: pointer;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.icon-save-user {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/refresh.png) no-repeat center;
+}
+
+.icon-del-user {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url(../images/ios-trash.png) no-repeat center;
+}
+
+.users-list-admin {
+  width: 80%;
+  margin: 30px auto;
+  thead {
+    background-color: rgba(0,0,0,0.5);
+    color: $blanco;
+    text-transform: uppercase;
+  }
+  tbody {
+    background-color: rgba(0,0,0,0.1);
+    color: $negro;
+    position: relative;
+  }
+  tr {
+    border-bottom: 1px solid #aaa;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  td {
+    height: 40px;
+    padding: 5px;
+    vertical-align: middle;
+  }
+
+  .change-user-form-wrapper {
+    display: none;
+    background: $blanco;
+  }
+
+}
+

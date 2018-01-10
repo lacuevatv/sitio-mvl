@@ -8,15 +8,9 @@ require_once("inc/functions.php");
 			Cambiar contraseña
 		</h1>
 		<div class="container">
-			<h2>Nuevo usuario</h2>
 			<form method="POST" id="password_form" name="password_form">
 				<span class="error-tag">&nbsp;</span>
-			<!------ usuario ---------->
-				<div class="form-group">
-					<label for="userid">Usuario (email)</label>
-					<input type="email" id="userid" name="userid" required>
-				</div>
-			
+				<input type="hidden" name="userid" value="<?php echo $_SESSION['username']; ?>">
 			<!------ contraseña ---------->
 				<div class="form-group">
 					<label for="password">Contraseña Anterior</label>
