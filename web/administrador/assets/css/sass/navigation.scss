@@ -196,9 +196,12 @@
 	}
 	&.menu-right {
 		@media (min-width: $md) {
-			width: 20%;
+			width: 30%;
 			border-left: 1px solid $blanco;
 			color: darken($blanco, 30%);
+		}
+		@media (min-width: $lg) {
+			width: 25%;
 		}
 	}
 }
