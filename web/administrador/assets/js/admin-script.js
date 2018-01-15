@@ -10,14 +10,12 @@
  * 3. logout (index)
  * 4. Nuevo usuario
  * 5. change password
- * 6. loop de sliders
- * 7. editar slider
- * 8. loop de noticias
+ * 6. Menu Footer
 */
 
 //urls:
 var baseUrl = 'http://' + window.location.host;
-var administradorUrl = baseUrl + '/admin';
+var administradorUrl = baseUrl + '/administrador';
 var uploadsDir = baseUrl + '/contenido';
 var functionsDir = administradorUrl + '/inc';
 var templatesDir = administradorUrl + '/templates';
@@ -323,3 +321,108 @@ $(document).ready(function() {
 		});//submit
 
 })//ready
+
+/*
+* MENU FOOTER
+*/
+
+$(document).ready(function() {
+
+	/*
+	 * click agregar link
+	*/
+	$(document).on('click', '.btn-new-link', function( event ){
+	    event.preventDefault();
+	    var contenedor = this.closest('.links-footer');
+
+	    var textoLink = prompt('Escriba el texto del link');
+	    var urlLink = prompt('Copie o escriba el url completo');
+	    var html = '<li><a href="'+urlLink+'" target="_blank"><input type="hidden" name="link_texto" value="'+textoLink+'" class="link-texto"><input type="hidden" name="link_url" value="'+urlLink+'" class="link-url">'+textoLink+'</a><button class="delete-link-btn"><span class="icon-del-link"></span></button></li>';
+	    
+	    $(contenedor).append(html);
+	});
+
+	/*
+	 * click borrar link
+	*/
+	$(document).on('click', '.delete-link-btn', function( event ){
+	    event.preventDefault();
+	    var li = this.closest('li');
+	    li.remove();
+	});
+
+
+	/*
+	 * reordenar elementos
+	*/
+	$( '.links-footer' ).sortable();
+	$( '.links-footer' ).disableSelection();
+
+	$( '#footer-menu-wrapper' ).sortable({
+		stop: function () {
+			var columnas = $(this).find('li.column-wrapper');
+			for (var i = 0; i < columnas.length; i++) {
+				$(columnas[i]).attr('data-columna-orden', i+1);
+				$(columnas[i]).find('h2').text('COLUMNA ' + String(i+1) );
+					
+			}
+		},
+	});
+	$( '#footer-menu-wrapper' ).disableSelection();
+
+	
+	/*
+	 * click guardar cambios
+	*/
+	$(document).on('click', '.btn-save-footer', function( event ){
+		event.preventDefault();
+		
+		var columnas = $('.column-wrapper');
+		var data = {'columnas' : [] };
+
+		for (var i = 0; i < columnas.length; i++) {
+			var orden = $(columnas[i]).attr('data-columna-orden');
+			var titulo = $(columnas[i]).find('input').val();
+			var links = $(columnas[i]).find('li');
+
+			var column = {
+				'column-orden': orden,
+				'column-title': titulo,
+				'links': [],
+			}
+			
+			for (var a = 0; a <= links.length; a++) {
+				var linkTexto = $(links[a]).find('.link-texto').val()
+				var linkUrl = $(links[a]).find('.link-url').val()
+
+				var link = {
+					'link-texto': linkTexto,
+					'link-url': linkUrl,
+				}
+				column.links.push(link);
+			}//2nd for
+			
+
+			data.columnas.push(column);
+
+		}//1st for
+
+		$.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/save-footer-menu.php',
+			data: data,
+			success: function ( response ) {
+				if (response !=0 ) {
+					$('.error-tag').text('Cambios guardados');
+				}
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+
+	});
+
+
+
+});

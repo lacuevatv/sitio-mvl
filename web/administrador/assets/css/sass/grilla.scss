@@ -51,6 +51,14 @@
   }
 }
 
+.row-same-height {
+  -webkit-align-items: inherit;
+  -moz-align-items: inherit;
+  -ms-align-items: inherit;
+  -o-align-items: inherit;
+  align-items: inherit;
+}
+
 .col {
   padding: 5px 20px;
   @media (min-width: $md) {

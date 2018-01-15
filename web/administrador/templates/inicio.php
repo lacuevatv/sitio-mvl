@@ -28,6 +28,17 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
+          <h2>Menú del Footer</h2>
+          <p>Modificar el menú del pie, hasta 4 columnas.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=footer-menu" role="button">Modificar Menú</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
           <h2>Biblioteca de medios</h2>
           <p>Subir, borrar y manipular archivos e imagenes.</p>
           <p><a class="btn btn-primary" href="index.php?admin=biblioteca-medios" role="button">Ir a la Biblioteca</a></p>

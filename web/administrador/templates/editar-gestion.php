@@ -41,6 +41,13 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 ?>
 <!---------- editar noticias ---------------->
 <div class="contenido-modulo">
+	<h1 class="titulo-modulo">
+		<?php if ( $slug == '' ) {
+			echo 'Agregar nueva';
+		} else {
+			echo 'Editor';
+		} ?>
+	</h1>
 	<div class="container">
 		<form method="POST" id="editar-noticia-formulario" name="editar-noticia-formulario">		
 		<input type="hidden" name="post_ID" value="<?php echo $postID; ?>">

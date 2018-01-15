@@ -134,3 +134,19 @@ function getUsers() {
 
 	return $users;
 }
+
+/*
+ * TRAE El MENÚ DEL FOOTER
+ * DEVUELVE DATA CON A INFO
+*/
+function getMenuAdmin( $columna ) {
+	$connection = connectDB();
+	$tabla = 'options';
+	$query  = "SELECT * FROM " .$tabla . " WHERE options_name='".$columna."'";
+
+	$result = mysqli_query($connection, $query);
+
+	$menu = $result->fetch_array();
+
+	return $menu;
+}

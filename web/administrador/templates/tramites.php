@@ -15,6 +15,9 @@ load_module( 'noticias' );
 ?>
 <!---------- noticias ---------------->
 <div class="contenido-modulo">
+    <h1 class="titulo-modulo">
+        Trámites
+    </h1>
 	<div class="container">
 		
 		<div class="row">
