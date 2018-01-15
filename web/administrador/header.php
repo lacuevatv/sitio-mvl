@@ -95,7 +95,10 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=editar-slider&slug=home" role="button">Slider Inicio</a>
                 </li>
                 <li>
-                  <a href="index.php?admin=editar-slider&slug=footer-menu" role="button">Menú del footer</a>
+                  <a href="index.php?admin=footer-menu" role="button">Menú del footer</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=videos" role="button">Administrar Videos</a>
                 </li>
               </ul>
             </li>

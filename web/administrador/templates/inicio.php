@@ -39,9 +39,9 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
-          <h2>Biblioteca de medios</h2>
-          <p>Subir, borrar y manipular archivos e imagenes.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=biblioteca-medios" role="button">Ir a la Biblioteca</a></p>
+          <h2>Administrar Videos</h2>
+          <p>Agregar, quitar o borrar url del video.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=videos" role="button">Modificar</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->
@@ -97,6 +97,17 @@
           <h2>Popup Home</h2>
           <p>Activar o desactivar Popup Home, agregar imagen prediseñada.</p>
           <p><a class="btn btn-primary" href="index.php?admin=promociones" role="button">Modificar Popup Home</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Biblioteca de medios</h2>
+          <p>Subir, borrar y manipular archivos e imagenes.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=biblioteca-medios" role="button">Ir a la Biblioteca</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->

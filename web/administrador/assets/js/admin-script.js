@@ -11,6 +11,7 @@
  * 4. Nuevo usuario
  * 5. change password
  * 6. Menu Footer
+ * 7. videos footer
 */
 
 //urls:
@@ -424,5 +425,86 @@ $(document).ready(function() {
 	});
 
 
+});
+
+
+/*
+* VIDEOS FOOTER
+*/
+
+$(document).ready(function() {
+
+	/*
+	 * click guardar cambios
+	*/
+	$(document).on('click', '.btn-save-videos', function( event ){
+	    event.preventDefault();
+	   	var data = {}
+		var inputs = $('.video-url-input');
+		data.video1 = $(inputs[0]).val();
+		data.video2 = $(inputs[1]).val();
+
+	    $.ajax( {
+			type: 'POST',
+			url: ajaxFunctionDir + '/save-video-footer.php',
+			data: data,
+			success: function ( response ) {
+				console.log(response);
+				$('.error-tag').text(response);		
+			},
+			error: function ( error ) {
+				console.log(error);
+			},
+		});//cierre ajax
+
+	});
+
+
+	/*
+	 * cambio en el input actualiza el video
+	*/
+	$(document).on('change', 'input', function() {
+		var contenedor = this.parentElement.parentElement;
+		var img = $(contenedor).find('img');
+		var iframe = $(contenedor).find('iframe');
+  		var nuevoUrl = $(this).val();
+
+  		//si en el url no esta youtu es porque no es youtube el link pegado, entonces se anula
+  		if ( nuevoUrl.indexOf('youtu') == -1 && nuevoUrl != '') {
+  			return;
+  		}
+  		//opcion, si ya hay un video
+		if ( iframe.length > 0 ) {
+			if (nuevoUrl == '') {
+				var html = '<img src="'+administradorUrl+'/assets/images/videodefault.png" alt="no hay video" class="image-responsive image-temp">'
+				iframe.remove();
+				$(contenedor).prepend($(html));
+			} else {
+			
+				if ( nuevoUrl.indexOf('=') != -1 ) {
+					var url = 'https://www.youtube.com/embed/'+nuevoUrl.split('=')[1]+'?rel=0';
+				} else {
+					var url = 'https://www.youtube.com/embed/'+nuevoUrl.split('/')[3]+'?rel=0';
+				}
+				
+				$(iframe).attr('src',url);
+			}
+		}
+
+		//opcion, si no hay un video
+		if ( img.length > 0 ) {		
+
+			if ( nuevoUrl.indexOf('=') != -1 ) {
+				var html = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+nuevoUrl.split('=')[1]+'?rel=0" frameborder="0" allowfullscreen></iframe>';
+			} else {
+				var html = '<iframe width="100%" height="315" src="https://www.youtube.com/embed/'+nuevoUrl.split('/')[3]+'?rel=0" frameborder="0" allowfullscreen></iframe>';
+			}
+			img.remove();
+			$(contenedor).prepend($(html));
+		}
+		
+
+	});
 
 });
+

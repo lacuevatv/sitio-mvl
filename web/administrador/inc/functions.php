@@ -142,11 +142,30 @@ function getUsers() {
 function getMenuAdmin( $columna ) {
 	$connection = connectDB();
 	$tabla = 'options';
-	$query  = "SELECT * FROM " .$tabla . " WHERE options_name='".$columna."'";
+	$query  = "SELECT * FROM " .$tabla . " WHERE options_name='".$columna."' ORDER by options_value asc";
 
 	$result = mysqli_query($connection, $query);
 
 	$menu = $result->fetch_array();
 
+	isset($connection) ? mysqli_close($connection) : exit;
+
 	return $menu;
+}
+
+/*
+ * TRAE LOS VIDEOS
+ * DEVUELVE DATA CON A INFO
+*/
+function getVideosAdmin() {
+	$connection = connectDB();
+	$tabla = 'options';
+	$query  = "SELECT * FROM " .$tabla . " WHERE options_name='videos_inicio'";
+
+	$result = mysqli_query($connection, $query);
+
+	$videos = $result->fetch_array();
+
+	isset($connection) ? mysqli_close($connection) : exit;
+	return unserialize($videos['options_note']);
 }
