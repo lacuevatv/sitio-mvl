@@ -6,9 +6,11 @@
  * CONFIG
  * Contenido: conneccion
 */
-//DEFINICIONES HEAD Y SCRIPTS
-
-
+//BD
+define('DB_SERVER', 'localhost');
+define('DB_USER', 'dbuser');
+define('DB_PASS', '123');
+define('DB_NAME', 'mvl_bd');
 //DEFINICIONES HEAD Y SCRIPTS
 define ( 'VERSION', '1.0' );
 //CARPETAS
@@ -19,11 +21,6 @@ define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 define ('CARPETASERVIDOR', '' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
 define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
-//BD
-define('DB_SERVER', 'localhost');
-define('DB_USER', 'dbuser');
-define('DB_PASS', '123');
-define('DB_NAME', 'mvl_bd');
 //META TAGS
 define('SITETITLE', 'Municipio Vicente Lopez');
 define('METADESCRIPTION', '');

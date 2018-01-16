@@ -2,6 +2,8 @@
 (Sitio auto administrable)
 
 ## Versiones:
+*2.1 Footer autoadministrable, videos del footer autoadministrable  
+
 *2.0 Versión con Gestión de usuarios
 
 *1.7 Arreglo Front:  
