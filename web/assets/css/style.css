@@ -1735,6 +1735,48 @@ h2.degradado-agenda-vertical {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d3280', endColorstr='#b03880',GradientType=0 );
   /* IE6-9 */ }
 
+/*HOME VIDEOS*/
+.wrapper-videos {
+  padding: 40px 7vw; }
+  @media (min-width: 992px) {
+    .wrapper-videos {
+      padding: 20px 25px;
+      display: flex;
+      display: -o-flex;
+      display: -ms-flex;
+      display: -moz-flex;
+      display: -webkit-flex;
+      -webkit-align-items: center;
+      -moz-align-items: center;
+      -ms-align-items: center;
+      -o-align-items: center;
+      align-items: center;
+      -webkit-justify-content: space-around;
+      -moz-justify-content: space-around;
+      -ms-justify-content: space-around;
+      -o-justify-content: space-around;
+      justify-content: space-around; } }
+  @media (min-width: 1200px) {
+    .wrapper-videos {
+      padding: 20px 50px; } }
+  .wrapper-videos iframe {
+    width: 100%;
+    margin: 20px 0;
+    height: 200px; }
+    @media (min-width: 768px) {
+      .wrapper-videos iframe {
+        height: 375px; } }
+    @media (min-width: 992px) {
+      .wrapper-videos iframe {
+        width: 40%;
+        height: 235px; } }
+    @media (min-width: 1200px) {
+      .wrapper-videos iframe {
+        height: 280px; } }
+    @media (min-width: 1500px) {
+      .wrapper-videos iframe {
+        height: 390px; } }
+
 /*--------------------------------------------------------------
 9.0 loop posts
 --------------------------------------------------------------*/

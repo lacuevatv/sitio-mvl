@@ -1134,3 +1134,48 @@ h2.degradado-agenda-vertical {
     background: linear-gradient(to bottom, #4d3280 0%,#4d3280 12%,#b03880 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d3280', endColorstr='#b03880',GradientType=0 ); /* IE6-9 */
 }
+
+/*HOME VIDEOS*/
+.wrapper-videos {
+    padding: 40px 7vw;
+    @media (min-width: $md) {
+        padding: 20px 25px;
+        display: flex;
+        display: -o-flex;
+        display: -ms-flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        -moz-align-items: center;
+        -ms-align-items: center;
+        -o-align-items: center;
+        align-items: center;
+        -webkit-justify-content: space-around;
+        -moz-justify-content: space-around;
+        -ms-justify-content: space-around;
+        -o-justify-content: space-around;
+        justify-content: space-around;
+    }
+    @media (min-width: $lg) {
+        padding: 20px 50px;
+    }
+
+    iframe {
+        width: 100%;
+        margin: 20px 0;
+        height: 200px;
+        @media (min-width: $sm) {
+            height: 375px;
+        }
+        @media (min-width: $md) {
+            width: 40%;
+            height: 235px;
+        }
+        @media (min-width: $lg) {
+            height: 280px;
+        }
+        @media (min-width: $xlg) {
+            height: 390px;
+        }
+    }
+}

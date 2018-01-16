@@ -7,6 +7,12 @@
  * Esta pagina tiene un diseño especial y no es loop ni single. La mayoría del contenido es estático haciendo distintas consultas a la base de datos para mostrar distintos loops
 */
 include 'header.php';
+$videos = getVideosFooter();
+$video1 = explode('=', $videos['video1']);
+$video2 = explode('=', $videos['video2']);
+
+$video1 = isset($video1[1]) ? $video1[1] : '';
+$video2 = isset($video2[1]) ? $video2[1] : '';
 ?>
 <!--- .inner-wrapper: contenido principal y específico del template -->
 <div class="inner-wrapper">
@@ -220,7 +226,22 @@ include 'header.php';
                     </ul>
                 </div>
             </div>
+
         </footer>
+       
+    <?php endif; ?>
+
+    <?php if ( $video1 != '' || $video2 != '' ) : ?>
+        <aside class="wrapper-videos">
+            <?php if ( $video1 != '') : ?>
+            <iframe src="https://www.youtube.com/embed/<?php echo $video1; ?>?rel=0" frameborder="0" allowfullscreen></iframe>
+            <?php endif; ?>
+
+            <?php if ( $video2 != '') : ?>
+            <iframe src="https://www.youtube.com/embed/<?php echo $video2; ?>?rel=0" frameborder="0" allowfullscreen></iframe>
+            <?php endif; ?>
+        </aside>
+
     <?php endif; ?>
 
 </div><!--- //.inner-wrapper -->

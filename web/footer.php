@@ -19,76 +19,105 @@
             
             <div class="footer-wrapper-menus">
                 <div class="footer-wrapper-menu">
-                    <h4>El Municipio</h4>
-                    <ul class="menu-footer-municipio" role="menu">
-                        <li role="menuitem">
-                            <a href="#" title="Intendente de Vicente López">
-                                Intendente de Vicente López
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Organigrama">
-                                Organigrama
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Prensa">
-                                Prensa
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Transparencia Fiscal">
-                                Transparencia Fiscal
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Mail Municipal">
-                                Mail Municipal
-                            </a>
-                        </li>
-                    </ul>
+                    <?php 
+                    $menu1 = getMenuFooter('columnaA');
+                    $menu1 = unserialize($menu1['options_note']);
+                    if ( isset($menu1['links']) ) : ?>
+
+                        <h4>
+                        <?php echo isset($menu1['titulo']) ? $menu1['titulo'] : ''; ?>
+                        </h4>
+                        <ul class="menu-footer-municipio" role="menu">
+                    <?php for ($i=0; $i < count($menu1['links']); $i++) { ?>
+                            <li role="menuitem">
+                                <a href="<?php echo $menu1['links'][$i]['url']; ?>" title="<?php echo $menu1['links'][$i]['texto']; ?>">
+                                    <?php echo $menu1['links'][$i]['texto']; ?>
+                                </a>
+                            </li>
+                    <?php } ?>
+                        </ul>
+
+                    <?php endif; ?>
                 </div>
 
                 <div class="footer-wrapper-menu">
-                    <h4>Foros Vecinales</h4>
-                    <ul class="menu-footer-municipio" role="menu">
-                        <li role="menuitem">
-                            <a href="#" title="Presupuestos">
-                                Presupuestos
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Propuestas">
-                                Propuestas
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Proyectos">
-                                Proyectos
-                            </a>
-                        </li>
-                        <li role="menuitem">
-                            <a href="#" title="Proyectos Terminados">
-                                Proyectos Terminados
-                            </a>
-                        </li>
+                    <?php 
+                    $menu1 = getMenuFooter('columnaB');
+                    $menu1 = unserialize($menu1['options_note']);
+                    
+                    if ( isset($menu1['links']) ) : ?>
+                        <h4>
+                        <?php echo isset($menu1['titulo']) ? $menu1['titulo'] : ''; ?>
+                        </h4>
+                        <ul class="menu-footer-municipio" role="menu">
+                    <?php for ($i=0; $i < count($menu1['links']); $i++) { ?>
+                            <li role="menuitem">
+                                <a href="<?php echo $menu1['links'][$i]['url']; ?>" title="<?php echo $menu1['links'][$i]['texto']; ?>">
+                                    <?php echo $menu1['links'][$i]['texto']; ?>
+                                </a>
+                            </li>
+                    <?php } ?>
                     </ul>
+                    
+                    <?php endif; ?>
                 </div>
 
                 <div class="footer-wrapper-menu">
-                    <h4>Empleado Municipal</h4>
+                    <?php 
+                    $menu1 = getMenuFooter('columnaC');
+                    $menu1 = unserialize($menu1['options_note']);
+                    if ( isset($menu1['links']) ) : ?>
+
+                        <h4>
+                        <?php echo isset($menu1['titulo']) ? $menu1['titulo'] : ''; ?>
+                        </h4>
+                        <ul class="menu-footer-municipio" role="menu">
+                    <?php for ($i=0; $i < count($menu1['links']); $i++) { ?>
+                            <li role="menuitem">
+                                <a href="<?php echo $menu1['links'][$i]['url']; ?>" title="<?php echo $menu1['links'][$i]['texto']; ?>">
+                                    <?php echo $menu1['links'][$i]['texto']; ?>
+                                </a>
+                            </li>
+                    <?php } ?>
+                    </ul>
+                    
+                    <?php endif; ?>
+                    <!--<h4>Empleado Municipal</h4>
                     <ul class="menu-footer-municipio" role="menu">
                         <li role="menuitem">
                             <a href="#" title="Intendente de Vicente López">
                                 Iniciar Sesión
                             </a>
                         </li>
+                    </ul>-->
+                </div>
+
+                <div class="footer-wrapper-menu">
+                    <?php 
+                    $menu1 = getMenuFooter('columnaD');
+                    $menu1 = unserialize($menu1['options_note']);
+                    
+                    if ( isset($menu1['links']) ) : ?>
+                        <h4>
+                        <?php echo isset($menu1['titulo']) ? $menu1['titulo'] : ''; ?>
+                        </h4>
+                        <ul class="menu-footer-municipio" role="menu">
+                    <?php for ($i=0; $i < count($menu1['links']); $i++) { ?>
+                            <li role="menuitem">
+                                <a href="<?php echo $menu1['links'][$i]['url']; ?>" title="<?php echo $menu1['links'][$i]['texto']; ?>">
+                                    <?php echo $menu1['links'][$i]['texto']; ?>
+                                </a>
+                            </li>
+                    <?php } ?>
                     </ul>
+                    
+                    <?php endif; ?>
+
                 </div>
             </div>
 
             <ul class="social-menu-footer" role="menu">
-                <?php getTemplate( 'social-menu' ) ?>
+                <?php getTemplate( 'social-menu' ); ?>
             </ul>
            
         </nav>        
