@@ -112,5 +112,20 @@
       </section><!-- //modulo -->
     </div><!-- //columna -->
 
+
+  <?php 
+  global $userStatus;
+  if ( $userStatus == '0' ) : ?>
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Administrar Paginas</h2>
+          <p>Modificar textos de algunas páginas.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=pages" role="button">Pages</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+  <?php endif; ?>
   </div><!-- //row -->
 </div><!-- //containre -->

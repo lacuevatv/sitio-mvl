@@ -14,6 +14,7 @@ if ( isAjax() ) {
 	$user                = $_SESSION['user_id'];
 	$postID              = isset( $_POST['post_ID'] ) ? $_POST['post_ID'] : '';
 	$newPost             = isset( $_POST['new_post'] ) ? $_POST['new_post'] : '';
+	$postType            = isset( $_POST['post_type'] ) ? $_POST['post_type'] : 'post';
 	$postTitulo          = isset( $_POST['post_title'] ) ? $_POST['post_title'] : '';
 	$postCategoria       = isset( $_POST['post_categoria'] ) ? $_POST['post_categoria'] : '';
 	$postUrl             = isset( $_POST['post_url'] ) ? $_POST['post_url'] : 'none';
@@ -85,7 +86,7 @@ if ( isAjax() ) {
 		}
 
 
-		$query = "INSERT INTO $tabla (post_autor,post_fecha,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_link_externo,post_fecha_agenda,post_fecha_agenda_out,post_agenda_lugar,post_status) VALUES ('$user', '$postDate', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria', '$linkExterno',";//continua debajo
+		$query = "INSERT INTO $tabla (post_autor,post_fecha,post_titulo,post_url,post_contenido,post_resumen,post_imagen,post_video,post_categoria,post_galeria,post_imagenesGal,post_link_externo,post_fecha_agenda,post_fecha_agenda_out,post_agenda_lugar,post_status,post_type) VALUES ('$user', '$postDate', '$postTitulo', '$postUrl', '$postContenido', '$postResumen', '$postImagen', '$postVideo', '$postCategoria', '$postGaleria', '$imagenesGaleria', '$linkExterno', ";//continua debajo
 
 		//este arreglo es porque no toma el null bien mysql
 		if ( $fechaAgenda == 'none' ) {
@@ -103,7 +104,7 @@ if ( isAjax() ) {
 		}
 
 		//termina el query anterior
-		$query .=  "'$agendaLugar','$postStatus')";
+		$query .=  "'$agendaLugar','$postStatus','$postType')";
 
 		$nuevoPost = mysqli_query($connection, $query); 
 		$postID = mysqli_insert_id($connection);
@@ -131,7 +132,7 @@ if ( isAjax() ) {
 		}
 
 		//continua el query
-		$query .=  "post_agenda_lugar='".$agendaLugar."', post_status='".$postStatus."' WHERE post_ID='".$postID."' LIMIT 1";
+		$query .=  "post_agenda_lugar='".$agendaLugar."', post_status='".$postStatus."', post_type='".$postType."' WHERE post_ID='".$postID."' LIMIT 1";
 
 		$updatePost = mysqli_query($connection, $query); 
 		

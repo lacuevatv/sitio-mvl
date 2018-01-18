@@ -100,6 +100,11 @@ if(!defined("SECUREACCESS"))
                 <li>
                   <a href="index.php?admin=videos" role="button">Administrar Videos</a>
                 </li>
+                  <?php if ( $userStatus == '0' ) : ?>
+                    <li>
+                      <a href="index.php?admin=pages" role="button">Administrar páginas</a>
+                    </li>
+                  <?php endif; ?>
               </ul>
             </li>
           <?php endif; ?>

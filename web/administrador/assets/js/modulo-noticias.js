@@ -499,3 +499,49 @@ $(document).ready(function () {
 
 	
 });// ready galeria imagenes
+
+
+/*
+PAGES:
+*/
+
+$(document).ready(function () {
+
+	tinyMCE.init({
+		selector: '.page-contenido',
+		toolbar1: 'bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, bullist, numlist, undo, redo, link, image, media',
+		toolbar2: 'formatselect, cut, copy, paste, blockquote, forecolor backcolor, removeformat, code',
+		menubar: false,
+		height: 200,
+		plugins: [
+		  'code advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+		  'save table contextmenu directionality emoticons template paste textcolor colorpicker media',
+		],
+		branding: false,
+		media_live_embeds: true,
+		language: 'es',
+		language_url: 'assets/lib/tinymce/langs/es.js',
+		//mantiene sincronizado los cambios del editor con el textarea hidden
+		setup: function (editor) {
+	        editor.on('change', function () {
+	            editor.save();
+	        });
+	    },
+	    file_browser_callback : 
+		function(field_name, url, type, win){
+		var imagebrowser = templatesDir + '/media-browser-tinymce.php';
+		tinymce.activeEditor.windowManager.open({
+		title : "Insertar Medio",
+		width : 780,
+		height : 600,
+		url : imagebrowser
+		}, {
+		window : win,
+		input : field_name
+		});
+		return false;
+		}
+	});
+
+});
