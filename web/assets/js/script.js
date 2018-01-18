@@ -9,6 +9,7 @@
 2.0 OWL SLIDERS
 3.0 PAGINATION
 4.0 POPUP PROMO
+5.0 CONTACT FORM
 --------------------------------------------------------------*/
 
 var baseUrl = 'http://' + window.location.host;
@@ -460,3 +461,23 @@ $(window).on('load', function(){
 
     }
 });
+
+/*--------------------------------------------------------------
+5.0 CONTACT FORM
+esta función viene heredada del formulario
+--------------------------------------------------------------*/
+
+function showBarrio(){
+    var localidades = document.getElementById("00N4100000cN5wy");
+    var value = localidades.options[localidades.selectedIndex].value;
+    if(value=='VICENTE LOPEZ'){
+            document.getElementById('00N4100000cN5wt').style = '';
+            document.getElementById('textoBarrio').style = '';
+            
+            console.log('block');
+    } else {
+            document.getElementById('00N4100000cN5wt').style = 'display:none';
+            document.getElementById('textoBarrio').style = 'display:none';
+            console.log('none');
+    }
+}

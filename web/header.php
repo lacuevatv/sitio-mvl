@@ -104,8 +104,8 @@ $activeMenuItem = ' class="active-page-menu"';
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="<?php echo MAINSURL; ?>/telefonos/" title="Teléfonos" <?php if ( $pageActual == 'telefonos' ) { echo $activeMenuItem; } ?>>
-                            Teléfonos
+                        <a href="<?php echo MAINSURL; ?>/contacto/" title="Contacto" <?php if ( $pageActual == 'contacto' ) { echo $activeMenuItem; } ?>>
+                            Contacto
                         </a>
                     </li>
                 </ul>
