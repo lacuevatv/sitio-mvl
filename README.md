@@ -2,6 +2,10 @@
 (Sitio auto administrable)
 
 ## Versiones:
+*2.3 Front editado con nuevas paginas: contacto y otras  
+
+*2.2 Admin de pages solo en usuario administrador  
+
 *2.1 Footer autoadministrable, videos del footer autoadministrable  
 
 *2.0 Versión con Gestión de usuarios

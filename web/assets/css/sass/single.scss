@@ -163,4 +163,89 @@
 }
 
 //FORMULARIO DE CONTACTO
-.formulario-vicente-suscriptores {}
+.formulario-vicente-suscriptores {
+
+	.info {
+		margin-bottom: 20px;
+	}
+
+	.row {
+		@media (min-width: $md) {
+			display: flex;
+			display: -o-flex;
+			display: -ms-flex;
+			display: -moz-flex;
+			display: -webkit-flex;
+			-webkit-justify-content: space-between;
+			-moz-justify-content: space-between;
+			-ms-justify-content: space-between;
+			-o-justify-content: space-between;
+			justify-content: space-between;
+			-webkit-flex-wrap: wrap;
+			-moz-flex-wrap: wrap;
+			-ms-flex-wrap: wrap;
+			-o-flex-wrap: wrap;
+			flex-wrap: wrap;
+		}
+	}
+	.form-group {
+		padding: 10px;
+		@media (min-width: $md) {
+			width: 48%;
+		}
+		
+
+		input, select {
+			height: 28px;
+			width: 100%;
+			padding: 5px;
+			font-size: 11px;
+			color: $color-gris-texto;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 5px;
+		}
+
+	}
+
+	.form-group-small {
+		margin: 0;
+		padding:0;
+		font-size: 18px;
+
+		@media (min-width: $md) {
+			width: 25%;
+			font-size: 16px;
+			margin: 3px 0;
+		}
+
+		input {
+			display: inline-block;
+			width: auto;
+			vertical-align: middle;
+			height: 30px;
+			@media (min-width: $md) {
+				height: 22px;
+			}
+		}
+	}
+
+	.btn-contact {
+	    height: auto!important;
+	    display: inline-block;
+	    margin: 50px 0;
+	    padding: 10px 30px !important;
+	    font-size: 20px!important;
+	    border: none;
+	    background: $color-verde;
+	    color: white!important;
+	    cursor: pointer;
+	    &:hover {
+		    zoom: 1;
+		    filter: alpha(opacity=50);
+		    opacity: 0.5;
+		}	
+	}
+}

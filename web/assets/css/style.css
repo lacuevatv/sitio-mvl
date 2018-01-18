@@ -2304,6 +2304,71 @@ h2.degradado-agenda-vertical {
     .wrapper-iframe-video {
       height: 535px; } }
 
+.formulario-vicente-suscriptores .info {
+  margin-bottom: 20px; }
+@media (min-width: 992px) {
+  .formulario-vicente-suscriptores .row {
+    display: flex;
+    display: -o-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -o-justify-content: space-between;
+    justify-content: space-between;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap; } }
+.formulario-vicente-suscriptores .form-group {
+  padding: 10px; }
+  @media (min-width: 992px) {
+    .formulario-vicente-suscriptores .form-group {
+      width: 48%; } }
+  .formulario-vicente-suscriptores .form-group input, .formulario-vicente-suscriptores .form-group select {
+    height: 28px;
+    width: 100%;
+    padding: 5px;
+    font-size: 11px;
+    color: #787978; }
+  .formulario-vicente-suscriptores .form-group label {
+    display: block;
+    margin-bottom: 5px; }
+.formulario-vicente-suscriptores .form-group-small {
+  margin: 0;
+  padding: 0;
+  font-size: 18px; }
+  @media (min-width: 992px) {
+    .formulario-vicente-suscriptores .form-group-small {
+      width: 25%;
+      font-size: 16px;
+      margin: 3px 0; } }
+  .formulario-vicente-suscriptores .form-group-small input {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    height: 30px; }
+    @media (min-width: 992px) {
+      .formulario-vicente-suscriptores .form-group-small input {
+        height: 22px; } }
+.formulario-vicente-suscriptores .btn-contact {
+  height: auto !important;
+  display: inline-block;
+  margin: 50px 0;
+  padding: 10px 30px !important;
+  font-size: 20px !important;
+  border: none;
+  background: #93af37;
+  color: white !important;
+  cursor: pointer; }
+  .formulario-vicente-suscriptores .btn-contact:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: 0.5; }
+
 /*--------------------------------------------------------------
 12.0 POPUP
 --------------------------------------------------------------*/
