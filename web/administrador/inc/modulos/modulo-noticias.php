@@ -239,3 +239,27 @@ function searchPost ( $slug ) {
 	}
 		
 }//searchPost()
+
+
+function getPages() {
+	$connection = connectDB();
+	$tabla = 'noticias';
+
+	//queries según parámetros
+	$query  = "SELECT * FROM " .$tabla. " WHERE post_type= 'page' ORDER by post_fecha desc";
+	//si tiene categoria:
+	
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div class="error-tag">Ninguna noticia ha sido cargada todavía</div>';
+	} else {
+
+		while ( $row = $result->fetch_array() ) {
+			$pages[] = $row;
+		}
+	}
+
+	closeDataBase($connection);
+	return $pages;
+}

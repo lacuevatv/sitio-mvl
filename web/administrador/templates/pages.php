@@ -11,6 +11,7 @@ if ($userStatus != '0' ) {
     
     exit;
 }
+load_module( 'noticias' );
 ?>
 <!---------- noticias ---------------->
 <div class="contenido-modulo">
