@@ -165,3 +165,27 @@
     }
   }
 }
+
+.list-boletines {
+  margin: 50px auto;
+
+  li {
+    margin: 50px 0;
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .boletin-archivo {
+        margin-top: 5px;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 90%;
+  }
+
+   input, select {
+        height: 30px;
+      }
+}

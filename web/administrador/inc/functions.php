@@ -77,6 +77,11 @@ function get_footer_scripts ($modulo) { ?>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-promociones.js"></script>
 			<?php break;
 		
+		case 'boletin-municipal' : ?>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-boletines.js"></script>
+			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-medios.js"></script>
+			<?php break;
+
 		default: ?>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/lib/tinymce/tinymce.min.js"></script>
 			<script src="<?php echo URLADMINISTRADOR; ?>/assets/js/modulo-noticias.js"></script>

@@ -86,6 +86,9 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=telefonos" role="button">telefonos</a>
                 </li>
                 <li>
+                  <a href="index.php?admin=boletin-municipal" role="button">Boletin municipal</a>
+                </li>
+                <li>
                   <a href="index.php?admin=biblioteca-medios" role="button">Medios</a>
                 </li>
                 <li>

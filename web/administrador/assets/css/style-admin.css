@@ -324,6 +324,14 @@ h3 {
       width: 20%;
       padding: 5px 10px; } }
 
+.col-40 {
+  width: 100%;
+  padding: 5px 20px; }
+  @media (min-width: 992px) {
+    .col-40 {
+      width: 40%;
+      padding: 5px 10px; } }
+
 .col-30 {
   width: 100%;
   padding: 5px 20px; }
@@ -886,6 +894,21 @@ ul.dropdown-menu {
         width: 20px;
         height: 20px;
         background: url(../images/ios-trash.png) no-repeat center; }
+
+.list-boletines {
+  margin: 50px auto; }
+  .list-boletines li {
+    margin: 50px 0;
+    border-bottom: 1px solid #eee; }
+    .list-boletines li:last-child {
+      border-bottom: none; }
+  .list-boletines .boletin-archivo {
+    margin-top: 5px;
+    font-style: italic;
+    text-decoration: underline;
+    font-size: 90%; }
+  .list-boletines input, .list-boletines select {
+    height: 30px; }
 
 /* ---- 7 seccion noticias ---- */
 .loop-noticias-backend {

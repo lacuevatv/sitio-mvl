@@ -28,6 +28,17 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
+          <h2>Boletín Municipal</h2>
+          <p>Administrar los boletines municipales.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=boletin-municipal" role="button">Modificar boletines</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
           <h2>Menú del Footer</h2>
           <p>Modificar el menú del pie, hasta 4 columnas.</p>
           <p><a class="btn btn-primary" href="index.php?admin=footer-menu" role="button">Modificar Menú</a></p>
@@ -84,7 +95,7 @@
       <section>
         <div class="modulo-wrapper">
           <h2>Slider Inicio</h2>
-          <p>Modificar los sliders actuales: borrar y/o agregar fotos.</p>
+          <p>Modificar el slider de inicio.</p>
           <p><a class="btn btn-primary" href="index.php?admin=editar-slider&slug=home" role="button">Modificar sliders</a></p>
         </div>
       </section><!-- //modulo -->
@@ -95,7 +106,7 @@
       <section>
         <div class="modulo-wrapper">
           <h2>Popup Home</h2>
-          <p>Activar o desactivar Popup Home, agregar imagen prediseñada.</p>
+          <p>Administrar Popup Home, agregar imagen.</p>
           <p><a class="btn btn-primary" href="index.php?admin=promociones" role="button">Modificar Popup Home</a></p>
         </div>
       </section><!-- //modulo -->
@@ -111,7 +122,6 @@
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->
-
 
   <?php 
   global $userStatus;

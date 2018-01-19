@@ -262,3 +262,46 @@ function checkPostType( nameFile, postType ) {
 	});//cierre ajax
 	
 }
+
+$(document).ready(function(){
+	//subir la imagen por ajax
+	$('#upload_boletin').submit(function( event ){
+		event.preventDefault();
+		var formulario = $( this );
+		var imgAjax = $( '.load-ajax' );
+		var formData = new FormData( formulario[0] );
+		var url = ajaxFunctionDir + '/upload-boletin.php';
+
+		$.ajax( {
+			type: 'POST',
+			url: url,
+			data: formData,
+			cache: false,
+		    contentType: false,
+		    processData: false,
+		    //funcion antes de enviar
+		    beforeSend: function() {
+		    	$( '.load-ajax' ).fadeIn();
+		    },
+			success: function ( response ) {
+				console.log(response);
+				$( '.load-ajax' ).fadeOut();
+
+				//si nos devuelve el error lo pasamos al usuario
+				if ( response == 'error-type') {
+					alert('no es el archivo adecuado');
+					location.reload();
+				} else if (response == 'big' ) {
+					alert('El archivo es muy grande, no se puede subir');
+					location.reload();
+				} else {
+					//$('.list-boletines').append(response);
+					location.reload();
+				}	
+			},
+			error: function ( error ) {
+				console.log('erroraquí');
+			},
+		});//cierre ajax
+	});//submit
+});//ready
