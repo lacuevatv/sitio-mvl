@@ -36,7 +36,34 @@
 			
 			echo $data['post_contenido'];
 
-			
+			$boletines = getBoletines();
+
+			global $year;
+			//contenedor:
+			echo '<section class="boletines-list-wrapper">';
+
+			for ($i=0; $i < count($boletines); $i++) { 
+				global $year;
+				$boletin = $boletines[$i];
+
+				$date = date("Y", strtotime($boletin['boletin_date']));
+				
+				if ( $date != $year ) {
+					$year = $date;
+					echo '<h3>Año ' . $date . '</h3>';	
+				}
+				?>
+
+				<div class="boletin-item">
+					<?php echo $boletin['boletin_text']; ?>
+					<a href="<?php echo UPLOADSFILE . '/' . $boletin['boletin_file']; ?>" target="_blank">
+						Boletin Municipal <?php echo $boletin['boletin_number']; ?>
+					</a>
+				</div>
+
+			<?php }//for
+
+			echo '</section>';
 
 			break;
 
@@ -45,7 +72,6 @@
 			echo $data['post_contenido'];
 
 			break;
-
 
 	} ?>
 

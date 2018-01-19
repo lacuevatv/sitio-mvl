@@ -249,3 +249,24 @@
 		}	
 	}
 }
+
+
+/*BOLETINES*/
+.boletines-list-wrapper {
+	margin: 50px 0 80px;
+
+	h3 {
+		margin: 20px 0;
+	    background: $color-verde;
+	    color: $color-blanco;
+	    display: inline-block;
+	    padding: 10px 25px 10px 25px;
+	    font-weight: $fuente-bold;
+	}
+
+	.boletin-item {
+		margin: 8px 0;
+		font-size: 110%;
+		line-height: 110%;
+	}
+}

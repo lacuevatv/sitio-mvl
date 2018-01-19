@@ -584,3 +584,28 @@ function getVideosFooter() {
 	isset($connection) ? mysqli_close($connection) : exit;
 	return unserialize($videos['options_note']);
 }
+
+/*
+ * TRAE LOS VIDEOS
+ * DEVUELVE DATA CON A INFO
+*/
+function getBoletines() {
+	$connection = connectDB();
+	$tabla = 'boletines';
+	$query  = "SELECT * FROM " .$tabla. " ORDER by boletin_number desc";
+		
+	$result = mysqli_query($connection, $query);
+	
+	if ( $result->num_rows == 0 ) {
+		echo '<div>Ninguno cargado</div>';
+	} else {
+
+		while ( $row = $result->fetch_array(MYSQLI_ASSOC) ) {
+			$boletines[] = $row;
+		}
+		
+		return $boletines;
+
+	}//else
+	closeDataBase( $connection );
+}

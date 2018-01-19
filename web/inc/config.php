@@ -21,6 +21,7 @@ define ( 'TEMPLATEDIR', dirname( __FILE__ ) . '/../templates' );
 define ('CARPETASERVIDOR', '' );//esta variable se define si el sitio no está en el root del dominio y si está en una subcarpeta
 define ('MAINSURL', 'http://' . $_SERVER['HTTP_HOST'] . CARPETASERVIDOR );
 define ('UPLOADSURL', MAINSURL . '/contenido');
+define ('UPLOADSFILE', MAINSURL . '/contenido/archivos');
 //META TAGS
 define('SITETITLE', 'Municipio Vicente Lopez');
 define('METADESCRIPTION', '');

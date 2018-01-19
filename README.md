@@ -2,6 +2,8 @@
 (Sitio auto administrable)
 
 ## Versiones:
+*2.3 Modulo boletines, admin y front  
+
 *2.3 Front editado con nuevas paginas: contacto y otras  
 
 *2.2 Admin de pages solo en usuario administrador  
