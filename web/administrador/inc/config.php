@@ -12,7 +12,7 @@ define ( 'UPLOADSIMAGES', dirname( __FILE__ ) . '/../../contenido' );
 define ( 'UPLOADSFILES', dirname( __FILE__ ) . '/../../contenido/archivos' );
 //URL
 define ('MAINURL', 'http://' . $_SERVER['HTTP_HOST'] );
-define ('URLADMINISTRADOR', 'http://' . $_SERVER['HTTP_HOST'] . '/administrador' );
+define ('URLADMINISTRADOR', MAINURL . '/administrador' );
 define ('UPLOADSURL', MAINURL . '/contenido');
 define ('UPLOADSURLIMAGES', MAINURL . '/contenido');
 define ('UPLOADSURLFILES', MAINURL . '/contenido/archivos');
