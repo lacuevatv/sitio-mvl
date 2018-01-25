@@ -1,6 +1,20 @@
 # Municipio Vicente Lopez
 (Sitio auto administrable)
 
+## Instalación:
+### Front:
+* Javascript: archivo: '/assets/js/script.js', se edita la variable baseUrl si esta instalado en otra carpeta
+* Archivo '/inc/config.php', se edita el nombre de base de datos y si está instalado en otra carpeta se define en la CONSTANTE Carpeta servidor: '/nombre-carpeta'
+* No olvidar subir el archivo oculto .httaccess y si no está instalado en la raís del sitio hay que modificar: RewriteBase y cambiar la / por /nombre-carpeta
+
+### Administrador:
+* Primero poner nombre, usuario y password de base de datos
+* si cambias el nombre de la carpeta "contenido" también deberías cmabiar la CONSTANTE ahí
+* Podés poner la carpeta que quieras, pero en el archivo /inc/config.php deberías editar la CONSTANTE "URLADMINISTRADOR" para ponerle el nombre de la carpeta  
+* Más abajo, si querés cambiar el nombre de usuario, en la variable usertype, le podés poner el nombre que quieras, el status no se puede cambiar.  
+* Javascript: archivo: '/assets/js/admin-script.js', hay que modificar las primeras variables: 'baseUrl' y 'administradorUrl'  
+
+
 ## Versiones:
 *2.3 Modulo boletines, admin y front  
 
