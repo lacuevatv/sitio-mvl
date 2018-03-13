@@ -97,9 +97,18 @@
 }
 
 .single-content {
-	h3 {
+
+	h2 {
 		font-size: 150%;
 		margin: 40px 0;
+		line-height: 130%;
+		text-transform: uppercase;
+	}
+
+	h3 {
+		font-size: 150%;
+		margin: 20px 0;
+		line-height: 130%;
 	}
 
 	p {
@@ -125,7 +134,7 @@
 		text-decoration: underline;
 	}
 
-	ul {
+	ul, ol {
 		padding-left: 20px;
 		li {
 			padding-left: 5px;
@@ -138,6 +147,14 @@
 				font-size: 120%;
 				line-height: 120%;
 			}
+		}
+	}
+
+	ol {
+		list-style: decimal;
+
+		li {
+			list-style: decimal;			
 		}
 	}
 }

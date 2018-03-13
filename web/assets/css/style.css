@@ -2253,9 +2253,15 @@ h2.degradado-agenda-vertical {
 .single-post-image-wrapper img {
   width: 100%; }
 
+.single-content h2 {
+  font-size: 150%;
+  margin: 40px 0;
+  line-height: 130%;
+  text-transform: uppercase; }
 .single-content h3 {
   font-size: 150%;
-  margin: 40px 0; }
+  margin: 20px 0;
+  line-height: 130%; }
 .single-content p {
   margin: 20px 0;
   font-size: 130%;
@@ -2271,9 +2277,9 @@ h2.degradado-agenda-vertical {
   font-style: italic; }
 .single-content a {
   text-decoration: underline; }
-.single-content ul {
+.single-content ul, .single-content ol {
   padding-left: 20px; }
-  .single-content ul li {
+  .single-content ul li, .single-content ol li {
     padding-left: 5px;
     list-style-type: disc;
     margin: 10px 0;
@@ -2281,9 +2287,13 @@ h2.degradado-agenda-vertical {
     line-height: 130%;
     color: #787978; }
     @media (min-width: 992px) {
-      .single-content ul li {
+      .single-content ul li, .single-content ol li {
         font-size: 120%;
         line-height: 120%; } }
+.single-content ol {
+  list-style: decimal; }
+  .single-content ol li {
+    list-style: decimal; }
 
 .wrapper-iframe-video {
   width: 100%;
