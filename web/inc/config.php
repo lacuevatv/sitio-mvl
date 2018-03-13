@@ -38,7 +38,6 @@ $categorias = array(
 	array( 'slug' => 'agenda', 'nombre' => 'Agenda'),
 	array( 'slug' => 'tramites-servicios', 'nombre' => 'Trámites y Servicios'),
 	array( 'slug' => 'gestion', 'nombre' => 'Gestión'),
-	array( 'slug' => 'empleo', 'nombre' => 'Bolsa de Empleo'),
 	array( 'slug' => 'telefonos', 'nombre' => 'Teléfonos'),
 );
 

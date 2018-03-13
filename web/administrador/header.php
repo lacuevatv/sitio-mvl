@@ -80,7 +80,13 @@ if(!defined("SECUREACCESS"))
                   <a href="index.php?admin=tramites" role="button">Tramites</a>
                 </li>
                 <li>
-                  <a href="index.php?admin=empleos" role="button">empleos</a>
+                  <a href="index.php?admin=cultura" role="button">Agenda Cultural</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=educacion" role="button">Educación</a>
+                </li>
+                <li>
+                  <a href="index.php?admin=salud" role="button">Salud</a>
                 </li>
                 <li>
                   <a href="index.php?admin=telefonos" role="button">telefonos</a>

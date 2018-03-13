@@ -1,7 +1,7 @@
 <?php
 /*
- * Editar noticia / Nueva noticia
- * Edita o modifica las noticias
+ * Editar 
+ * Edita o modifica item educación
  * Since 3.0
  * 
 */
@@ -53,7 +53,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 	<div class="container">
 		<form method="POST" id="editar-noticia-formulario" name="editar-noticia-formulario">		
 		<input type="hidden" name="post_ID" value="<?php echo $postID; ?>">
-		<input type="hidden" name="post_categoria" value="empleo">
+		<input type="hidden" name="post_categoria" value="educacion">
 			<div class="error-msj-wrapper">
 				<ul class="error-msj-list">
 					
@@ -64,7 +64,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 				<div class="col-70">
 	<!------ TITULO DE LA NOTICIA ---------->
 					<div class="form-group">
-						<label for="post_title" class="larger-label">Título de la noticia </label>
+						<label for="post_title" class="larger-label">Título: </label>
 						<input id="post_title" name="post_title" class="larger-input" value="<?php echo $titulo; ?>">
 						<?php if ( $titulo == '' ) { ?>
 						<input type="hidden" name="new_post" value="true">
@@ -87,7 +87,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 				<div class="col-70">
 	<!------ PERSONALIZAR URL DE LA NOTICIA ---------->
 					<div class="form-group">
-						<label for="post_url">Personalizar Url </label>
+						<label for="post_url">Personalizar Url <small>(Esta url no se usa, pero no tiene que coincidir con el url de la página a donde se apunta abajo)</small></label>
 						<input id="post_url" name="post_url" value="<?php echo $url; ?>">
 					</div>
 				</div><!-- // col -->
@@ -100,6 +100,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 							<button type="submit" name="submit_publish" class="btn btn-danger btn-lg btn-submit">Publicar</button>
 						<?php } else { ?>
 							<input type="hidden" id="post_status" name="post_status" value="<?php echo $status; ?>">
+							<!--<p class="plublished">Publicado</p>-->
 							<label for="change_status">Estado</label>
 							<select id="change_status" name="change_status">
 								<option value="publicado">PUBLICADO</option>
@@ -115,7 +116,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 				<div class="col-70">
 	<!------ RESUMEN DE LA NOTICIA ---------->
 					<div class="form-group">
-						<label for="post_resumen" class="larger-label">Resumen de la noticia</label>
+						<label for="post_resumen" class="larger-label">Resumen</label>
 						<textarea id="post_resumen" name="post_resumen"><?php echo $resumen; ?></textarea>
 					</div>	
 	<!------ LINK EXTERNO ---------->
@@ -152,7 +153,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 
 	<!------ CONTENIDO DE LA NOTICIA ---------->
 				<div class="form-group">
-					<label for="post_contenido" class="larger-label">Contenido de la noticia</label>
+					<label for="post_contenido" class="larger-label">Contenido <small>(No se usa, es opcional)</small></label>
 					<textarea id="post_contenido" name="post_contenido"><?php echo $contenido; ?></textarea>
 				</div>
 
@@ -180,8 +181,6 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 <!-- botones del modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=empleos" class="btn">Volver a empleos</a>
-    <a type="button" href="index.php?admin=editar-empleo" class="btn">Agregar nuevo</a>
+    <a type="button" href="index.php?admin=educacion" class="btn">Volver a educación</a>
+    <a type="button" href="index.php?admin=editar-educacion" class="btn">Agregar nueva</a>
 </footer>
-	   
-	

@@ -1,7 +1,7 @@
 <?php
 /*
- * Editar noticia / Nueva noticia
- * Edita o modifica las noticias
+ * Editar 
+ * Edita o modifica item cultura
  * Since 3.0
  * 
 */
@@ -53,7 +53,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 	<div class="container">
 		<form method="POST" id="editar-noticia-formulario" name="editar-noticia-formulario">		
 		<input type="hidden" name="post_ID" value="<?php echo $postID; ?>">
-		<input type="hidden" name="post_categoria" value="tramites-servicios">
+		<input type="hidden" name="post_categoria" value="cultura">
 			<div class="error-msj-wrapper">
 				<ul class="error-msj-list">
 					
@@ -181,8 +181,6 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 <!-- botones del modulo -->
 <footer class="footer-modulo container">
     <a type="button" href="index.php" class="btn">Volver al inicio</a>
-    <a type="button" href="index.php?admin=tramites" class="btn">Volver a tramites</a>
-    <a type="button" href="index.php?admin=editar-tramites" class="btn">Agregar nueva</a>
+    <a type="button" href="index.php?admin=cultura" class="btn">Volver a cultura</a>
+    <a type="button" href="index.php?admin=editar-cultura" class="btn">Agregar nueva</a>
 </footer>
-	   
-	

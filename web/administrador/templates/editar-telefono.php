@@ -64,7 +64,7 @@ $status       = isset($dataPost['status']) ? $dataPost['status'] : 'new';
 				<div class="col-70">
 	<!------ TITULO DE LA NOTICIA ---------->
 					<div class="form-group">
-						<label for="post_title" class="larger-label">Título de la noticia </label>
+						<label for="post_title" class="larger-label">Título: </label>
 						<input id="post_title" name="post_title" class="larger-input" value="<?php echo $titulo; ?>">
 						<?php if ( $titulo == '' ) { ?>
 						<input type="hidden" name="new_post" value="true">

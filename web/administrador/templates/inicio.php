@@ -83,9 +83,31 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
-          <h2>Empleo</h2>
-          <p>Modificar los empleos actuales en la bolsa.</p>
-          <p><a class="btn btn-primary" href="index.php?admin=empleos" role="button">Modificar empleo</a></p>
+          <h2>Cultural</h2>
+          <p>Modificar sección agenda cultural.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=cultura" role="button">Modificar empleo</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Educación</h2>
+          <p>Modificar la sección de educación.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=educacion" role="button">Modificar educación</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
+          <h2>Salud</h2>
+          <p>Modificar sección salud.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=salud" role="button">Modificar salud</a></p>
         </div>
       </section><!-- //modulo -->
     </div><!-- //columna -->

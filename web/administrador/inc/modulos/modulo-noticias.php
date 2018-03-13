@@ -171,9 +171,11 @@ function listaNoticiasData( $limit = 20, $status = 'all', $categoria = 'none' ) 
 		while ( $row = $result->fetch_array() ) {
 			$rows[] = $row;
 		}
+
+		return $rows;
 	}
 
-	return $rows;
+	
 }
 
 
