@@ -16,6 +16,8 @@
 
 
 ## Versiones:
+*2.5 Nueva sección iconos del footer
+
 *2.4 Nuevas secciones admin: educación, cultura y salud. Y nuevas páginas creadas desde el editor
 
 *2.3 Modulo boletines, admin y front  

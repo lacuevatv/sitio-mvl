@@ -39,6 +39,17 @@
       <!-- modulo -->
       <section>
         <div class="modulo-wrapper">
+          <h2>Iconos Footer</h2>
+          <p>Administrar los iconos al final de la página.</p>
+          <p><a class="btn btn-primary" href="index.php?admin=links-footer" role="button">Ver lista de publicados</a></p>
+        </div>
+      </section><!-- //modulo -->
+    </div><!-- //columna -->
+
+    <div class="col-30">
+      <!-- modulo -->
+      <section>
+        <div class="modulo-wrapper">
           <h2>Menú del Footer</h2>
           <p>Modificar el menú del pie, hasta 4 columnas.</p>
           <p><a class="btn btn-primary" href="index.php?admin=footer-menu" role="button">Modificar Menú</a></p>
