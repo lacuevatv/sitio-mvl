@@ -82,14 +82,6 @@
                     </ul>
                     
                     <?php endif; ?>
-                    <!--<h4>Empleado Municipal</h4>
-                    <ul class="menu-footer-municipio" role="menu">
-                        <li role="menuitem">
-                            <a href="#" title="Intendente de Vicente López">
-                                Iniciar Sesión
-                            </a>
-                        </li>
-                    </ul>-->
                 </div>
 
                 <div class="footer-wrapper-menu">
@@ -122,20 +114,12 @@
            
         </nav>        
         <div class="copyright-wrapper">
-            <aside class="jorge-macri">
-            
-                <?php if ( dispositivo() != 'pc') : ?>
-                    <img src="<?php echo MAINSURL; ?>/assets/images/jmacri-movil.png" alt="Propuesta Jorge Macri" class="image-responsive">
-                <?php else : ?>
-                    <img src="<?php echo MAINSURL; ?>/assets/images/jmacri-pc.png" alt="Propuesta Jorge Macri">
-                <?php endif; ?>
-            
-            </aside>
             
             <div class="copyright">
-                <img src="<?php echo MAINSURL; ?>/assets/images/logo-bn.png" alt="Logo Municipio Vicente Lopez">
-                <p>&#169; 2017 vicentelopez.gov.ar</p>
+                <img src="<?php echo MAINSURL; ?>/assets/images/logo-footer.png" alt="Logo Municipio Vicente Lopez">
+                <p>&#169; 2018 vicentelopez.gov.ar</p>
             </div>
+
         </div>
     </footer>
 
