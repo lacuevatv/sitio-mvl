@@ -99,11 +99,6 @@ $activeMenuItem = ' class="active-page-menu"';
                         </a>
                     </li>
                     <li role="menuitem">
-                        <a href="<?php echo MAINSURL; ?>/empleo/" title="Bolsa de empleo" <?php if ( $pageActual == 'empleo' ) { echo $activeMenuItem; } ?>>
-                            Bolsa&nbsp;de&nbsp;empleo
-                        </a>
-                    </li>
-                    <li role="menuitem">
                         <a href="<?php echo MAINSURL; ?>/contacto/" title="Contacto" <?php if ( $pageActual == 'contacto' ) { echo $activeMenuItem; } ?>>
                             Contacto
                         </a>

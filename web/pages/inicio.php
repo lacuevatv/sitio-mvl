@@ -110,21 +110,50 @@ $video2 = isset($video2[1]) ? $video2[1] : '';
         </div>
     </section>
 
-    <?php if ( dispositivo () != 'pc' ) : ?>
-        <!-- footer-home para celulares y tablets -->
-        <footer class="home-footer">
-            <!-- BOLSA DE EMPLEO -->
+    <!-- EDUCACION -->
+    <section>
+        <div class="home-section-wrapper">
+            <h2 class="section-title-naranja degradado-educacion">
+                Educación
+            </h2>
+
+            <div class="home-section-content-wrapper">
+                
+                <ul id="content-educacion" class="home-section-content owl-carousel owl-theme">
+                   <?php
+
+                    $loop = getPosts( 'educacion' );
+
+                    getTemplate( 'inicio-loop-link-outside', $loop );
+                        
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    
+    <div class="col-2-wrapper">
+    
+            <!-- AGENDA CULTURAL -->
+        <section>
             <div class="home-section-wrapper">
-                <h2 class="section-title-amarillo">
-                    Bolsa de Empleo
+                <h2 class="section-title-amarillo degradado-cultura">
+                    <?php 
+                    if ( dispositivo () != 'pc' ) {
+                        echo 'Agenda Cultural';
+                    } else {
+                        echo 'Agenda<br>Cultural';
+                    }
+                    ?>
                 </h2>
 
                 <div class="home-section-content-wrapper">
                     
-                    <ul id="content-empleos" class="home-section-content owl-carousel owl-theme">
+                    <ul id="content-cultura" class="home-section-content owl-carousel owl-theme">
                         <?php
 
-                        $loop = getPosts( 'empleo' );
+                        $loop = getPosts( 'cultura' );
 
                         getTemplate( 'inicio-loop-link-outside', $loop );
                             
@@ -132,104 +161,86 @@ $video2 = isset($video2[1]) ? $video2[1] : '';
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <!-- TELEFONOS -->
+        <!-- SALUD -->
+        <section>
             <div class="home-section-wrapper">
-                <h2 class="section-title-rojo">
-                    Teléfonos
+                <h2 class="section-title-azul degradado-salud">
+                    Salud
                 </h2>
 
                 <div class="home-section-content-wrapper">
                     
-                    <ul id="content-telefonos" class="home-section-content owl-carousel owl-theme">
+                    <ul id="content-salud" class="home-section-content owl-carousel owl-theme">
                         <?php
 
-                        $loop = getPosts( 'telefonos' );
-
-                        for ($i=0; $i < count($loop); $i++) { 
-                            $item = $loop[$i];
-                            ?>
-
-                        <li>
-                            <article>
-                                <a href="#" title="<?php echo $item['post_titulo']; ?>">
-                                    <img src="<?php echo UPLOADSURL .'/'. $item['post_imagen']; ?>" alt="Teléfonos - Municipio Vicente López" class="icon-content-circle">
-                                    <h4><?php echo $item['post_contenido']; ?></h4>
-                                    <h1>
-                                        <?php echo $item['post_titulo']; ?>
-                                    </h1>
-                                </a>
-                            </article>
-                        </li>
-                        <?php } ?>
-                    </ul>
-                </div>
-            </div>
-        </footer>
-    <?php else : ?>
-        <!-- footer-home para pc -->
-        <footer class="home-footer-pc">
-            <!-- BOLSA DE EMPLEO -->
-            <div class="home-footer-wrapper-empleos">
-                <h2 class="footer-title-amarillo">
-                    Bolsa de<br> Empleo
-                </h2>
-
-                <div class="home-footer-content-wrapper">
-                    
-                    <ul id="content-empleos-pc" class="home-section-content owl-carousel owl-theme">
-                        <?php
-
-                        $loop = getPosts( 'empleo' );
+                        $loop = getPosts( 'salud' );
 
                         getTemplate( 'inicio-loop-link-outside', $loop );
-                            
+
                         ?>
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <!-- TELEFONOS -->
-            <div class="home-footer-wrapper-telefonos">
-                <h2 class="footer-title-rojo">
-                    Teléfonos
-                </h2>
+    </div><!-- //.col-2-wrapper -->
 
-                <div class="home-footer-content-wrapper">
-                    
-                    <ul id="content-telefonos-pc" class="home-section-content">
-                        <?php
+        <!-- TELEFONOS -->
+    <section>  
+        <div class="home-section-wrapper">
+            <h2 class="section-title-rojo">
+                Teléfonos
+            </h2>
 
-                        $loop = getPosts( 'telefonos' );
+            <div class="home-section-content-wrapper">
+                
+                <ul id="content-telefonos" class="home-section-content owl-carousel owl-theme">
+                    <?php
 
-                        for ($i=0; $i < count($loop); $i++) { 
-                            $item = $loop[$i];
-                            ?>
+                    $loop = getPosts( 'telefonos' );
 
-                        <li>
-                            <article>
-                                <a href="#" title="<?php echo $item['post_titulo']; ?>" class="tel-link">
-                                    <div class="icon-tel">
-                                        <img src="<?php echo UPLOADSURL .'/'. $item['post_imagen']; ?>" alt="Teléfonos - Municipio Vicente López" class="icon-content-circle">
-                                    </div>    
-                                
-                                    <div class="tel-text">
-                                        <h5><?php echo $item['post_contenido']; ?></h5>
-                                        <h1>
-                                            <?php echo $item['post_titulo']; ?>
-                                        </h1>
-                                    </div>
-                                </a>
-                            </article>
-                        </li>
-                        <?php } ?>
-                    </ul>
-                </div>
+                    for ($i=0; $i < count($loop); $i++) { 
+                        $item = $loop[$i];
+                        ?>
+
+                    <li>
+                        <article>
+                            <a href="#" title="<?php echo $item['post_titulo']; ?>">
+                                <img src="<?php echo UPLOADSURL .'/'. $item['post_imagen']; ?>" alt="Teléfonos - Municipio Vicente López" class="icon-content-circle">
+                                <h4><?php echo $item['post_contenido']; ?></h4>
+                                <h1>
+                                    <?php echo $item['post_titulo']; ?>
+                                </h1>
+                            </a>
+                        </article>
+                    </li>
+                    <?php } ?>
+                </ul>
             </div>
+        </div>
+    </section>
 
-        </footer>
-       
-    <?php endif; ?>
+
+    <footer class="home-footer">
+        <div class="home-section-wrapper">
+            
+            <div class="home-section-content-wrapper">
+                
+                <ul id="content-links" class="home-section-content owl-carousel owl-theme">
+                    <?php
+
+                    $loop = getPosts( 'links-footer' );
+
+                    getTemplate( 'inicio-loop-link-outside', $loop );
+
+                    ?>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
 
     <?php if ( $video1 != '' || $video2 != '' ) : ?>
         <aside class="wrapper-videos">

@@ -168,58 +168,153 @@ $(window).on('load', function(){
                 loop:false
             },
         }
-    })
-    if ( window.innerWidth < 992 ) {
-        $('#content-empleos').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            navText : ['<span class="icon-arrow-colors icon-arrow-left-amarillo"></span>','<span class="icon-arrow-colors icon-arrow-right-amarillo"></span>'],
-            dots:false,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                    nav:true
-                },
-            }
-        });
-    }
+    });
     
     
-    if ( window.innerWidth < 992 ) {
-        $('#content-telefonos').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            navText : ['<span class="icon-arrow-colors icon-arrow-left-rojo"></span>','<span class="icon-arrow-colors icon-arrow-right-rojo"></span>'],
-            dots:false,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                    nav:true
-                },
-            }
-        });
-    }
 
-    if ( window.innerWidth > 992 ) {
-        $('#content-empleos-pc').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            navText : ['<span class="icon-arrow-colors icon-arrow-left-amarillo"></span>','<span class="icon-arrow-colors icon-arrow-right-amarillo"></span>'],
-            dots:false,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                    nav:true
-                },
-            }
-        });
-    }
+    $('#content-educacion').owlCarousel({
+        loop:true,
+        margin:20,
+        nav:true,
+        navText : ['<span class="icon-arrow-colors icon-arrow-left-amarillo"></span>','<span class="icon-arrow-colors icon-arrow-right-amarillo"></span>'],
+        dots:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            992:{
+                items:3,
+                nav:true,
+                loop:false
+            },
+            1150:{
+                items:4,
+                nav:true,
+                loop:false
+            },
+            1300:{
+                items:5,
+                nav:true,
+                loop:false
+            },
+            1600:{
+                items:6,
+                nav:true,
+                loop:false
+            },
+        }
+    });
+
+    $('#content-cultura').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        navText : ['<span class="icon-arrow-colors icon-arrow-left-amarillo"></span>','<span class="icon-arrow-colors icon-arrow-right-amarillo"></span>'],
+        dots:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            992:{
+                items:1,
+                nav:true,
+                loop:false
+            },
+        }
+    });
+    
+    
+    
+    $('#content-salud').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        navText : ['<span class="icon-arrow-colors icon-arrow-left-azul"></span>','<span class="icon-arrow-colors icon-arrow-right-azul"></span>'],
+        dots:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+
+            992:{
+                items:1,
+                nav:true,
+                loop:false
+            },
+        }
+    });
+    
+    
+    
+    $('#content-telefonos').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        navText : ['<span class="icon-arrow-colors icon-arrow-left-rojo"></span>','<span class="icon-arrow-colors icon-arrow-right-rojo"></span>'],
+        dots:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            992:{
+                items:3,
+                nav:true,
+                loop:false
+            },
+            1150:{
+                items:4,
+                nav:true,
+                loop:false
+            },
+            1300:{
+                items:5,
+                nav:true,
+                loop:false
+            },
+            1600:{
+                items:6,
+                nav:true,
+                loop:false
+            },
+        }
+    });
+
+    $('#content-links').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        navText : ['<span class="icon-arrow-colors icon-arrow-left-verde"></span>','<span class="icon-arrow-colors icon-arrow-right-verde"></span>'],
+        dots:false,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            992:{
+                items:3,
+                nav:true,
+                loop:false
+            },
+            1150:{
+                items:6,
+                nav:true,
+                loop:false
+            },
+            
+        }
+    });
+    
+
+   
 
     //sliders single post
     $('#single-slider').owlCarousel({
