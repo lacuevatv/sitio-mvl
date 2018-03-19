@@ -1370,12 +1370,13 @@ MENUS
 @media (min-width: 992px) {
   .col-2-wrapper > section .home-section-content-wrapper {
     width: 65%; } }
-.col-2-wrapper > section .home-section-content-wrapper article {
-  width: 80% !important;
-  margin: 0 auto; }
-  @media (min-width: 1500px) {
-    .col-2-wrapper > section .home-section-content-wrapper article {
-      width: 55% !important; } }
+@media (min-width: 992px) {
+  .col-2-wrapper > section .home-section-content-wrapper article {
+    width: 80% !important;
+    margin: 0 auto; } }
+@media (min-width: 1500px) {
+  .col-2-wrapper > section .home-section-content-wrapper article {
+    width: 55% !important; } }
 
 /*educacion*/
 .section-title-naranja {
@@ -1445,10 +1446,12 @@ MENUS
 /*ICONOS FOOTER*/
 .home-footer {
   margin-top: 100px;
-  border-top: 7px solid #ececec; }
+  border-top: 7px solid #ececec;
+  padding-top: 50px; }
   @media (min-width: 992px) {
     .home-footer {
-      border-top: none; } }
+      border-top: none;
+      padding-top: 0; } }
   .home-footer .home-section-wrapper {
     background: transparent; }
   @media (min-width: 992px) {
@@ -1467,7 +1470,11 @@ MENUS
       text-align: center;
       font-size: 100%; } }
   .home-footer .home-section-content-wrapper .home-section-content img {
-    background: transparent !important; }
+    background: transparent !important;
+    width: 200px !important; }
+    @media (min-width: 992px) {
+      .home-footer .home-section-content-wrapper .home-section-content img {
+        width: 95% !important; } }
 
 /*ARROWS*/
 .icon-arrow-colors {

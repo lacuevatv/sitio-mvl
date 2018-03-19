@@ -744,9 +744,10 @@
             }
 
             article {
-                width: 80%!important;
-                margin: 0 auto;
-
+                @media (min-width: $md) {
+                    width: 80%!important;
+                    margin: 0 auto;
+                }
                 @media (min-width: $xlg) {
                     width: 55%!important;
                 }
@@ -863,8 +864,11 @@
 .home-footer {
     margin-top: 100px;
     border-top: 7px solid #ececec;
+    padding-top: 50px;
+
     @media (min-width: $md) {
         border-top: none;
+        padding-top:0;
     }
     .home-section-wrapper {
         background: transparent;
@@ -897,6 +901,10 @@
 
             img {
                 background: transparent!important;
+                width: 200px!important;
+                @media (min-width: $md) {
+                    width: 95% !important;
+                }
             }
         }
     }
